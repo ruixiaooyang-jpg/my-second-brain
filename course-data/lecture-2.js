@@ -1,0 +1,745 @@
+window.ETF5248Lectures=window.ETF5248Lectures||{};
+window.ETF5248Lectures[2]={
+  "lecture": 2,
+  "source": "ETF2480_ETF5248_Lecture_2 (2).pdf",
+  "sha256": "0b5b38a2603ec25c228396776e2c3c260a8bab210535813c2fa8990741e149d1",
+  "pages": [
+    {
+      "page": 1,
+      "text": "Linear\nProgramming\nBasics\nLecture 2\nETF2480&ETF5248 - S2, 2026\nJessica Leung, PhD, CAP-X, SFHEA\n1 / 42",
+      "image": "course-materials/etf5248/lecture-2/page-001.jpg"
+    },
+    {
+      "page": 2,
+      "text": "T oday’s Goal\nA bit more on linear algebra\nLP terminologies and transformations\nGeometric interpretation of LP\nFeasibility problem\n2 / 42",
+      "image": "course-materials/etf5248/lecture-2/page-002.jpg"
+    },
+    {
+      "page": 3,
+      "text": "A bit more on linear algebra\nWe learnt from the last lecture that we can express an LP in an elegant and compact way using matrix\nvector notations. Apart from looking nice, there is so much more we can do in the analysis once we know\na few more tricks in linear algebra.\n; 3 / 42",
+      "image": "course-materials/etf5248/lecture-2/page-003.jpg"
+    },
+    {
+      "page": 4,
+      "text": "Vectors\nvectorof sizen(orn-vector) \n\nx1\nx2\n...\nxn\n\n\n▶we can also use the notationx= (x 1,x 2, . . . ,xn)\n▶x i isithcomponentorelement(real unless speciﬁed otherwise)\n▶set of realn-vectors is denotedR n\nspecial vectors(withndetermined from context)\n▶x=0(zero vector):x i =0,i=1, . . . ,n\n▶x=1(vector of ones):x i =1,i=1, . . . ,n\n▶x=e i (ith basis or unit vector):x i =1,x k =0fork̸=i\n4 / 42",
+      "image": "course-materials/etf5248/lecture-2/page-004.jpg"
+    },
+    {
+      "page": 5,
+      "text": "Vector Operations\nScalar vector multiplication:When a vector is multiplied by a scalar (i.e.,\nnumber), we multiply every element of the vector by the scalar.\n2\n\n\n1\n−2\n3\n\n =\n\n\n2\n−4\n6\n\n\n5 / 42",
+      "image": "course-materials/etf5248/lecture-2/page-005.jpg"
+    },
+    {
+      "page": 6,
+      "text": "Vector Operations\nAddition:Two vectors of the same size can be added together by adding\nthe corresponding elements, to form another vector of the same size.\n\n\n1\n−2\n3\n\n +\n\n\n8\n−1\n9\n\n =\n\n\n9\n−3\n12\n\n\nThe standardinner productonR n, the set of realn-vectors, is given by\nx T y=x 1y1 +x 2y2 +· · ·+x nyn =\nnX\ni=1\nxi yi\nforx,y∈R n.\n6 / 42",
+      "image": "course-materials/etf5248/lecture-2/page-006.jpg"
+    },
+    {
+      "page": 7,
+      "text": "Matrices\nmatrixof sizem×n:\nA=\n\n\nA11 A12 · · ·A 1n\nA21 A22 · · ·A 2n\n... ... ...\nAm1 Am2 · · ·A mn\n\n\n▶A ij (ora ij ) isijthelement(entryorcoeﬃcient)\n▶set ofm×nmatrices is denotedR m×n\n▶vectors can be viewed as matrices with one column\nspecial matrices(with size determined from context)\n▶X=0(zero matrix):X ij =0,i=1, . . . ,m,j=1, . . . ,n\n▶X=I(identity matrix):m=nwithX ii =1,X ij =0fori̸=j\n7 / 42",
+      "image": "course-materials/etf5248/lecture-2/page-007.jpg"
+    },
+    {
+      "page": 8,
+      "text": "Matrix operations\nScalar multiple: given any matrixAand any numberc, the matrixcAis\nobtained from the matrixAby multiplying each element ofAbyc.\nA=\n\u0014\n1 2\n−1 0\n\u0015\n;3A=\n\u0014\n3 6\n−3 0\n\u0015\n.\nAddition: letA= [a ij ]andB= [b ij ]be two matrices with the same order.\nThenC=A+Bis deﬁned to be them×nmatrix whoseij-th element is\naij +b ij .\nA=\n\n\n1 0\n2−1\n3−1\n\n ;B=\n\n\n−1 2\n−2 1\n−3−1\n\n ;C=A+B=\n\n\n0 2\n0 0\n0−2\n\n .\n8 / 42",
+      "image": "course-materials/etf5248/lecture-2/page-008.jpg"
+    },
+    {
+      "page": 9,
+      "text": "T ransposition\nT ransposition: given anym×nmatrixA, the transpose ofA(writtenA T )\nis then×mmatrix given by(A T )ij =a ji .\nFor example:\nA=\n\n\n0 4\n7 0\n3 1\n\n ;A T =\n\u0014\n0 7 3\n4 0 1\n\u0015\n.\nThe same transposition is used in inner products of vectors as well.\n9 / 42",
+      "image": "course-materials/etf5248/lecture-2/page-009.jpg"
+    },
+    {
+      "page": 10,
+      "text": "Matrices and systems of linear equations\nConsider a system ofmlinear equations withnvariables\nA11x1 +A 12x2 +· · ·+A 1nxn =b 1\nA21x1 +A 22x2 +· · ·+A 2nxn =b 2\n...\nAm1x1 +A m2x2 +· · ·+A mnxn =b m\nThese equations can be written in matrix notation as\nAx=b\nwhere\nA=\n\n\nA11 A12 . . .A 1n\nA21 A22 . . .A 2n\n... ... ...\nAm1 Am2 . . .A mn\n\n ,b=\n\n\nb1\nb2\n...\nbm\n\n ,x=\n\n\nx1\nx2\n...\nxn\n\n\n10 / 42",
+      "image": "course-materials/etf5248/lecture-2/page-010.jpg"
+    },
+    {
+      "page": 11,
+      "text": "Expressing constraintx≥0withinAx≥0.\n11 / 42",
+      "image": "course-materials/etf5248/lecture-2/page-011.jpg"
+    },
+    {
+      "page": 12,
+      "text": "Expressing constraintx≥0withinAx≥0.\nDoes this change our coding syntax?\n12 / 42",
+      "image": "course-materials/etf5248/lecture-2/page-012.jpg"
+    },
+    {
+      "page": 13,
+      "text": "For those who want to learnmore\nabout these notations beyond this unit...\nA very easy to read (free) textbook, designed for ﬁrst year students:\nBoyd and Vandenberghe(2018)Introduction to Applied Linear Algebra: Vectors,\nMatrices, and Least Squares\nRead Ch. 1.1-1.4 (vectors), 6.1-6.4(matrix), 10.1(matrix multiplication)\nLink:https://web.stanford.edu/~boyd/vmls/vmls.pdf\nFor Python implementation of Boyd and Vandenberghe (2018):\nLeung and Matsypura(2019)Python Language Companion to Introduction to Applied\nLinear Algebra: Vectors, Matrices, and Least Squares\nLink:https://hdl.handle.net/2123/21370\n13 / 42",
+      "image": "course-materials/etf5248/lecture-2/page-013.jpg"
+    },
+    {
+      "page": 14,
+      "text": "LP T erminologies and\nUseful T ransformations\nWe need to know what we are referring to in an LP before we dive deeper.\n14 / 42",
+      "image": "course-materials/etf5248/lecture-2/page-014.jpg"
+    },
+    {
+      "page": 15,
+      "text": "Linear programming (LP) problem\nminimize\nnX\nj=1\ncj xj\nsubject to\nnX\nj=1\naij xj ≤b i ,i=1, . . . ,m\nnX\nj=1\ndij xj =f i ,i=1, . . . ,p\nin matrix notation:\nminimizec T x\nsubject toAx≤b\nDx=f\n▶Aism×n-matrix with elementsa ij , rowsa T\ni\n▶Disp×n-matrix with elementsd ij , rowsd T\ni\n▶inequality is component-wise vector inequality\n15 / 42",
+      "image": "course-materials/etf5248/lecture-2/page-015.jpg"
+    },
+    {
+      "page": 16,
+      "text": "T erminology\nminimizec T x\nsubject toAx≤b\nDx=f\n▶xisfeasibleif it satisﬁes the constraintsAx≤bandDx=f\n▶feasible setis set of all feasible points\n▶x ⋆ isoptimalif it is feasible andc T x ⋆ ≤c T xfor all feasiblex\n▶theoptimal valueof the LP isp ⋆ =c T x ⋆\n▶unbounded problem:c T xunbounded below on feasible set (p ⋆ = −∞)\n▶infeasible problem:feasible set is empty (p ⋆ = +∞)\n16 / 42",
+      "image": "course-materials/etf5248/lecture-2/page-016.jpg"
+    },
+    {
+      "page": 17,
+      "text": "Maximisation problems\nWe can solve themaximisation problem\nmaximizec T x\nsubject toAx≤b\nDx=f\nby minimising the function−c T xsubject to the same constraints:\nminimize−c T x\nsubject toAx≤b\nDx=f\nwith the following changes in terminology:\n▶x ⋆ isoptimalif it is feasible andc T x ⋆ ≥c T xfor all feasiblex\n▶unbounded problem:c T xunbounded above on feasible set (p ⋆ = +∞)\n▶infeasible problem:feasible set is empty (p ⋆ =−∞) 17 / 42",
+      "image": "course-materials/etf5248/lecture-2/page-017.jpg"
+    },
+    {
+      "page": 18,
+      "text": "Geometric\nInterpretation\nof LP\nWe can visualise the process of solving an LP\non a graph easily when we only have 2 decision variables.\n18 / 42",
+      "image": "course-materials/etf5248/lecture-2/page-018.jpg"
+    },
+    {
+      "page": 19,
+      "text": "Giapetto’s Woodcarving\nGiapetto’s Woodcarving, Inc., manufactures wooden soldiers and trains.\nEach soldier built:\nSells for $27 and uses $10 worth of raw materials.\nIncreases Giapetto’s variable labor/overhead costs by $14.\nRequires 2 hours of ﬁnishing labor.\nRequires 1 hour of carpentry labor.\nEach train built:\nSells for $21 and uses $9 worth of raw materials.\nIncreases Giapetto’s variable labor/overhead costs by $10.\nRequires 1 hour of ﬁnishing labor.\nRequires 1 hour of carpentry labor.\nEach week Giapetto can obtain:\nAll needed raw material.\nOnly 100 ﬁnishing hours.\nOnly 80 carpentry hours.\nDemand for the trains is unlimited. At most 40 soldiers are bought each week. Giapetto wants to\nmaximize weekly proﬁt. Formulate and solve an LP .\n19 / 42",
+      "image": "course-materials/etf5248/lecture-2/page-019.jpg"
+    },
+    {
+      "page": 20,
+      "text": "Giapetto’s Woodcarving: LP formulation\nmaximize3x 1 +2x 2\nsubject to2x 1 +x 2 ≤100(ﬁnishing constraint)\nx1 +x 2 ≤80(carpentry constraint)\nx1 ≤40(constraint on demand for soldiers)\nx1 ≥0\nx2 ≥0\nin matrix notation:\nmaximizec T x\nsubject toAx≤b\nwhere\nA=\n\n\n2 1\n1 1\n1 0\n−1 0\n0−1\n\n\n,b=\n\n\n100\n80\n40\n0\n0\n\n\n,c=\n\u0014\n3\n2\n\u0015\n.\n20 / 42",
+      "image": "course-materials/etf5248/lecture-2/page-020.jpg"
+    },
+    {
+      "page": 21,
+      "text": "Giapetto’s Woodcarving: geometric interpretation\nx1\nx2\n0\n80\n100\n5040 80\nx1 +x\n2 =80\n2x\n1\n+x\n2\n=100\nx1=40\n3x1 +2x 2 =60\n3x1 +2x 2 =120\n3x1 +2x 2 =180\n3x1 +2x 2 =240 3x1 +2x 2 =300\nc\nx ⋆\noptimal solution isx ⋆ = (20,60)withp ⋆ =180\n21 / 42",
+      "image": "course-materials/etf5248/lecture-2/page-021.jpg"
+    },
+    {
+      "page": 22,
+      "text": "Giapetto’s Woodcarving: geometric interpretation\nx1\nx2\n0\n80\n100\n5040 80\nx1 +x\n2 =80\n2x\n1\n+x\n2\n=100\nx1=40\n3x1 +2x 2 =60\n3x1 +2x 2 =120\n3x1 +2x 2 =180\n3x1 +2x 2 =240 3x1 +2x 2 =300\nc\nx ⋆\noptimal solution isx ⋆ = (20,60)withp ⋆ =180\n22 / 42",
+      "image": "course-materials/etf5248/lecture-2/page-022.jpg"
+    },
+    {
+      "page": 23,
+      "text": "Giapetto’s Woodcarving: geometric interpretation\nx1\nx2\n0\n80\n100\n5040 80\nx1 +x\n2 =80\n2x\n1\n+x\n2\n=100\nx1=40\n3x1 +2x 2 =60\n3x1 +2x 2 =120\n3x1 +2x 2 =180\n3x1 +2x 2 =240 3x1 +2x 2 =300\nc\nx ⋆\noptimal solution isx ⋆ = (20,60)withp ⋆ =180\n23 / 42",
+      "image": "course-materials/etf5248/lecture-2/page-023.jpg"
+    },
+    {
+      "page": 24,
+      "text": "Giapetto’s Woodcarving: geometric interpretation\nx1\nx2\n0\n80\n100\n5040 80\nx1 +x\n2 =80\n2x\n1\n+x\n2\n=100\nx1=40\n3x1 +2x 2 =60\n3x1 +2x 2 =120\n3x1 +2x 2 =180\n3x1 +2x 2 =240 3x1 +2x 2 =300\nc\nx ⋆\noptimal solution isx ⋆ = (20,60)withp ⋆ =180\n24 / 42",
+      "image": "course-materials/etf5248/lecture-2/page-024.jpg"
+    },
+    {
+      "page": 25,
+      "text": "Giapetto’s Woodcarving: geometric interpretation\nx1\nx2\n0\n80\n100\n5040 80\nx1 +x\n2 =80\n2x\n1\n+x\n2\n=100\nx1=40\n3x1 +2x 2 =60\n3x1 +2x 2 =120\n3x1 +2x 2 =180\n3x1 +2x 2 =240 3x1 +2x 2 =300\nc\nx ⋆\noptimal solution isx ⋆ = (20,60)withp ⋆ =180\n25 / 42",
+      "image": "course-materials/etf5248/lecture-2/page-025.jpg"
+    },
+    {
+      "page": 26,
+      "text": "Giapetto’s Woodcarving: geometric interpretation\nx1\nx2\n0\n80\n100\n5040 80\nx1 +x\n2 =80\n2x\n1\n+x\n2\n=100\nx1=40\n3x1 +2x 2 =60\n3x1 +2x 2 =120\n3x1 +2x 2 =180\n3x1 +2x 2 =240 3x1 +2x 2 =300\nc\nx ⋆\noptimal solution isx ⋆ = (20,60)withp ⋆ =180\n26 / 42",
+      "image": "course-materials/etf5248/lecture-2/page-026.jpg"
+    },
+    {
+      "page": 27,
+      "text": "Giapetto’s Woodcarving: geometric interpretation\nx1\nx2\n0\n80\n100\n5040 80\nx1 +x\n2 =80\n2x\n1\n+x\n2\n=100\nx1=40\n3x1 +2x 2 =60\n3x1 +2x 2 =120\n3x1 +2x 2 =180\n3x1 +2x 2 =240 3x1 +2x 2 =300\nc\nx ⋆\noptimal solution isx ⋆ = (20,60)withp ⋆ =180\n27 / 42",
+      "image": "course-materials/etf5248/lecture-2/page-027.jpg"
+    },
+    {
+      "page": 28,
+      "text": "Live Coding Time!\nLet’s code the Giapetto’s Woodcarving problem together! We can also look at how the\nobjective function moves across the polyhedron.\n28 / 42",
+      "image": "course-materials/etf5248/lecture-2/page-028.jpg"
+    },
+    {
+      "page": 29,
+      "text": "Multiple solutions, infeasibility and unboundedness\nminimizec T x\nsubject toAx≥b\n▶unbounded problem:c T xunbounded below on feasible set (p ⋆ = −∞)\n▶infeasible problem:feasible set is empty (p ⋆ = +∞)\n▶multiple (alternative) solutions:c T xis parallel to one of the\nconstraints\nIn fact, every LP must fall into one of the following four cases:\n▶Case 1:LP is infeasible\n▶Case 2:LP is unbounded\n▶Case 3:LP has a unique solution\n▶Case 4:LP has multiple solutions\n29 / 42",
+      "image": "course-materials/etf5248/lecture-2/page-029.jpg"
+    },
+    {
+      "page": 30,
+      "text": "Feasibility Problem\nSometimes we don’t really have something to maximize/minimize, all we care is if there is a solution that\nsatisﬁes all the constraints or not.\n30 / 42",
+      "image": "course-materials/etf5248/lecture-2/page-030.jpg"
+    },
+    {
+      "page": 31,
+      "text": "(Linear) feasibility problem\nﬁndx\nsubject toAx≥b\ncan be considered a special case of the general LP problem withc=0:\nminimize0\nsubject toAx≥b\np⋆ =0if constraints are feasible; any feasiblexis optimal\np⋆ = +∞if constraints are infeasible\n31 / 42",
+      "image": "course-materials/etf5248/lecture-2/page-031.jpg"
+    },
+    {
+      "page": 32,
+      "text": "Quick Summary\nT oday we have learnt\n▶a little bit more about linear algebra and terminologies that helps us\nlearn LP better\n▶we can transform the LPs so that they look similar to one another\n▶some LP can be solved graphically\n▶sometimes we only want to see if it’s feasible\n32 / 42",
+      "image": "course-materials/etf5248/lecture-2/page-032.jpg"
+    },
+    {
+      "page": 33,
+      "text": "Appendix:\nHyperplanes,\nhalfspaces\nand polyhedrons\n33 / 42",
+      "image": "course-materials/etf5248/lecture-2/page-033.jpg"
+    },
+    {
+      "page": 34,
+      "text": "Hyperplanes and halfspaces\nDeﬁnition:hyperplane is a solution set of one linear equation with\nnonzero coeﬃcient vectora\naT x=b\nDeﬁnition:halfspace is a solution set of one linear inequality with\nnonzero coeﬃcient vectora\naT x≥b\nais thenormal vector\naT x≤b\naT x≥baT x=b\na\nFigure: A hyperplane and two halfspaces. 34 / 42",
+      "image": "course-materials/etf5248/lecture-2/page-034.jpg"
+    },
+    {
+      "page": 35,
+      "text": "Polyhedron\nDeﬁnition:polyhedron is the solution set of a ﬁnite number of linear\ninequalities:\naT\n1 x≥b 1,a T\n2 x≥b 2, . . . ,a T\nmx≥b m\n▶intersection of a ﬁnite number of halfspaces\n▶in matrix notation:Ax≥bifAis a matrix with rowsa T\ni\n▶can include equalities:Fx=gis equivalent toFx≥g,−Fx≥ −g\naT\n1 x=b 1\naT\n2 x=b 2\naT\n3 x=b 3 aT4 x=b\n4\na\nT 5\nx=b\n5Pa2\na1\na3\na4\na5\n35 / 42",
+      "image": "course-materials/etf5248/lecture-2/page-035.jpg"
+    },
+    {
+      "page": 36,
+      "text": "Feasible set\nFeasible set(orfeasible region,constraint set) for an LP is the set of all\npoints that satisfy all the constraints of the LP .\nProperty:the feasible set of an LP is apolyhedron.\nProof:A polyhedron is deﬁned as the solution set of a ﬁnite number of\nlinear inequalities:\nP={x|a T\ni x≥b i ,i=1, . . . ,m}\nBecause in an LP , each constraint must be either a linear equation or\nlinear inequality and there is a ﬁnite number of them,feasible setis a\npolyhedron.■\n36 / 42",
+      "image": "course-materials/etf5248/lecture-2/page-036.jpg"
+    },
+    {
+      "page": 37,
+      "text": "Geometric interpretation of LP\nmaximizec T x\nsubject toAx≥b\nAx≥b\nc\ndashed lines (hyperplanes) are level setsc T x=αfor diﬀerentα\n37 / 42",
+      "image": "course-materials/etf5248/lecture-2/page-037.jpg"
+    },
+    {
+      "page": 38,
+      "text": "Workshop Example minimize−x 1 −x 2\nsubject to2x 1 +x 2 ≤3\nx1 +4x 2 ≤5\nx1 ≥0,x 2 ≥0\nx1\nx2\n0\n−c\n−x1 −x 2 =0\n−x1 −x 2 =−1\n−x1 −x 2 =−2\n−x1 −x 2 =−3\n−x1 −x 2 =−4\n−x1 −x 2 =−5\n−x1 −x 2 =−6\noptimal solution isx ⋆ = (1,1)withp ⋆ =−2\n38 / 42",
+      "image": "course-materials/etf5248/lecture-2/page-038.jpg"
+    },
+    {
+      "page": 39,
+      "text": "Workshop Example minimize−x 1 −x 2\nsubject to2x 1 +x 2 ≤3\nx1 +4x 2 ≤5\nx1 ≥0,x 2 ≥0\nx1\nx2\n0\n−c\n−x1 −x 2 =0\n−x1 −x 2 =−1\n−x1 −x 2 =−2\n−x1 −x 2 =−3\n−x1 −x 2 =−4\n−x1 −x 2 =−5\n−x1 −x 2 =−6\noptimal solution isx ⋆ = (1,1)withp ⋆ =−2\n39 / 42",
+      "image": "course-materials/etf5248/lecture-2/page-039.jpg"
+    },
+    {
+      "page": 40,
+      "text": "Workshop Example\n▶What would the visualization look like in a 2D example if the objective\nfunction is no longer a linear function?\n▶How would the feasible region change if the constraints are not linear?\n▶Can we generate an interactive graphic with the help of GenAI?\n40 / 42",
+      "image": "course-materials/etf5248/lecture-2/page-040.jpg"
+    },
+    {
+      "page": 41,
+      "text": "(If time permits) Product Mix (Marketing Application)\nGurobi is a state-of-the-art commercial solver to solve optimization\nproblem. The company’s target customers are academics (professors and\nstudents) and industry practitioners. T o reach these groups, Gurobi is\nconsidering to purchase full page advertisement in two magazines:\n\"Analytics T oday\" and \"Analytics T omorrow\" .\n▶An \"Analytics T oday\" ad (in each issue) is seen by 7 million academics\nand 2 million industry practitioners and costs $50,000.\n▶An \"Analytics T omorrow\" ad (in each issue) is seen by 2 million\nacademics and 12 million industry practitioners and costs $100,000.\n▶Gurobi would like for commercials to be seen by at least 28 million\nacademics and 24 million industry practitioners.\nUse LP to determine how Gurobi can meet its advertising requirements at\nminimum cost.\n41 / 42",
+      "image": "course-materials/etf5248/lecture-2/page-041.jpg"
+    },
+    {
+      "page": 42,
+      "text": "(If time permits) Product Mix (Marketing Application):\nsolution\nGurobi must decide how many \"Analytics T oday\" and \"Analytics\nT omorrow\" ads should be purchased, so the decision variables are\nx1 - number of \"Analytics T oday\" ads purchased\nx2 - number of \"Analytics T omorrow\" ads purchased\nThen the problem can be formulated as:\nminimize50x 1 +100x 2\nsubject to7x 1 +2x 2 ≥28\n2x1 +12x 2 ≥24\nx1,x 2 ≥0\n42 / 42",
+      "image": "course-materials/etf5248/lecture-2/page-042.jpg"
+    }
+  ],
+  "version": 1,
+  "title": [
+    "线性代数、术语与图解",
+    "Linear algebra, terminology and geometry"
+  ],
+  "overview": [
+    "从矩阵运算到图解最优解，再到多面体和可行性问题。",
+    "From matrix operations to graphical optima, polyhedra and feasibility."
+  ],
+  "goals": [
+    [
+      "掌握矩阵维度和转置",
+      "Use matrix dimensions and transpose"
+    ],
+    [
+      "区分可行、最优、无界和不可行",
+      "Distinguish feasibility, optimality, unboundedness and infeasibility"
+    ],
+    [
+      "用等值线解释二维 LP",
+      "Explain two-variable LPs with contours"
+    ]
+  ],
+  "cards": [
+    {
+      "pages": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "title": [
+        "学习路线与向量",
+        "Learning route and vectors"
+      ],
+      "lecture": [
+        "本讲衔接 Lecture 1 的矩阵建模，依次学习线性代数、LP 术语、几何和可行性。n 维向量的分量是实数；0、1 和 eᵢ 分别表示零向量、全一向量和第 i 个单位向量。",
+        "Building on Lecture 1, this lecture covers linear algebra, LP terminology, geometry and feasibility. An n-vector has real components; 0, 1 and eᵢ denote the zero, all-ones and ith unit vectors."
+      ],
+      "formulas": [
+        "x\\in\\mathbb R^n,\\quad (e_i)_j=\\begin{cases}1&j=i\\\\0&j\\ne i\\end{cases}"
+      ],
+      "explanation": [
+        "",
+        ""
+      ],
+      "terms": [
+        [
+          "component",
+          "分量"
+        ],
+        [
+          "unit vector",
+          "单位向量"
+        ]
+      ],
+      "review": [
+        "",
+        ""
+      ],
+      "id": "etf5248-l2-k01"
+    },
+    {
+      "pages": [
+        5,
+        6
+      ],
+      "title": [
+        "向量运算与内积",
+        "Vector operations and inner product"
+      ],
+      "lecture": [
+        "数乘逐项进行：2(1,−2,3)=(2,−4,6)。同维向量相加：(1,−2,3)+(8,−1,9)=(9,−3,12)。内积是对应分量乘积之和，结果为标量。",
+        "Scalar multiplication acts componentwise: 2(1,−2,3)=(2,−4,6). Equal-sized vectors add componentwise: (1,−2,3)+(8,−1,9)=(9,−3,12). The inner product sums component products and is a scalar."
+      ],
+      "formulas": [
+        "x^Ty=\\sum_{i=1}^{n}x_iy_i"
+      ],
+      "explanation": [
+        "这正是线性目标函数 cᵀx 的运算：每个数量乘其单位收益，再求和。",
+        "This is the operation in cᵀx: multiply each quantity by its unit contribution and sum."
+      ],
+      "terms": [],
+      "review": [
+        "",
+        ""
+      ],
+      "id": "etf5248-l2-k02"
+    },
+    {
+      "pages": [
+        7,
+        8
+      ],
+      "title": [
+        "矩阵尺寸、数乘与加法",
+        "Matrix dimensions, scaling and addition"
+      ],
+      "lecture": [
+        "m×n 矩阵有 m 行 n 列，Aᵢⱼ 是第 i 行第 j 列。单位矩阵为方阵，对角线为 1，其余为 0。同尺寸矩阵才能逐项相加。课件数乘例：3[[1,2],[−1,0]]=[[3,6],[−3,0]]；矩阵加法例的结果为 [[0,2],[0,0],[0,−2]]，两个加数见第 8 页。",
+        "An m×n matrix has m rows and n columns; Aᵢⱼ is its row-i, column-j entry. The identity is square with ones on its diagonal. Matrix addition requires equal dimensions. The scaling example is 3[[1,2],[−1,0]]=[[3,6],[−3,0]]. The addition example gives [[0,2],[0,0],[0,−2]]; its operands are on page 8."
+      ],
+      "formulas": [
+        "A\\in\\mathbb R^{m\\times n},\\quad I_{ij}=\\begin{cases}1&i=j\\\\0&i\\ne j\\end{cases}"
+      ],
+      "explanation": [
+        "",
+        ""
+      ],
+      "terms": [],
+      "review": [
+        "",
+        ""
+      ],
+      "id": "etf5248-l2-k03"
+    },
+    {
+      "pages": [
+        9,
+        10
+      ],
+      "title": [
+        "转置与线性方程组",
+        "Transpose and linear systems"
+      ],
+      "lecture": [
+        "转置交换行列：[[0,4],[7,0],[3,1]] 的转置是 [[0,7,3],[4,0,1]]。m 个方程、n 个未知数可以写成 Ax=b，其中 A 是 m×n，x 是 n 维，b 是 m 维。",
+        "Transpose exchanges rows and columns: [[0,4],[7,0],[3,1]] becomes [[0,7,3],[4,0,1]]. A system of m equations in n unknowns is Ax=b, with A of size m×n, x of size n and b of size m."
+      ],
+      "formulas": [
+        "(A^T)_{ij}=A_{ji}",
+        "\\sum_{j=1}^n A_{ij}x_j=b_i\\quad(i=1,\\ldots,m)"
+      ],
+      "explanation": [
+        "",
+        ""
+      ],
+      "terms": [],
+      "review": [
+        "",
+        ""
+      ],
+      "id": "etf5248-l2-k04"
+    },
+    {
+      "pages": [
+        11,
+        12,
+        13
+      ],
+      "title": [
+        "非负约束与补充阅读",
+        "Nonnegativity and further reading"
+      ],
+      "lecture": [
+        "第 11–12 页提出把 x≥0 纳入矩阵不等式的问题，但没有书面推导或代码。第 13 页推荐 Boyd 与 Vandenberghe（2018）的线性代数教材，以及 Leung 与 Matsypura（2019）的 Python 配套读物。",
+        "Pages 11–12 ask how to incorporate x≥0 in matrix inequalities, without a written derivation or code. Page 13 recommends the linear algebra text by Boyd and Vandenberghe (2018) and its Python companion by Leung and Matsypura (2019)."
+      ],
+      "formulas": [],
+      "explanation": [
+        "补充：将单位矩阵 I 的行附加到约束矩阵，就能显式表达 Ix≥0。求解器可能另外支持变量下界；需核对具体接口。",
+        "Addition: appending rows of the identity explicitly represents Ix≥0. A solver may instead support variable lower bounds; check its interface."
+      ],
+      "terms": [],
+      "review": [
+        "需要人工核对课堂上对第 11–12 页所作的讲解；PDF 未包含答案。",
+        "The classroom explanation for pages 11–12 needs manual checking; no answer is in the PDF."
+      ],
+      "id": "etf5248-l2-k05"
+    },
+    {
+      "pages": [
+        14,
+        15,
+        16
+      ],
+      "title": [
+        "一般 LP、可行解与最优解",
+        "General LP, feasibility and optimality"
+      ],
+      "lecture": [
+        "一般形式包含不等式 Ax≤b 和等式 Dx=f。A 为 m×n，D 为 p×n；向量不等式逐分量理解。可行解满足全部约束；可行集是这些点的集合。最小化最优解必须可行且不劣于任意其他可行点，最优值是 cᵀx*。",
+        "A general form includes Ax≤b and Dx=f. A is m×n and D is p×n; inequalities are componentwise. A feasible point satisfies every constraint. A minimizer is feasible and has an objective no greater than that of any other feasible point; its value is cᵀx*."
+      ],
+      "formulas": [
+        "\\min_x c^Tx\\quad\\text{s.t. }Ax\\le b,\\ Dx=f",
+        "c^Tx^*\\le c^Tx\\quad\\forall x\\text{ feasible}"
+      ],
+      "explanation": [
+        "",
+        ""
+      ],
+      "terms": [
+        [
+          "feasible set",
+          "可行集"
+        ],
+        [
+          "optimal solution",
+          "最优解"
+        ],
+        [
+          "optimal value",
+          "最优值"
+        ]
+      ],
+      "review": [
+        "",
+        ""
+      ],
+      "id": "etf5248-l2-k06"
+    },
+    {
+      "pages": [
+        17,
+        18
+      ],
+      "title": [
+        "最大化转换与无穷值约定",
+        "Maximization and extended-value conventions"
+      ],
+      "lecture": [
+        "最大化 cᵀx 等价于在相同约束下最小化 −cᵀx。最小化无界时最优值记 −∞，不可行时记 +∞；最大化时两者分别记 +∞ 和 −∞。两变量问题可以用图形解释。",
+        "Maximizing cᵀx is equivalent to minimizing −cᵀx over the same constraints. For minimization, unboundedness gives −∞ and infeasibility +∞; maximization reverses these conventions. Two-variable LPs can be visualized."
+      ],
+      "formulas": [],
+      "explanation": [
+        "这些无穷值是表达问题状态的约定，不代表存在一个坐标为无穷的最优解。",
+        "These are conventions for problem status, not an optimizer with infinite coordinates."
+      ],
+      "terms": [],
+      "review": [
+        "",
+        ""
+      ],
+      "id": "etf5248-l2-k07"
+    },
+    {
+      "pages": [
+        19,
+        20
+      ],
+      "title": [
+        "Giapetto：从成本到完整模型",
+        "Giapetto: from costs to the model"
+      ],
+      "lecture": [
+        "士兵售价 27、材料 10、其他变动成本 14，净贡献 3；火车售价 21、材料 9、其他成本 10，净贡献 2。每个士兵/火车分别用 2/1 小时精加工和 1/1 小时木工。资源分别 100、80 小时，士兵最多 40。x₁、x₂ 是两类产量。",
+        "Soldiers contribute 27−10−14=3 each; trains contribute 21−9−10=2. Finishing takes 2/1 hours and carpentry 1/1 hours per soldier/train. There are 100 finishing hours, 80 carpentry hours and demand for at most 40 soldiers. x₁ and x₂ are production quantities."
+      ],
+      "formulas": [
+        "\\max 3x_1+2x_2\\quad\\text{s.t. }2x_1+x_2\\le100,\\ x_1+x_2\\le80,\\ x_1\\le40,\\ x_1,x_2\\ge0",
+        "A=\\begin{pmatrix}2&1\\\\1&1\\\\1&0\\\\-1&0\\\\0&-1\\end{pmatrix},\\ b=\\begin{pmatrix}100\\\\80\\\\40\\\\0\\\\0\\end{pmatrix},\\ c=\\begin{pmatrix}3\\\\2\\end{pmatrix}"
+      ],
+      "explanation": [
+        "",
+        ""
+      ],
+      "terms": [],
+      "review": [
+        "",
+        ""
+      ],
+      "id": "etf5248-l2-k08"
+    },
+    {
+      "pages": [
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28
+      ],
+      "title": [
+        "Giapetto：逐步图解与最优产量",
+        "Giapetto: graphical solution"
+      ],
+      "lecture": [
+        "第 21 页画出绿色可行域。第 22–26 页依次加入收益等值线 60、120、180、240、300；不是每条等值线都与可行域相交。第 27 页给出最优点 (20,60)，利润 180。第 28 页仅为现场编程提示。每幅渐进图都保留在来源阅读器中。",
+        "Page 21 shows the green feasible region. Pages 22–26 successively add profit contours 60, 120, 180, 240 and 300; some do not intersect the feasible region. Page 27 gives (20,60), with profit 180. Page 28 is a live-coding prompt. Every incremental diagram remains available in the source reader."
+      ],
+      "formulas": [],
+      "explanation": [
+        "计算：联立 2x₁+x₂=100 与 x₁+x₂=80 得 x₁=20、x₂=60；利润 3×20+2×60=180。最优点没有用满士兵需求上限。",
+        "Calculation: subtract x₁+x₂=80 from 2x₁+x₂=100 to obtain x₁=20 and x₂=60. Profit is 180. The soldier-demand limit is slack."
+      ],
+      "terms": [],
+      "review": [
+        "第 28 页不含现场代码，需要课堂记录才能还原。",
+        "Page 28 contains no live code; classroom records are needed to recover it."
+      ],
+      "id": "etf5248-l2-k09"
+    },
+    {
+      "pages": [
+        29
+      ],
+      "title": [
+        "LP 的四种结果",
+        "Four LP outcomes"
+      ],
+      "lecture": [
+        "课件列出不可行、无界、唯一最优解和多个最优解。课件用目标等值线与约束平行解释多重解。",
+        "The slides list infeasibility, unboundedness, a unique optimum and multiple optima. Parallel objective contours and constraint boundaries are used to illustrate multiple solutions."
+      ],
+      "formulas": [],
+      "explanation": [
+        "严格说，平行本身不足以推出多重最优解：最优支撑面必须包含多个不同可行点。可行域无界也不等于目标函数无界。",
+        "More precisely, parallelism alone is insufficient: an optimal supporting face must contain distinct feasible points. An unbounded feasible region need not imply an unbounded objective."
+      ],
+      "terms": [],
+      "review": [
+        "",
+        ""
+      ],
+      "id": "etf5248-l2-k10"
+    },
+    {
+      "pages": [
+        30,
+        31,
+        32
+      ],
+      "title": [
+        "可行性问题及本讲总结",
+        "Feasibility problems and recap"
+      ],
+      "lecture": [
+        "如果只关心约束能否同时满足，可设目标系数 c=0。可行时每个可行点都是最优解，值为 0；不可行时按最小化约定值为 +∞。本讲将线性代数、等价变换和图解联系起来。",
+        "If only simultaneous constraint satisfaction matters, set c=0. Every feasible point is optimal with value zero; an infeasible minimization problem has value +∞. This links linear algebra, equivalent transformations and graphical LP reasoning."
+      ],
+      "formulas": [
+        "\\min 0\\quad\\text{s.t. }Ax\\ge b"
+      ],
+      "explanation": [
+        "",
+        ""
+      ],
+      "terms": [],
+      "review": [
+        "",
+        ""
+      ],
+      "id": "etf5248-l2-k11"
+    },
+    {
+      "pages": [
+        33,
+        34
+      ],
+      "title": [
+        "超平面、半空间和法向量",
+        "Hyperplanes, halfspaces and normals"
+      ],
+      "lecture": [
+        "非零向量 a 决定超平面 aᵀx=b；不等式 aᵀx≥b 定义其中一侧的半空间。a 是垂直于边界的法向量。第 34 页展示边界两侧。",
+        "For nonzero a, aᵀx=b defines a hyperplane and aᵀx≥b defines a halfspace. The vector a is normal to the boundary. Page 34 illustrates both sides."
+      ],
+      "formulas": [
+        "H=\\{x:a^Tx=b\\},\\quad H_+=\\{x:a^Tx\\ge b\\},\\quad a\\ne0"
+      ],
+      "explanation": [
+        "",
+        ""
+      ],
+      "terms": [
+        [
+          "hyperplane",
+          "超平面"
+        ],
+        [
+          "halfspace",
+          "半空间"
+        ],
+        [
+          "normal vector",
+          "法向量"
+        ]
+      ],
+      "review": [
+        "",
+        ""
+      ],
+      "id": "etf5248-l2-k12"
+    },
+    {
+      "pages": [
+        35,
+        36,
+        37
+      ],
+      "title": [
+        "多面体与目标等值线",
+        "Polyhedra and objective contours"
+      ],
+      "lecture": [
+        "有限个半空间相交得到多面体；等式 Fx=g 可以写为 Fx≥g 与 −Fx≥−g。因此 LP 可行集是多面体。第 37 页虚线 cᵀx=α 是不同目标值的等值超平面，c 指向增大方向。",
+        "A polyhedron is an intersection of finitely many halfspaces. Fx=g is equivalent to Fx≥g and −Fx≥−g, so an LP feasible set is a polyhedron. The dashed hyperplanes cᵀx=α on page 37 are objective contours; c points toward increasing values."
+      ],
+      "formulas": [
+        "P=\\{x:a_i^Tx\\ge b_i,\\ i=1,\\ldots,m\\}",
+        "c^Tx=\\alpha"
+      ],
+      "explanation": [
+        "",
+        ""
+      ],
+      "terms": [
+        [
+          "polyhedron",
+          "多面体"
+        ],
+        [
+          "level set",
+          "等值集"
+        ]
+      ],
+      "review": [
+        "",
+        ""
+      ],
+      "id": "etf5248-l2-k13"
+    },
+    {
+      "pages": [
+        38,
+        39,
+        40
+      ],
+      "title": [
+        "Workshop 图解与非线性讨论",
+        "Workshop geometry and nonlinear discussion"
+      ],
+      "lecture": [
+        "模型最小化 −x₁−x₂，约束 2x₁+x₂≤3、x₁+4x₂≤5、非负。第 39 页给出 (1,1)，值 −2。第 40 页提问非线性目标、非线性约束和交互图形，没有提供解答。",
+        "Minimize −x₁−x₂ subject to 2x₁+x₂≤3, x₁+4x₂≤5 and nonnegativity. Page 39 gives (1,1), value −2. Page 40 asks about nonlinear objectives, nonlinear constraints and interactive graphics without supplying answers."
+      ],
+      "formulas": [
+        "\\min -x_1-x_2\\quad\\text{s.t. }2x_1+x_2\\le3,\\ x_1+4x_2\\le5,\\ x\\ge0"
+      ],
+      "explanation": [
+        "交点计算：x₂=3−2x₁，代入第二式得到 −7x₁=−7，所以 (1,1)。非线性目标的等值线可能弯曲；非线性约束的可行边界也可能弯曲。这是补充解释。",
+        "Intersection: substitute x₂=3−2x₁ into the second boundary to get −7x₁=−7, hence (1,1). Nonlinear objectives may have curved contours and nonlinear constraints may have curved boundaries. This is additional explanation."
+      ],
+      "terms": [],
+      "review": [
+        "",
+        ""
+      ],
+      "id": "etf5248-l2-k14"
+    },
+    {
+      "pages": [
+        41,
+        42
+      ],
+      "title": [
+        "广告组合：覆盖目标与成本",
+        "Advertising mix: reach and cost"
+      ],
+      "lecture": [
+        "Today 广告触达 700 万学术人员、200 万行业人员，成本 5 万；Tomorrow 分别触达 200 万、1200 万，成本 10 万。要求至少触达 2800 万学术人员和 2400 万行业人员。x₁、x₂ 表示广告数量，成本单位为千元。课件给出模型，未给数值最优解。",
+        "Today reaches 7 million academics and 2 million practitioners at a cost of 50 thousand; Tomorrow reaches 2 million and 12 million at 100 thousand. Required reach is at least 28 and 24 million respectively. x₁ and x₂ are ad quantities; costs are in thousands. The slides give a formulation but no numerical optimum."
+      ],
+      "formulas": [
+        "\\min 50x_1+100x_2\\quad\\text{s.t. }7x_1+2x_2\\ge28,\\ 2x_1+12x_2\\ge24,\\ x_1,x_2\\ge0"
+      ],
+      "explanation": [
+        "补充求解：两条覆盖边界相交于 (3.6,1.4)，成本 320 千元；与轴上可行顶点 (12,0)、(0,14) 比较，成本分别为 600、1400，故该交点为连续 LP 最优解。整版广告必须取整数时，应另加整数条件。",
+        "Additional solution: the reach boundaries intersect at (3.6,1.4), costing 320 thousand. Axis vertices (12,0) and (0,14) cost 600 and 1,400 respectively. The intersection is optimal for the continuous LP; indivisible full-page ads require integrality."
+      ],
+      "terms": [],
+      "review": [
+        "",
+        ""
+      ],
+      "id": "etf5248-l2-k15"
+    }
+  ],
+  "summary": [
+    "先建立正确约束，再画半空间交集，最后沿目标改善方向移动等值线。区分可行集形状与目标是否无界。",
+    "Build constraints, intersect halfspaces and move contours in the improving direction. Distinguish region geometry from objective unboundedness."
+  ],
+  "exercises": [
+    {
+      "question": [
+        "Giapetto 的 (40,40) 是否可行？",
+        "Is (40,40) feasible for Giapetto?"
+      ],
+      "answer": [
+        "不可行：精加工用量 2×40+40=120>100。",
+        "No: finishing usage is 120>100."
+      ],
+      "pages": [
+        20
+      ]
+    },
+    {
+      "question": [
+        "若 c=0 且可行集非空，最优值是多少？",
+        "If c=0 and the feasible set is nonempty, what is the optimum?"
+      ],
+      "answer": [
+        "0；每个可行点都是最优点。",
+        "Zero; every feasible point is optimal."
+      ],
+      "pages": [
+        31
+      ]
+    }
+  ],
+  "reviewPages": [
+    {
+      "pages": [
+        11,
+        12,
+        28
+      ],
+      "reason": [
+        "课堂推导或现场代码未包含在 PDF 中。",
+        "Classroom derivations or live code are absent from the PDF."
+      ]
+    }
+  ]
+};

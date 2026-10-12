@@ -1,0 +1,45 @@
+/* V1 presentation adapter: references existing objects; never writes knowledge storage. */
+window.CourseOrganization=(()=>{
+ const $=id=>document.getElementById(id),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+ const value=a=>a[lang==='en'?1:0],lectures=Object.values(ETF5248Lectures);
+ const filters=document.createElement('div');filters.className='extra-filters';filters.id='courseViewFilters';
+ filters.innerHTML='<label><span id="viewLectureLabel"></span><select id="viewLecture"></select></label><label><span id="viewTopicLabel"></span><select id="viewTopic"></select></label><label><span id="viewKindLabel"></span><select id="viewKind"></select></label><p id="viewProvenance" class="muted"></p>';
+ $('cards').before(filters);
+ const sources=document.createElement('section');sources.id='courseSources';sources.hidden=true;document.querySelector('main').insertBefore(sources,$('footer'));
+ const style=document.createElement('style');style.textContent='#courseSources{padding:24px 0}#courseSources .source-row{padding:18px 0;border-bottom:1px solid #e2e7e3;overflow-wrap:anywhere}#courseSources button{margin:4px 8px 4px 0}#courseViewFilters{margin:16px 0}#courseViewFilters p{flex-basis:100%;font-size:12px}.course-exercises{margin-left:8px}.course-exercises button{display:block;width:100%}#libraryTree button:disabled{opacity:.6;cursor:default}';document.head.append(style);
+ function navigation(lib,button){if(lib.id!=='kb_etf5248'||lib.kind!=='course')return '';const b=(view,zh,en)=>button(lib.id,view,zh,en);return b('lectures','课程学习','Course learning')+b('sources','原始课件','Source slides')+`<details class="course-exercises"><summary>${t('练习与作业','Exercises & assignments')}</summary>${b('graph','图形实验','Graph laboratory')}${b('example','应用例题','Application example')}${b('quiz','自测练习','Self-test')}</details>`+b('knowledge','全部知识点','All knowledge')+b('knowledgeGraph','知识图谱','Knowledge Graph');}
+ function fill(el,opts){const old=el.value;el.replaceChildren(...opts.map(([v,n])=>new Option(n,v)));el.value=opts.some(([v])=>v===old)?old:'';}
+ // Only explicit Lecture categories/tags associate local notes; never infer from their text.
+ const lectureOf=n=>{const nums=[n.category,...n.tags].map(v=>/^Lecture\s+([1-7])$/i.exec(v)?.[1]).filter(Boolean);return [...new Set(nums)].length===1?nums[0]:'';};
+ function enhance(){
+  $('cards').querySelectorAll('.lecture-note').forEach(e=>e.remove());
+  const state=KnowledgeManager.state(),scope=LibraryUI.currentScope(),active=(scope==='all'||scope==='kb_etf5248')&&state.libraries.some(l=>l.id==='kb_etf5248'&&l.kind==='course');filters.hidden=!active;
+  $('viewLectureLabel').textContent=t('按 Lecture','Lecture');$('viewTopicLabel').textContent=t('按主题','Topic');
+  $('viewKindLabel').textContent=t('内容类型','Content type');fill($('viewKind'),[['',t('全部内容','All content')],['concept',t('核心知识点','Core concepts')],['case',t('课程案例','Case studies')],['practice',t('练习','Practice')],['original',t('原学习记录（104 条）','Original notes (104)')],['local',t('本机笔记','Local notes')],['demo',t('早期演示','Early demos')]]);
+  const kind=active?$('viewKind').value:'';
+  const local=state.items.filter(n=>n.libraryId==='kb_etf5248');
+  fill($('viewLecture'),[['',t('全部 Lecture / 未指定','All lectures / unassigned')],...lectures.map(l=>[String(l.lecture),'Lecture '+l.lecture]),['unassigned',t('未指定 Lecture','Unassigned lecture')]]);
+  fill($('viewTopic'),[['',t('全部主题','All topics')],...lectures.map(l=>['lecture:'+l.lecture,value(l.title)]),...categories().map((v,i)=>['demo:'+i,t('演示：','Demo: ')+v]),...[...new Set(local.map(n=>n.category))].sort().map(c=>['note:'+c,c])]);
+  $('viewProvenance').textContent=t('来源区分：课件整理 / 早期演示 / 本机笔记（可能手写或导入，来源不自动判定）。课程原文和已有个人副本分别保留，不合并。','Sources: slide-based notes / early demos / local notes (authorship not inferred). Course originals and existing personal copies stay separate.');
+  const ln=active?$('viewLecture').value:'',topic=active?$('viewTopic').value:'',query=$('search').value.trim().toLowerCase();
+  for(const article of $('cards').children){const n=state.items.find(v=>v.id===article.dataset.noteId);if(n){article.querySelector(':scope>.muted').textContent=t('本机笔记 · 来源未自动判定','Local note · origin not inferred')+' · '+LibraryUI.name(n.libraryId);if(active){const num=lectureOf(n);article.hidden=!!((kind&&kind!=='local'&&kind!==(n.contentType||'note'))||(ln&&(ln==='unassigned'?!!num:num!==ln))||(topic&&topic!=='note:'+n.category));}}
+   else {const idx=topics.findIndex(v=>value(v.title)===article.querySelector('summary')?.textContent);const label=article.querySelector('.origin-label')||document.createElement('p');label.className='muted origin-label';label.textContent=t('早期演示 · 待课程核对','Early demo · unverified supplement');article.querySelector('.tag').after(label);if(active)article.hidden=!!((kind&&kind!=='demo')||(ln&&ln!=='unassigned')||(topic&&topic!=='demo:'+topics[idx]?.group));}}
+  if(active)for(const l of (kind==='original'?lectures:(window.CourseCatalog?.index()||lectures)))for(const c of l.cards){if(kind&&kind!=='original'&&kind!==c.kind||ln&&!(c.lectures||[l.lecture]).map(String).includes(ln)||topic&&!(c.lectures||[l.lecture]).map(n=>'lecture:'+n).includes(topic)||$('category').value!=='all'||!LibraryUI.matches({libraryId:'kb_etf5248',course:'ETF5248',tags:(c.lectures||[l.lecture]).map(n=>'Lecture '+n)}))continue;
+   if(!JSON.stringify([c.title,c.lecture,c.explanation,c.terms,c.formulas,c.symbols,c.conditions,c.searchTerms,l.title,l.source,'Lecture '+l.lecture]).toLowerCase().includes(query))continue;
+   const a=document.createElement('article');a.className='card lecture-note';a.dataset.lecture=l.lecture;a.dataset.courseCard=c.id;
+   a.innerHTML=`<span class="tag">Lecture ${l.lecture} · ${esc(value(l.title))}</span><p class="muted">${c.kind?CourseCatalog.label(c.kind):t('原学习记录','Original notes')}</p><details><summary>${esc(value(c.title))}</summary><p>${esc(value(c.lecture))}</p></details><p class="muted">${esc(l.source)} · PDF ${c.pages.join(', ')}</p>`;$('cards').append(a);
+  }
+  if(active){$('count').textContent=t('显示 ','Showing ')+[...$('cards').children].filter(a=>!a.hidden).length+t(' 条知识（各来源保留）',' entries (sources preserved)');if(scope==='kb_etf5248')$('knowledgeTitle').textContent=t('ETF5248 · 全部知识点','ETF5248 · All knowledge');}
+ }
+ function refreshSources(){sources.innerHTML=`<h2>${t('ETF5248 · 原始课件','ETF5248 · Source slides')}</h2><p>${t('保留原始文件名；页码均为 PDF 实际页码。','Original filenames; all references use physical PDF pages.')}</p><button id="openCoursePDF">${t('上传与整理其他 PDF','Upload and organize other PDFs')}</button>${lectures.map(l=>`<div class="source-row"><strong>Lecture ${l.lecture} · ${esc(value(l.title))}</strong><p>${esc(l.source)} · ${l.pages.length} ${t('页','pages')}</p><button data-source-lecture="${l.lecture}">${t('逐页查看','Browse pages')}</button><a target="_blank" rel="noopener" href="course-materials/etf5248/lecture-${l.lecture}/${encodeURIComponent(l.source)}">${t('打开 PDF','Open PDF')}</a></div>`).join('')}<p class="muted">${t('现有练习入口保留；未发现独立的已导入 Assignment 页面，本轮不创建或推测作业内容。','Existing exercise entries are retained. No separate imported Assignment page was found; no assignment content is invented.')}</p>`;$('openCoursePDF').onclick=()=>CourseNav.go('kb_etf5248','pdf');}
+ sources.addEventListener('click',e=>{const b=e.target.closest('[data-source-lecture]');if(b){LectureLibrary.open(Number(b.dataset.sourceLecture));CourseNav.go('kb_etf5248','sources');LectureLibrary.preview(1);}});
+ $('cards').addEventListener('click',e=>{const c=e.target.closest('[data-course-card]');if(c){e.preventDefault();e.stopImmediatePropagation();if(window.CourseCatalog?.has(c.dataset.courseCard))CourseCatalog.open(c.dataset.courseCard);else LectureLibrary.open(Number(c.dataset.lecture),c.dataset.courseCard);}},true);
+ filters.addEventListener('change',()=>KnowledgeManager.renderKnowledge());
+ $('clearFilters').addEventListener('click',()=>{$('viewLecture').value='';$('viewTopic').value='';$('viewKind').value='';KnowledgeManager.renderKnowledge();});
+ const oldScope=LibraryUI.setScope;LibraryUI.setScope=v=>{$('viewLecture').value='';$('viewTopic').value='';$('viewKind').value='';oldScope(v);};
+ const oldRender=render;render=()=>{oldRender();refreshSources();enhance();BrainUI.decorate();};
+ refreshSources();
+ CourseNav.register('kb_etf5248',[{id:'lectures',label:['课程学习','Course learning'],sectionId:'lectureLibrary'},{id:'sources',label:['原始课件','Source slides'],sectionId:'courseSources'},{id:'graph',label:['图形实验','Graph laboratory'],sectionId:'graph'},{id:'example',label:['应用例题','Application example'],sectionId:'example'},{id:'quiz',label:['自测练习','Self-test'],sectionId:'quiz'}]);
+ return {navigation,enhance};
+})();
+CourseNav.refresh();KnowledgeManager.renderKnowledge();

@@ -1,0 +1,8 @@
+.ai-workspace{margin:24px 0;padding:22px;border:1px solid #c8d9d3;border-radius:12px;background:#f6faf8;min-width:0}
+.ai-badge{font-size:11px;font-weight:700;letter-spacing:1.3px;color:#276b57}.ai-workspace h2{font-size:23px;margin:12px 0}.ai-workspace p{line-height:1.7;font-size:13px}
+.ai-workspace label{display:block;margin:12px 0;font-size:13px}.ai-workspace input:not([type=checkbox]),.ai-workspace textarea{box-sizing:border-box;width:100%;min-width:0;padding:10px;border:1px solid #d5ddd8;border-radius:6px;font:inherit;background:white;color:#182923}
+.ai-workspace textarea{min-height:90px;resize:vertical}.ai-workspace pre,.ai-card-preview{white-space:pre-wrap;overflow-wrap:anywhere;font:13px/1.65 system-ui;background:white;padding:12px;max-height:320px;overflow:auto}
+.ai-workspace select{box-sizing:border-box;width:100%;max-width:100%;padding:10px;border:1px solid #d5ddd8;border-radius:6px;background:#fff;color:#182923;font:inherit}
+.ai-workspace fieldset{border:0;padding:0;min-width:0}.ai-workspace button{max-width:100%;white-space:normal;margin:4px 0}.ai-workspace .review-check{display:flex;align-items:flex-start;gap:9px}.ai-workspace .review-check input{flex:none;margin-top:4px}
+.ai-draft{background:white;border:1px solid #dce4df;padding:18px;border-radius:8px;margin:16px 0}.ai-draft>strong{color:#876014}#aiStatus{border-left:3px solid #287a60;padding:8px 12px}#aiStatus.error{border-color:#a63333;color:#932d2d}
+@media(max-width:600px){.ai-workspace{padding:14px}.ai-draft{padding:12px}.ai-workspace h2{font-size:21px}}

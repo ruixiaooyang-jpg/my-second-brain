@@ -1,0 +1,23 @@
+/* Knowledge management stays independent from the learning demo. */
+.manager{margin:20px 0;background:#f9fcfc}
+.manager-actions,.note-actions{display:flex;gap:10px;flex-wrap:wrap}
+.manager p{font-size:14px}
+.manager-status{min-height:24px;color:var(--brand);overflow-wrap:anywhere}
+.manager-status.error{color:#a32929}
+.note-form{border-top:1px solid var(--line);margin-top:18px;padding-top:18px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form-grid label{display:flex;flex-direction:column;gap:5px;min-width:0;font-size:14px}
+.form-grid .wide{grid-column:1/-1}
+.form-grid input,.form-grid textarea{width:100%;font:inherit;padding:10px;border:1px solid var(--line);border-radius:8px;background:white}
+.form-grid textarea{resize:vertical;min-height:130px}
+.form-grid textarea:focus-visible{outline:3px solid #df9300;outline-offset:3px}
+.note-actions{margin-top:16px}
+.note-actions button{font-size:14px;padding:7px 12px}
+.note-body{white-space:pre-wrap;overflow-wrap:anywhere}
+#cards article{min-width:0;overflow-wrap:anywhere}
+.personal-note{border-top:3px solid var(--brand)}
+.personal-note .muted{font-size:13px}
+.danger{color:#a32929}
+button:disabled{opacity:.55;cursor:not-allowed}
+[hidden]{display:none!important}
+@media(max-width:760px){.form-grid{grid-template-columns:1fr}.manager-actions button{flex:1 1 auto}}

@@ -1,0 +1,979 @@
+{
+  "lecture": 7,
+  "source": "ETF2480_ETF5248_Lecture_7.pdf",
+  "sha256": "6669fe964988f0bc85a373f7d32d567f5dea8b13cdbb4055dcc749859e4f24de",
+  "pages": [
+    {
+      "page": 1,
+      "text": "Integer Programming\nLecture 7\nETF2480 & ETF5248 - S2, 2026\nJessica Leung, PhD, CAP-X, SFHEA\n1 / 60",
+      "image": "course-materials/etf5248/lecture-7/page-001.jpg"
+    },
+    {
+      "page": 2,
+      "text": "T oday’s Goal\nInteger programming\nModelling techniques\nAlgorithms\nGuidelines for strong formulations\nT raveling salesman problem\nReading:\nBertsimas and T sitsiklis,Introduction to Linear Optimization, Chapters 10 and 11.\nWinston,Operations Research, Chapter 9.\nVanderbei,Linear Programming, Chapter 23.\n2 / 60",
+      "image": "course-materials/etf5248/lecture-7/page-002.jpg"
+    },
+    {
+      "page": 3,
+      "text": "Integer Programming\nIndiscreteoptimisation problems, we seek to ﬁnd a solutionx ⋆ in a\ndiscrete setPthat optimises (minimises or maximises) an objective\nfunctionf 0(x)deﬁned for allx∈ P\n– discrete optimisation problems arise in a great variety of contexts\n– a natural and systematic way to study a broad class of discrete\noptimisation problems is to express them as integer programming\nproblems\n– the (linear) integer programming problem is the same as the linear\nprogramming problem except that some of the variables are\nrestricted to take integer values\n3 / 60",
+      "image": "course-materials/etf5248/lecture-7/page-003.jpg"
+    },
+    {
+      "page": 4,
+      "text": "Integer linear program(IP) or (ILP):\nmaximizec T x\nsubject toAx≤b\nx∈Z n\nDeﬁnitions\ninteger linear program (ILP)\nminimize cT x\nsubject to Ax ≤ b\nx ∈ Zn\nc\nmixed integer linear program: only some of the variables are integer\n0-1 (Boolean) linear program: variables take values 0 or 1\nInteger linear programming 18–2\n–mixed integer program (MIP):if only some of the variables are integer\n–0-1 (Boolean) linear program:variables are restricted to be either 0\nor 1\n4 / 60",
+      "image": "course-materials/etf5248/lecture-7/page-004.jpg"
+    },
+    {
+      "page": 5,
+      "text": "Example 1: 2-variable IP\nmaximize3x 1 +4x 2\nsubject to5x 1 +8x 2 ≤24\nx1,x 2 ≥0\nx1,x 2 ∈Z\n– what is the integer solution?\n– what is the relaxed (LP) solution?\n– can LP be used to solve the IP? x1\nx2\n0\n1\n2\n3\n4\n5\n1 2 3 4 5\n5 / 60",
+      "image": "course-materials/etf5248/lecture-7/page-005.jpg"
+    },
+    {
+      "page": 6,
+      "text": "Example 1: 2-variable IP\nmaximize3x 1 +4x 2\nsubject to5x 1 +8x 2 ≤24\nx1,x 2 ≥0\nx1,x 2 ∈Z\nx1\nx2\n0\n1\n2\n3\n4\n5\n1 2 3 4 5\nhow to solve?\n– solve LP (ignore integrality), getx ⋆\nlp = (4.8,0)andp(x ⋆\nlp) =14.4\n– round: getx r = (5,0)→infeasible!\n– truncate: getx t = (4,0)→p=12\n– optimal:x ⋆\nip = (3,1)→p(x ⋆\nip) =13\nboth rounding and truncating do not work, need a diﬀerent method!\n6 / 60",
+      "image": "course-materials/etf5248/lecture-7/page-006.jpg"
+    },
+    {
+      "page": 7,
+      "text": "Example 2: work-scheduling\nA post oﬃce requires diﬀerent number of full-time employees on\ndiﬀerent days of the week (see T able). Union rules state that each\nemployee must work ﬁve consecutive days and then receive two days oﬀ.\nFor example, an employee who works Monday to Friday must be oﬀ on\nSaturday and Sunday. The post oﬃce wants to meet its daily\nrequirements using only full-time employees.\nFormulate an LP that the post oﬃce can use to minimise the number of\nfull-time employees who must be hired.\nT able: Requirements for post oﬃce\nDay Mon T ue Wed Thu Fri Sat Sun\n# of employees 17 13 15 19 14 16 11\n7 / 60",
+      "image": "course-materials/etf5248/lecture-7/page-007.jpg"
+    },
+    {
+      "page": 8,
+      "text": "Example 2: solution\nLetx i be the number of employees beginning work on dayi, then\nminimize\n7X\ni=1\nxi\nsubject tox 1 +x 4 +x 5 +x 6 +x 7 ≥17\nx1 +x 2 +x 5 +x 6 +x 7 ≥13\nx1 +x 2 +x 3 +x 6 +x 7 ≥15\nx1 +x 2 +x 3 +x 4 +x 7 ≥19\nx1 +x 2 +x 3 +x 4 +x 5 ≥14\nx2 +x 3 +x 4 +x 5 +x 6 ≥16\nx3 +x 4 +x 5 +x 6 +x 7 ≥11\nxi ≥0i=1, . . . ,7\n–LP solution:x lp = (1 1\n3 ,3 1\n3 ,2,7 1\n3 ,0,3 1\n3 ,5)→p(x lp) =22 1\n3\n–rounded solution:x r = (2,4,2,8,0,4,5)→p(x r) =25\n–truncated solution:x t = (1,3,2,7,0,3,5)→infeasible!\n–integer solution:x ip = (4,4,2,6,0,4,3)→p(x ip) =23\n8 / 60",
+      "image": "course-materials/etf5248/lecture-7/page-008.jpg"
+    },
+    {
+      "page": 9,
+      "text": "Linear programming relaxation\nrelaxation:remove the constraintsx∈Z n\n– provides an upper bound on the optimal value of the integer LP\n– if solution of relaxation is integer, then it solves the integer LP\nLinear programming relaxation\nrelaxation: remove the constraints x ∈ Zn\n• provides a lower bound on the optimal value of the integer LP\n• if solution of relaxation is integer, then it solves the inte ger LP\ncc\nequivalent ILP formulations can have diﬀerent LP relaxatio ns\nInteger linear programming 18–4\nequivalent IP formulations can have diﬀerent LP relaxations\n9 / 60",
+      "image": "course-materials/etf5248/lecture-7/page-009.jpg"
+    },
+    {
+      "page": 10,
+      "text": "Modelling techniques\n▶binary choice\n▶forcing constraints\n▶disjunctive (either-or) constraints\n▶set-covering problems\n▶if-then constraints\n10 / 60",
+      "image": "course-materials/etf5248/lecture-7/page-010.jpg"
+    },
+    {
+      "page": 11,
+      "text": "Binary choice\nAn important use of a binary variablexis to encode a choice between two alternatives: we may setxto\nzero or one, depending on the chosen alternative.\nKnapsack problem:we are givennitems, each with a weight (w j ) and a value (v j ). Given a boundWon\nthe weight that can be carried in a knapsack, we would like to select items to maximise the total value.\nIn order to model this problem, we deﬁne a binary variablex j which is 1 if itemjis chosen, and 0\notherwise. The problem can then be formulated as follows:\nmaximize\nnX\nj=1\nvj xj\nsubject to\nnX\nj=1\nwj xj ≤W\nxj ∈ {0,1},j=1, . . . ,n.\n11 / 60",
+      "image": "course-materials/etf5248/lecture-7/page-011.jpg"
+    },
+    {
+      "page": 12,
+      "text": "Example 3\nStockco is considering 6 investments. Each investment yields a\ndetermined NPV and requires a certain cash ﬂow at the present time (see\ntable). Currently Stockco has $14,000 available for investment. What is\nthe optimal strategy?\ninvestment1 2 3 4 5 6\ncash required (1000s)$5 $7 $4 $3 $4 $6\nNPV added (1000s)$16 $22 $12 $8 $11 $19\n12 / 60",
+      "image": "course-materials/etf5248/lecture-7/page-012.jpg"
+    },
+    {
+      "page": 13,
+      "text": "Forcing constraints\nA very common feature in discrete optimisation problems is that certain\ndecisions are dependent.\nMore speciﬁcally, suppose decisionAcan be made only if decisionBhas\nalso been made.\nIn order to model such a situation, we introduce binary variablesx\n(respectively,y) equal to 1 if decisionA(respectively,B) is chosen, and 0\notherwise\nThe dependence of the two decisions can be modelled using the\nconstraint:\nx≤y\n13 / 60",
+      "image": "course-materials/etf5248/lecture-7/page-013.jpg"
+    },
+    {
+      "page": 14,
+      "text": "Example 4: facility location\nSuppose we are givennpotential facility locations and a list ofmclients who need to be serviced from\nthese locations. There is a ﬁxed costc j of opening a facility at locationj, while there is a costd ij of serving\nclientifrom facilityj. The goal is to select a set of facility locations and assign each client to one facility,\nwhile minimising the total cost.\nSolution:lety j =1if facilityjis selected, and 0 otherwise. In addition, letx ij =1if clientiis served by\nfacilityj, and 0 otherwise. Then, the problem can be formulated as follows:\nminimize\nnX\nj=1\ncj yj +\nmX\ni=1\nnX\nj=1\ndij xij\nsubject to\nnX\nj=1\nxij =1,∀i,\nxij ≤y j ,∀i,j,\nxij ,y j ∈ {0,1},∀i,j.\nConstraintx ij ≤y j captures the fact that if there is no facility at locationj(y j =0), then clienticannot be\nserved there, and we must havex ij =0.\n14 / 60",
+      "image": "course-materials/etf5248/lecture-7/page-014.jpg"
+    },
+    {
+      "page": 15,
+      "text": "Relations between variables\nat most one of the binary variablesx j can be one:\nnX\nj=1\nxj ≤1\nexactly one of the binary variablesx j should be one:\nnX\nj=1\nxj =1\nat least two of the binary variablesx j should be one:\nnX\nj=1\nxj ≥2\nexactly three of the binary variablesx j should be one:\nnX\nj=1\nxj =3\n15 / 60",
+      "image": "course-materials/etf5248/lecture-7/page-015.jpg"
+    },
+    {
+      "page": 16,
+      "text": "Restricted range\nSuppose we want to restrict variablexto take values in a set{a 1,a 2, . . . ,a m}.\nWe can achieve this by introducingmbinary variablesy j ,j=1, . . . ,m, and the constraints\nx=\nmX\nj=1\naj yj ,\nmX\nj=1\nyj =1,y j ∈ {0,1}.\nExample:supposexcan only take values0.0,0.5,1.0,1.5,2.0. We can model this with the following\nconstraints:\nx=0.0y 1 +0.5y 2 +1.0y 3 +1.5y 4 +2.0y 5\ny1 +y 2 +y 3 +y 4 +y 5 =1\nyj ∈ {0,1}j=1, . . . ,5.\n16 / 60",
+      "image": "course-materials/etf5248/lecture-7/page-016.jpg"
+    },
+    {
+      "page": 17,
+      "text": "Disjunctive constraints\nLetxbe a nonnegative decision vector. Suppose that we are given two constraints\naT x≥bandc T x≥d,\nin whicha≥0andc≥0.\nWe would like to model a requirement that at least one of the constraints is satisﬁed. In order to achieve\nthis, we deﬁne a binary variableyand impose the constraints:\naT x≥yb,\nc T x≥(1−y)d,\ny∈ {0,1}.\nMore generally, suppose we are givenmconstraints\naT\ni x≥b i ,i=1, . . . ,m,\nwherea i ≥0for eachi, and require that at leastkof them are satisﬁed.\nWe can achieve this by introducingmbinary variablesy i ,i=1, . . . ,m, and the constraints:\naT\ni x≥y i bi ,\nmX\ni=1\nyi ≥k,y i ∈ {0,1}.\n17 / 60",
+      "image": "course-materials/etf5248/lecture-7/page-017.jpg"
+    },
+    {
+      "page": 18,
+      "text": "Generalizing disjunctive constraints I\nSuppose we are given two constraints of the form\nf(x)≤0\ng(x)≤0\nWe want to make sure that at least one of them is satisﬁed.\nIn order to achieve this, we deﬁne a binary variableyand impose the constraints\nf(x)≤My\ng(x)≤M(1−y)\nwhereMis a number chosen large enough to ensure that\nf(x)≤Mandg(x)≤M\nare satisﬁed for all values ofxthat satisfy the other constraints in the problem.\nThis type of constraint is sometimes called ‘Either-or constraints’ in some textbooks.\n18 / 60",
+      "image": "course-materials/etf5248/lecture-7/page-018.jpg"
+    },
+    {
+      "page": 19,
+      "text": "Generalizing disjunctive constraints II\nSuppose we are givenmconstraints of the form\nfi (x)≤0i=1, . . . ,m\nWe want to make sure that at leastkof them is satisﬁed. That means at mostm−kof them can be\nviolated.\nIn order to achieve this, we deﬁnembinary variabley i ,i=1, . . . ,mand impose the constraints\nfi (x)≤My i\nX\ni\nyi ≤m−k\nwhereMis a number chosen large enough.\n19 / 60",
+      "image": "course-materials/etf5248/lecture-7/page-019.jpg"
+    },
+    {
+      "page": 20,
+      "text": "Example\nDorian Auto is considering manufacturing three types of autos: compact, midsize and large. The resources\nrequired for, and proﬁts yielded by, each type of car are shown in the table. Currently, 6,000 tons of steel\nand 60,000 hours of labor are available. For production of a type of a car to be economically feasible, at\nleast 1,000 cars of that type must be produced. Formulate an IP to maximize Dorian’s proﬁt.\ncar type\nresourcecompact midsize large\nSteel required 1.5 tons 3 tons 5 tons\nLabor required 30 hours 25 hours 40 hours\nProﬁt yielded ($) 2,000 3,000 4,000\nSupposex 1 is the number of compact cars produced. Then, the economical feasibility constraint for\ncompact cars is\nx1 ≤0orx 1 ≥1000\nDeﬁnef(x) =x 1 andg(x) =1000−x 1, add the following set of constraints:\nx1 ≤M 1y1\n1000−x 1 ≤M 1(1−y 1)\ny1 ∈ {0,1} 20 / 60",
+      "image": "course-materials/etf5248/lecture-7/page-020.jpg"
+    },
+    {
+      "page": 21,
+      "text": "If-then constraints\nIn many applications, we want to ensure that if a constraintf(x)>0is satisﬁed, then the constraint\ng(x)≥0must be satisﬁed, while iff(x)>0is not satisﬁed, theng(x)≥0may or may not be satisﬁed.\nIn other words, we want to ensure thatf(x)>0impliesg(x)≥0.\nT o ensure this, we include the following constraints in the formulation\n−g(x)≤My\nf(x)≤M(1−y)\ny∈ {0,1}\n21 / 60",
+      "image": "course-materials/etf5248/lecture-7/page-021.jpg"
+    },
+    {
+      "page": 22,
+      "text": "Set-covering problem\nIn aset-covering problem, each member of a given set (call it setA) must be “covered” by an acceptable\nmember of some other set (call it setB).\nTheobjectiveof a set-covering problem is to minimize the number of elements in setBthat are required\nto cover all the elements in setA.\nExample: There are six cities in Kilroy County (cities 1–6). The county must determine where to build ﬁre\nstations. The county wants to build the minimum number of ﬁre stations needed to ensure that at least\none ﬁre station is within 15 minutes (driving time) of each city. The times (in minutes) required to drive\nbetween the cities in Kilroy County are shown in the table below. Formulate an IP that will tell Kilroy how\nmany ﬁre stations should be built and where they should be located.\nT o\nFromCity 1 City 2 City 3 City 4 City 5 City 6\nCity 1 0 10 20 30 30 20\nCity 2 10 0 25 35 20 10\nCity 3 20 25 0 15 30 20\nCity 4 30 35 15 0 15 25\nCity 5 30 20 30 15 0 14\nCity 6 20 10 20 25 14 0\n22 / 60",
+      "image": "course-materials/etf5248/lecture-7/page-022.jpg"
+    },
+    {
+      "page": 23,
+      "text": "Set-covering problem\nFormulation:letx i equal to 1 if a ﬁre station is built in cityiand 0 otherwise. Then the objective is\nminimize\n6X\ni=1\nxi\nThe constraints are a little more complicated. The table below indicates which locations can reach the city\nin 15 minutes or less.\nCity Within 15 minutes\nCity 1 1, 2\nCity 2 1, 2, 6\nCity 3 3, 4\nCity 4 3, 4, 5\nCity 5 4, 5, 6\nCity 6 2, 5, 6\nT o ensure that at least one ﬁre station is within 15 minutes of city 1, we add the constraint\nx1 +x 2 ≥1\nIn a similar fashion we add constraints for the remaining cities.\n23 / 60",
+      "image": "course-materials/etf5248/lecture-7/page-023.jpg"
+    },
+    {
+      "page": 24,
+      "text": "Set-covering problem\nThe full formulation of Kilroy County problem is\nminimize\n6X\ni=1\nxi\nsubject tox 1 +x 2 ≥1\nx1 +x 2 +x 6 ≥1\nx3 +x 4 ≥1\nx3 +x 4 +x 5 ≥1\nx4 +x 5 +x 6 ≥1\nx2 +x 5 +x 6 ≥1\nxi ∈ {0,1}i=1, . . . ,6\nsolution:x ⋆ = (0,1,0,1,0,0)withp ⋆ =2\nThus, Kilroy County can build two ﬁre stations: one in city 2 and one in city 4.\nnote:here setAis the cities of Kilroy County and setBis the set of ﬁre stations.\n24 / 60",
+      "image": "course-materials/etf5248/lecture-7/page-024.jpg"
+    },
+    {
+      "page": 25,
+      "text": "Live Coding Time!\nLet’s code the set covering problem together!\n25 / 60",
+      "image": "course-materials/etf5248/lecture-7/page-025.jpg"
+    },
+    {
+      "page": 26,
+      "text": "Workshop: Beyond Eﬃciency - Equity Considerations\nWhile minimizing the number of ﬁre stations is ﬁnancially eﬃcient, it ignores the positive economic\nimpacts of municipal infrastructure. Building a ﬁre station creates local jobs, improves neighborhood\ninfrastructure, and increases community safety.\nHistorically, some cities in Kilroy County have been underinvested in. T o account for this, the county\nassigns anEquity Impact Score (EIS)to each city (from 1 to 10), where a higher score represents a\nhistorically marginalized community that would beneﬁt most from local investment.\nCity Equity Impact Score (E i )\nCity 1 8\nCity 2 2\nCity 3 4\nCity 4 3\nCity 5 9\nCity 6 7\nGoal:Ensure 15-minute coverage for all cities while balancing thecostof building stations with theequity\nimpactof where they are built.\n26 / 60",
+      "image": "course-materials/etf5248/lecture-7/page-026.jpg"
+    },
+    {
+      "page": 27,
+      "text": "Multi-Objective Formulation: Linear Combination\nWe now have two competing objectives:\nMinimize total stations (Eﬃciency):f 1(x) = P6\ni=1 xi\nMaximize equity impact (DEI):f 2(x) = P6\ni=1 Ei xi\nT o solve this in an IP framework, we can combine these into a single objective function using alinear\ncombination. We assign weightsw 1 andw 2 to represent the relative importance of each goal.\nBecause we want to minimize stations but maximize equity, we subtract the equity term:\nminimizeZ=w 1\n6X\ni=1\nxi −w 2\n6X\ni=1\nEi xi\nThe full objective function becomes:\nminimizew 1(x1 +x 2 +x 3 +x 4 +x 5 +x 6)\n−w 2(8x1 +2x 2 +4x 3 +3x 4 +9x 5 +7x 6)\nThe constraints remain exactly the same, ensuring every city is covered within 15 minutes!\n27 / 60",
+      "image": "course-materials/etf5248/lecture-7/page-027.jpg"
+    },
+    {
+      "page": 28,
+      "text": "Analyzing the T rade-oﬀ\nBy adjusting the weightsw 1 andw 2, policymakers can explore thePareto frontierof possible solutions.\nScenario A: Pure Eﬃciency (w 1 =1,w 2 =0)\nSolution:x ⋆ = (0,1,0,1,0,0)\nCost:2 stations (Built in City 2 and City 4)\nT otal Equity Impact:2+3=5\nScenario B: Balanced Approach (w 1 =10,w 2 =1)\nSolution:x ⋆ = (1,0,1,0,1,0)\nCost:3 stations (Built in City 1, City 3, and City 5)\nT otal Equity Impact:8+4+9=21\nWorkshop Discussion:In Scenario A, the stations are built in areas with low equity scores. By investing in\njustone additional station(Scenario B), the county more thanquadruplesthe equity impact (from 5 to 21)\nwhile still meeting all response-time constraints. Which plan should the county choose, and why?\n28 / 60",
+      "image": "course-materials/etf5248/lecture-7/page-028.jpg"
+    },
+    {
+      "page": 29,
+      "text": "Algorithms\nUnlike LPs, IPs are very diﬃcult to solve.\nIn fact, noeﬃcientgeneral algorithm is known for their solution.\nThere are three main categories of algorithms:\n▶Exact algorithms: guaranteed to ﬁnd an optimal solution, but may\ntake an exponential number of iterations (e.g. branch-and-bound,\ncutting plane)\n▶Approximation algorithms: provide in polynomial time a suboptimal\nsolution with a bound on suboptimality.\n▶Heuristic algorithms: provide a suboptimal solution, but without a\nguarantee on its quality.\n29 / 60",
+      "image": "course-materials/etf5248/lecture-7/page-029.jpg"
+    },
+    {
+      "page": 30,
+      "text": "Branch-and-bound algorithm\nConsider an integer program\nmaximizec T x\nsubject tox∈ P\nwherePis a ﬁnite set\ngeneral idea:\n▶recursively partitionPinto smaller setsP i and solve subproblems\nmaximizec T x\nsubject tox∈ P i\n▶use LP relaxations to discard subproblems that don’t lead to a\nsolution\n30 / 60",
+      "image": "course-materials/etf5248/lecture-7/page-030.jpg"
+    },
+    {
+      "page": 31,
+      "text": "Branch-and-bound algorithm: overview\n▶Solve the LP relaxation of the original IP . If the solution is integer, then stop.\n▶If not, pick a variable whose value in the LP relaxation is fractional. For the sake of argument,\nsuppose that this variable isx 1 and its value in the LP relaxation is3.75. We can then exclude this\nvalue by imposing the restrictionsx 1 ≤3.0andx 1 ≥4.0.\n▶If the original IP is denotedP 0, then we might denote these two new IPs byP 1, wherex 1 ≤3.0is\nimposed, andP 2, wherex 1 ≥ 4.0 is imposed. The variablex 1 is then called abranching variable, and\nwe are said to have branched onx 1.\n▶We now apply the same idea to these two IPs, solving the corresponding LP relaxations and, if\nnecessary, selecting branching variables. In so doing we generate what is called asearch tree. The\nIPs generated by the search procedure are called thenodesof the tree, withP 0 designated as the\nroot node. The leaves of the tree are all the nodes from which we have not yet branched.\nIn general, if we reach a point at which we can solve or otherwise dispose of all leaf nodes, then we will\nhave solved the original IP .\n31 / 60",
+      "image": "course-materials/etf5248/lecture-7/page-031.jpg"
+    },
+    {
+      "page": 32,
+      "text": "Branch-and-bound algorithm:\nfathomed and incumbent nodes\nThe best integer solution found at any point in the search is called theincumbent. At the start of the\nsearch, we have no incumbent.\nSuppose that we have just solved the LP relaxation of some node in the search tree. If all variables have\ninteger values, then we know we have found a feasible solution to the original IP .\nThere aretwoimportant steps that we then take:\n▶We designate this node asfathomed. It is not necessary to branch on this node; it is a permanent\nleaf of the search tree.\n▶If the integer feasible solution that we have just found has a better objective function value than the\ncurrent incumbent (or if we have no incumbent), then we record this solution as the new incumbent,\nalong with its objective function value.\nThere are two other possibilities that can lead to a node being fathomed.\n▶the LP relaxation at this node is infeasible.\n▶the value of the LP relaxation is smaller than that of the current incumbent.\nIn both cases, it is not necessary to branch on this node.\n32 / 60",
+      "image": "course-materials/etf5248/lecture-7/page-032.jpg"
+    },
+    {
+      "page": 33,
+      "text": "Branch-and-bound algorithm: best bound and gap\nFirst, observe that theobjective value for the incumbentis avalid lower boundon the optimal solution of\nthe given IP (assuming the original IP is a maximization problem).\nSecond, at any time during the branch-and-bound search we also have avalid upper bound, sometimes\ncalled thebest bound. This bound is obtained by taking the maximum of the optimal objective values of\nall of the current leaf nodes.\nThe diﬀerence between the current upper and lower bounds is calledoptimality gap(or thegap). It can be\nrelative (% of the LP objective value) and absolute.\nWhen the optimality gap is zero we have demonstrated optimality.\n33 / 60",
+      "image": "course-materials/etf5248/lecture-7/page-033.jpg"
+    },
+    {
+      "page": 34,
+      "text": "Branch-and-bound algorithm: example\nConsider the following integer program and its feasible region:\nmaximize8x 1 +5x 2\nsubject tox 1 +x 2 ≤6\n9x1 +5x 2 ≤45\nx1,x 2 ≥0\nx1,x 2 ∈Z\nx1\nx2\nx1 +x 2 =6\n9x1 +5x 2 =45\n34 / 60",
+      "image": "course-materials/etf5248/lecture-7/page-034.jpg"
+    },
+    {
+      "page": 35,
+      "text": "Branch-and-bound algorithm: example\nStart with LP relaxation (subproblemP 0):\nmaximize8x 1 +5x 2\nsubject tox 1 +x 2 ≤6\n9x1 +5x 2 ≤45\nx1,x 2 ≥0\nx1\nx2\nx1 +x 2 =6\n9x1 +5x 2 =45\nupper bound=∞,lower bound=−∞\nsolution to subproblemP 0:x 1 =3.75,x 2 =2.25,p ⋆\nrl =p ⋆\n0 =41.25\nnewupper bound= 41.25\n35 / 60",
+      "image": "course-materials/etf5248/lecture-7/page-035.jpg"
+    },
+    {
+      "page": 36,
+      "text": "Branch-and-bound algorithm: example\nbranch onx 1 and create two subproblems:\n– subproblemP 1:P 0 andx 1 ≥4\n– subproblemP 2:P 0 andx 1 ≤3\nsubproblemP 1:\nmaximize8x 1 +5x 2\nsubject tox 1 +x 2 ≤6\n9x1 +5x 2 ≤45\nx1,x 2 ≥0\nx1 ≥4 x1\nx2\nx1 +x 2 =6\n9x1 +5x 2 =45\nupper bound=41.25,lower bound=−∞\nsolution toP 1:x 1 =4,x 2 =1.8,p ⋆\n1 =41\n36 / 60",
+      "image": "course-materials/etf5248/lecture-7/page-036.jpg"
+    },
+    {
+      "page": 37,
+      "text": "Branch-and-bound algorithm: example\nbranch subproblemP 1 onx 2 and create two subproblems:\n–P 3:P 1 andx 2 ≥2(infeasible, fathomed)\n–P 4:P 1 andx 2 ≤1\nsubproblemP 4:\nmaximize8x 1 +5x 2\nsubject tox 1 +x 2 ≤6\n9x1 +5x 2 ≤45\nx1,x 2 ≥0\nx1 ≥4\nx2 ≤1\nx1\nx2\nx1 +x 2 =6\n9x1 +5x 2 =45\nupper bound=41.25,lower bound=−∞\nsolution toP 4:x 1 =4.44,x 2 =1,p ⋆\n4 =40.55\n37 / 60",
+      "image": "course-materials/etf5248/lecture-7/page-037.jpg"
+    },
+    {
+      "page": 38,
+      "text": "Branch-and-bound algorithm: example\nbranch subproblemP 4 onx 1 and create two subproblems:\n–P 5:P 4 andx 1 ≥5\n–P 6:P 4 andx 1 ≤4\nsubproblemP 5:\nmaximize8x 1 +5x 2\nsubject tox 1 +x 2 ≤6\n9x1 +5x 2 ≤45\nx1,x 2 ≥0\nx1 ≥4\nx2 ≤1\nx1 ≥5\nx1\nx2\nx1 +x 2 =6\n9x1 +5x 2 =45\nupper bound=41.25,lower bound=−∞\nsolution toP 5:x 1 =5,x 2 =0,p ⋆\n5 =40(solution is integer, hence incumbent)\nnewlower bound=p ⋆\n5 =40\n38 / 60",
+      "image": "course-materials/etf5248/lecture-7/page-038.jpg"
+    },
+    {
+      "page": 39,
+      "text": "Branch-and-bound algorithm: example\nbranch subproblemP 4 onx 1 and create two subproblems:\n–P 5:P 4 andx 1 ≥5\n–P 6:P 4 andx 1 ≤4\nsubproblemP 6:\nmaximize8x 1 +5x 2\nsubject tox 1 +x 2 ≤6\n9x1 +5x 2 ≤45\nx1,x 2 ≥0\nx1 ≥4\nx2 ≤1\nx1 ≤4\nx1\nx2\nx1 +x 2 =6\n9x1 +5x 2 =45\nupper bound=41.25,lower bound=40\nsolution toP 6:x 1 =4,x 2 =1,p ⋆\n6 =37(lower thanlower bound, fathomed) 39 / 60",
+      "image": "course-materials/etf5248/lecture-7/page-039.jpg"
+    },
+    {
+      "page": 40,
+      "text": "Branch-and-bound algorithm: example\nback to subproblemP 2:\n–P 2:P 0 andx 1 ≤3\nmaximize8x 1 +5x 2\nsubject tox 1 +x 2 ≤6\n9x1 +5x 2 ≤45\nx1,x 2 ≥0\nx1 ≤3\nx1\nx2\nx1 +x 2 =6\n9x1 +5x 2 =45\nupper bound=41.25,lower bound=40\nsolution toP 2:x 1 =3,x 2 =3,p ⋆\n2 =39(lower thanlower bound, fathomed)\n40 / 60",
+      "image": "course-materials/etf5248/lecture-7/page-040.jpg"
+    },
+    {
+      "page": 41,
+      "text": "Branch-n-bound tree\nP0\nu=∞\nl=−∞\np⋆\n0 =41.25\nP1l=−∞\nu=41.25\np⋆\n1 =41\nP3l=−∞\nu=41.25\ninfeasible!\nx2 ≥2\nP4l=−∞\nu=41.25\np⋆\n4 =40.55\nP5l=−∞\nu=41.25\np⋆\n5 =40\nx1 ≥5\nP6l=40\nu=41.25\np⋆\n6 =37\nx1 ≤4\nx2 ≤1\nx1 ≥4\nP2l=40\nu=41.25\np⋆\n2 =39\nx1 ≤3\n41 / 60",
+      "image": "course-materials/etf5248/lecture-7/page-041.jpg"
+    },
+    {
+      "page": 42,
+      "text": "Branch-and-bound algorithm: solution\n– no more unsolved subproblems\n– subproblemP 5 gives the best integer solution (current incumbent)\n– hence, solution to the IP is:x ⋆\n1 =5,x ⋆\n2 =0,p ⋆ =40\nRemarks:\n▶there are many diﬀerent approaches to determine which\nsubproblems should be solved next\n▶the one we used is calledbacktracking\n▶another commonly used approach isjumptracking: solve all the\nproblems created by the most recent branching, then branch on the\nnode with the best objective value\n▶when solving a diﬃcult IP , we can be happy with a near-optimal\nsolution, so an algorithm can be terminated when it reaches certain\noptimality gap, e.g., 5% or 1%\n42 / 60",
+      "image": "course-materials/etf5248/lecture-7/page-042.jpg"
+    },
+    {
+      "page": 43,
+      "text": "Cutting plane algorithm\nA generic cutting plane algorithm:\n1. Solve the LP relaxation. Letx ⋆ be an optimal solution.\n2. Ifx ⋆ is integer, stop;x ⋆ is an optimal solution to the IP .\n3. If not, add a linear inequality constraint to the LP relaxation that all\ninteger solutions to IP satisfy, butx ⋆ does not; go to Step 1.\n43 / 60",
+      "image": "course-materials/etf5248/lecture-7/page-043.jpg"
+    },
+    {
+      "page": 44,
+      "text": "Cutting plane algorithm: example\nConsider the IP from previous example:\nmaximize8x 1 +5x 2\nsubject tox 1 +x 2 ≤6\n9x1 +5x 2 ≤45\nx1,x 2 ≥0\nx1,x 2 ∈Z\nx1\nx2\nx1 +x 2 =6\n9x1 +5x 2 =45\nsolution to LP relaxation:x 1 =3.75,x 2 =2.25,p ⋆\nrl =41.25(upper bound)\n44 / 60",
+      "image": "course-materials/etf5248/lecture-7/page-044.jpg"
+    },
+    {
+      "page": 45,
+      "text": "Cutting plane algorithm: example\nT able: optimal tableau for the LP relaxation\nzx 1 x2 s1 s2 rhs\n1 0 0 1.25 0.75 41.25\n0 0 1 2.25 -0.25 2.25\n0 1 0 -1.25 0.25 3.75\n▶choose any constraint in the LP relaxation’s optimal tableau in which a basic variable is fractional\n(say, constraint 2)\nx1 −1.25s 1 +0.25s 2 =3.75\n▶deﬁne⌊a⌋= max{m∈Z|m≤a}(ﬂoor), then anyacan be written as⌊a⌋+fwhere0≤f<1\n▶rewrite chosen constraint asx 1 −2s 1 +0s 2 −3=0.75−0.75s 1 −0.25s 2\n▶add the following constraint to the LP relaxation’s optimal tableau: fractional part of the chosen\nconstraint≤0\n0.75−0.75s 1 −0.25s 2 ≤0\n▶recall thats 1 =6−x 1 −x 2 ands 2 =45−9x 1 −5x 2 hence the cut is\n3x1 +2x 2 ≤15 45 / 60",
+      "image": "course-materials/etf5248/lecture-7/page-045.jpg"
+    },
+    {
+      "page": 46,
+      "text": "Cutting plane algorithm: example\nresulting LP relaxation with the ﬁrst cutting plane:\nmaximize8x 1 +5x 2\nsubject tox 1 +x 2 ≤6\n9x1 +5x 2 ≤45\nx1,x 2 ≥0\n3x1 +2x 2 ≤15\nx1\nx2\nx1 +x 2 =6\n9x1 +5x 2 =45\nproperties of the cut:\n– any feasible point of the IP satisﬁes the cut\n– the current solution to the LP relaxation does not satisfy the cut\n46 / 60",
+      "image": "course-materials/etf5248/lecture-7/page-046.jpg"
+    },
+    {
+      "page": 47,
+      "text": "Cutting plane algorithm: remarks\n▶the performance of a cutting plane method depends critically on the\nchoice of cuts\n▶we used a cut proposed by Ralph E. Gomory in 1958: the ﬁrst ﬁnitely\nterminating algorithm for integer programming\n▶a diﬃculty with general purpose cutting plane algorithms is that the\nadded inequalities cut only a very small piece of the feasible set of\nthe LP relaxation and as a result the performance of such algorithms\nhas not been impressive\n▶modern solvers use many diﬀerent cuts simultaneously\n47 / 60",
+      "image": "course-materials/etf5248/lecture-7/page-047.jpg"
+    },
+    {
+      "page": 48,
+      "text": "Linear programming relaxation\nrelaxation:remove the constraintsx∈Z n\nprovides an upper bound on the optimal value of the integer LP\nif solution of relaxation is integer, then it solves the integer LP\nLinear programming relaxation\nrelaxation: remove the constraints x ∈ Zn\n• provides a lower bound on the optimal value of the integer LP\n• if solution of relaxation is integer, then it solves the inte ger LP\ncc\nequivalent ILP formulations can have diﬀerent LP relaxatio ns\nInteger linear programming 18–4\nequivalent IP formulations can have diﬀerent LP relaxations\n48 / 60",
+      "image": "course-materials/etf5248/lecture-7/page-048.jpg"
+    },
+    {
+      "page": 49,
+      "text": "Integer programming models are sensitive to formulations\nin LP , a good formulation is one that has a small number of variables\n(n) and constraints (m), because the computational complexity of the\nproblem grows polynomially innandm\nin addition, given the availability of eﬃcient algorithms for LPs, the\nchoice of a formulation, although important, does not critically aﬀect\nour ability to solve the problem\nthe situation in integer programming is drastically diﬀerent: extensive\ncomputational experience suggests that the choice of a formulation is\ncrucial\n49 / 60",
+      "image": "course-materials/etf5248/lecture-7/page-049.jpg"
+    },
+    {
+      "page": 50,
+      "text": "Guidelines for strong formulations\nRecall the facility location problem (left) and consider itsaggregateformulation (right):\nminimize\nnX\nj=1\ncj yj +\nmX\ni=1\nnX\nj=1\ndij xij\nsubject to\nnX\nj=1\nxij =1,∀i,\nxij ,y j ∈ {0,1},∀i,j,\nxij ≤y j ,∀i,j.\nminimize\nnX\nj=1\ncj yj +\nmX\ni=1\nnX\nj=1\ndij xij\nsubject to\nnX\nj=1\nxij =1,∀i,\nxij ,y j ∈ {0,1},∀i,j,\nmX\ni=1\nxij ≤my j ,∀j.\nconstraintPm\ni=1 xij ≤my j is equivalent to the constraintsx ij ≤y j ,i=1, . . . ,m, hence the feasible\nset and the optimal cost is the same for both formulations\nhowever, the aggregate formulation hasm+nconstraints, while the original formulation has\nm+mnconstraints\n50 / 60",
+      "image": "course-materials/etf5248/lecture-7/page-050.jpg"
+    },
+    {
+      "page": 51,
+      "text": "Guidelines for strong formulations\nIn order to compare the two formulations, consider their corresponding LP relaxations:\nminimize\nnX\nj=1\ncj yj +\nmX\ni=1\nnX\nj=1\ndij xij\nsubject to\nnX\nj=1\nxij =1,∀i,\nxij ≤y j ,∀i,j,\n0≤x ij ≤1,∀i,j,\n0≤y j ≤1,∀j.\nminimize\nnX\nj=1\ncj yj +\nmX\ni=1\nnX\nj=1\ndij xij\nsubject to\nnX\nj=1\nxij =1,∀i,\nmX\ni=1\nxij ≤my j ,∀j,\n0≤x ij ≤1,∀i,j,\n0≤y j ≤1,∀j.\n51 / 60",
+      "image": "course-materials/etf5248/lecture-7/page-051.jpg"
+    },
+    {
+      "page": 52,
+      "text": "Guidelines for strong formulations\n▶clearly, the feasible set of the LP relaxation of the original formulation (left) is closer to the set of\ninteger solutions than the LP relaxation of the aggregate formulation (right)\n▶if we letp ip be the optimal cost of the IP problem, and letp lp andp alp be the optimal costs of the two\nLP relaxations we have introduced, then the following inequality holds:\npalp ≤p lp ≤p ip\n▶many methods for solving IP problems depend on the availability of lower bounds such asp lp\n▶thus, the original formulation is preferable (stronger) than the aggregate formulation, despite the\nfact that the latter has signiﬁcantly fewer constraints\n52 / 60",
+      "image": "course-materials/etf5248/lecture-7/page-052.jpg"
+    },
+    {
+      "page": 53,
+      "text": "Quality of IP formulation\nThequality of a formulationof an IP with feasible setT, can be judged by the closeness of the feasible\nset of its LP relaxation to the convex hull ofT.\nIn particular, consider two formulationsAandBof the same IP . If we denote byP A andP B the feasible\nsets of the corresponding LP relaxations, we consider formulationAto be at least asstrongas formulation\nBif\nPA ⊂ P B\n53 / 60",
+      "image": "course-materials/etf5248/lecture-7/page-053.jpg"
+    },
+    {
+      "page": 54,
+      "text": "Example: feasible set, convex hull, and feasible set of LP\nrelaxation\nmaximize8x 1 +5x 2\nsubject tox 1 +x 2 ≤6\n9x1 +5x 2 ≤45\nx1,x 2 ≥0\nx1,x 2 ∈Z\nx1\nx2\nx1 +x 2 =6\n9x1 +5x 2 =45\n▶feasible setTis all black circles\n▶convex hull ofTis the blue shaded area\n▶feasible set of LP relaxation is the blue+red shaded area\n54 / 60",
+      "image": "course-materials/etf5248/lecture-7/page-054.jpg"
+    },
+    {
+      "page": 55,
+      "text": "T raveling salesman problem (TSP)\nGiven an undirected graphG= (N,E)withnnodes, and costsc ij for every edge(i,j)∈E, the goal is to\nﬁnd atour(a cycle that visits all nodes) of minimum cost.\nIn order to model the problem, we deﬁne for every edge(i,j)∈Ea variablex ij , which is 1 if edge(i,j)is\nincluded in the tour, and zero, otherwise. This leads to the following formulation:\nminimize\nX\n(i,j)∈E\ncij xij\nsubject to\nX\nj:(i,j)∈E\nxij =1for alli∈N\nX\ni:(i,j)∈E\nxij =1for allj∈N\nxij ∈ {0,1}for all(i,j)∈E\nThe issue with this formulation is that it can produce subtours.\n55 / 60",
+      "image": "course-materials/etf5248/lecture-7/page-055.jpg"
+    },
+    {
+      "page": 56,
+      "text": "Example\n▶a proper tour1−5−2−4−3−6−1(left) and\n▶two subtours1−2−6−1and3−4−5−3(right)\n▶both are feasible solutions for TSP on previous slide\n1\n23\n4\n5 6\n1\n23\n4\n5 6\nNeed to introducesubtour elimination constraintsto avoid solutions with subtours.\n56 / 60",
+      "image": "course-materials/etf5248/lecture-7/page-056.jpg"
+    },
+    {
+      "page": 57,
+      "text": "Subtour elimination constraints\nThe Miller, T ucker and Zemlin (MTZ, 1960) formulation:\nui −u j +nx ij ≤n−1for all(i,j)∈E\nui ≥0and integer for alli∈N\nThe Dantzig, Fulkerson and Johnson (DFJ, 1954) formulation:\nX\ni,j∈S\nxij ≤ |S| −1for allS⊂N,|S| ≥2\nBoth formulations result in subtour elimination and correctly solve the TSP problem.\nHowever, the formulations are vastly diﬀerent:\n▶TMZ has a much smaller number of constraints:\n|E|+nvs.\n\u0010n\n2\n\u0011\n+\n\u0010n\n3\n\u0011\n+· · ·+\n\u0010 n\nn−1\n\u0011\n▶TMZ introducesnnew integer variables, DFJ does not\n▶DFJ is much stronger\n57 / 60",
+      "image": "course-materials/etf5248/lecture-7/page-057.jpg"
+    },
+    {
+      "page": 58,
+      "text": "Summary on integer programming\n▶integer programming is a powerful modelling framework that provides great ﬂexibility\n▶the price for this ﬂexibility is that integer programming seems to be a much more diﬃcult problem\nthan linear programming\n▶unlike linear programming problems, strong formulations are central to being able to solve integer\nprogramming problems eﬃciently\n▶the quality of a formulation is judged by the closeness of its linear programming relaxation to the\nconvex hull of integer feasible solutions\n▶however, strong formulations occasionally require a very large number of constraints\n▶unfortunately, all existing algorithms have a disadvantage: either they take an exponential amount\nof time in the worst case or they only give an approximate solution\n58 / 60",
+      "image": "course-materials/etf5248/lecture-7/page-058.jpg"
+    },
+    {
+      "page": 59,
+      "text": "Workshop: Modiﬁed Giapetto - Integer Programming Setup\nContext:Giapetto released new models! The proﬁt and labor requirements have changed slightly. We\nwant to maximize proﬁt, but wecannotsell fractional trains or soldiers.\nInteger Programming Formulation:\nmaximizeZ=4x 1 +3x 2\nsubject to3x 1 +2x 2 ≤100(ﬁnishing)\n2x1 +3x 2 ≤102(carpentry)\nx1,x 2 ≥0andinteger\nWe run the continuous LP Relaxation (ignoring the integer constraint) and get the followingoptimal LP\ntableau:\nBV Z x1 x2 s1 s2 RHS\nZ 1 0 0 6/5 1/5 702/5(=140.4)\nx1 0 1 0 3/5−2/5 96/5(=19.2)\nx2 0 0 1 −2/5 3/5 106/5(=21.2)\n59 / 60",
+      "image": "course-materials/etf5248/lecture-7/page-059.jpg"
+    },
+    {
+      "page": 60,
+      "text": "Workshop Questions:\n▶Why is this LP solution invalid for the IP problem?\n▶Write the equation for thex 1 row and derive theGomory Fractional Cut.\n▶Substitute the slack variables (s 1,s 2) to express this cut in terms of our original variables,x 1 andx 2.\nWhat does the cut look like?\n60 / 60",
+      "image": "course-materials/etf5248/lecture-7/page-060.jpg"
+    }
+  ],
+  "version": 1,
+  "title": [
+    "整数建模、分支定界与割平面",
+    "Integer modeling, branch-and-bound and cuts"
+  ],
+  "overview": [
+    "从不能简单取整的例子出发，学习逻辑建模、搜索证书与强松弛。",
+    "Start with rounding failures, then study logical modeling, search certificates and strong relaxations."
+  ],
+  "goals": [
+    [
+      "使用二元变量与有效 Big-M",
+      "Use binaries and valid Big-M bounds"
+    ],
+    [
+      "跟踪分支定界的上下界",
+      "Track branch-and-bound bounds"
+    ],
+    [
+      "推导有效割并比较模型强度",
+      "Derive valid cuts and compare formulation strength"
+    ]
+  ],
+  "cards": [
+    {
+      "pages": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "title": [
+        "整数、混合整数与二元规划",
+        "Integer, mixed-integer and binary programming"
+      ],
+      "lecture": [
+        "离散优化在离散集合中找最优解。ILP 保持线性目标和约束，但变量取整数；MIP 只限制部分变量为整数；0–1 规划用二元变量表达两种选择。本讲随后讨论建模、算法、强模型与 TSP。",
+        "Discrete optimization searches a discrete feasible set. ILP keeps linear objectives/constraints but restricts variables to integers; MIP restricts only some, and binary programs use 0–1 choices. The lecture then covers modeling, algorithms, strong formulations and TSP."
+      ],
+      "formulas": [
+        "\\max c^Tx\\quad\\text{s.t. }Ax\\le b,\\quad x\\in\\mathbb Z^n"
+      ],
+      "explanation": [
+        "",
+        ""
+      ],
+      "terms": [
+        [
+          "integer programming",
+          "整数规划"
+        ],
+        [
+          "mixed integer programming",
+          "混合整数规划"
+        ],
+        [
+          "binary variable",
+          "二元变量"
+        ]
+      ],
+      "review": [
+        "",
+        ""
+      ],
+      "id": "etf5248-l7-k01"
+    },
+    {
+      "pages": [
+        5,
+        6
+      ],
+      "title": [
+        "取整为何不能替代整数求解",
+        "Why rounding is not an IP algorithm"
+      ],
+      "lecture": [
+        "最大化 3x₁+4x₂，5x₁+8x₂≤24，非负整数。LP 解 (4.8,0)，值 14.4；四舍五入成 (5,0) 不可行；截断为 (4,0) 值 12；真正整数最优为 (3,1)，值 13。",
+        "Maximize 3x₁+4x₂ with 5x₁+8x₂≤24 and nonnegative integers. The LP solution (4.8,0) has value 14.4; rounding to (5,0) is infeasible, truncating to (4,0) gives 12, while the integer optimum (3,1) gives 13."
+      ],
+      "formulas": [],
+      "explanation": [
+        "枚举 x₂=0,1,2,3 时最大可行整数 x₁ 分别 4,3,1,0，目标分别 12,13,11,12，验证最优为 13。",
+        "For x₂=0,1,2,3 the largest feasible integer x₁ is 4,3,1,0, yielding 12,13,11,12; this verifies 13."
+      ],
+      "terms": [],
+      "review": [
+        "",
+        ""
+      ],
+      "id": "etf5248-l7-k02"
+    },
+    {
+      "pages": [
+        7,
+        8,
+        9
+      ],
+      "title": [
+        "排班重访与 LP 松弛",
+        "Scheduling revisited and LP relaxation"
+      ],
+      "lecture": [
+        "五连班两休模型与 Lecture 3 相同，需求 (17,13,15,19,14,16,11)。LP 人数 22⅓，向上取整 25，截断不可行，整数最优 23，对应 (4,4,2,6,0,4,3)。删除整数条件扩大可行域；最大化得到上界，最小化得到下界。若最优松弛解恰好整数，它也解出 IP。",
+        "The five-on/two-off schedule repeats Lecture 3 with requirements (17,13,15,19,14,16,11). LP headcount is 22⅓, upward rounding gives 25, truncation is infeasible, and integer optimum 23 uses (4,4,2,6,0,4,3). Removing integrality enlarges feasibility: an upper bound for maximization, lower bound for minimization. An integral optimal relaxation solution also solves the IP."
+      ],
+      "formulas": [],
+      "explanation": [
+        "整数等价的两个模型可能有不同的 LP 松弛，这会影响算法效率。",
+        "Integer-equivalent formulations can have different LP relaxations and computational behavior."
+      ],
+      "terms": [],
+      "review": [
+        "",
+        ""
+      ],
+      "id": "etf5248-l7-k03"
+    },
+    {
+      "pages": [
+        10,
+        11,
+        12
+      ],
+      "title": [
+        "背包与 Stockco 投资选择",
+        "Knapsack and Stockco choices"
+      ],
+      "lecture": [
+        "二元 xⱼ 表示是否选物品，重量 wⱼ、价值 vⱼ、容量 W。Stockco 预算 14 千元，六项投资现金需求 (5,7,4,3,4,6)，NPV (16,22,12,8,11,19)，单位千元；课件给数据和问题，未给解。",
+        "Binary xⱼ selects items with weights wⱼ and values vⱼ under capacity W. Stockco has a budget of 14 thousand, investment costs (5,7,4,3,4,6) and NPVs (16,22,12,8,11,19), in thousands. The slides provide data but no solution."
+      ],
+      "formulas": [
+        "\\max\\sum_jv_jx_j\\quad\\text{s.t. }\\sum_jw_jx_j\\le W,\\quad x_j\\in\\{0,1\\}"
+      ],
+      "explanation": [
+        "按课件数据，选择 1、4、6 花费 5+3+6=14，NPV=16+8+19=43。网站附带本地枚举核验，作为 Codex 补充计算。",
+        "Selecting 1,4,6 costs 14 and yields NPV 43. This is a Codex calculation checked by local enumeration, not a printed slide answer."
+      ],
+      "terms": [],
+      "review": [
+        "",
+        ""
+      ],
+      "id": "etf5248-l7-k04"
+    },
+    {
+      "pages": [
+        13,
+        14
+      ],
+      "title": [
+        "依赖关系与设施选址",
+        "Dependencies and facility location"
+      ],
+      "lecture": [
+        "若 A 只能在 B 被选时选择，用二元变量 x≤y。设施选址中 yⱼ 表示开设设施 j，xᵢⱼ 表示客户 i 由 j 服务。每个客户恰分配一次，xᵢⱼ≤yⱼ 防止未开设施服务客户。成本为固定开设成本加服务成本。",
+        "If A can be chosen only when B is chosen, use binary x≤y. In facility location, yⱼ opens facility j and xᵢⱼ assigns client i to it. Every client is assigned once and xᵢⱼ≤yⱼ forbids service from closed facilities. Cost combines opening and service."
+      ],
+      "formulas": [
+        "\\min\\sum_jc_jy_j+\\sum_{i,j}d_{ij}x_{ij}",
+        "\\sum_jx_{ij}=1,\\quad x_{ij}\\le y_j,\\quad x_{ij},y_j\\in\\{0,1\\}"
+      ],
+      "explanation": [
+        "",
+        ""
+      ],
+      "terms": [],
+      "review": [
+        "",
+        ""
+      ],
+      "id": "etf5248-l7-k05"
+    },
+    {
+      "pages": [
+        15,
+        16
+      ],
+      "title": [
+        "数量逻辑与有限取值",
+        "Cardinality and finite values"
+      ],
+      "lecture": [
+        "二元变量之和≤1 表示至多一个，=1 恰一个，≥2 至少两个，=3 恰三个。要令 x 仅取 {a₁,…,aₘ}，用恰一个 yⱼ=1 并令 x=Σaⱼyⱼ。课件例子允许 x∈{0,0.5,1,1.5,2}。",
+        "For binary variables, sum≤1 means at most one, =1 exactly one, ≥2 at least two, and =3 exactly three. To restrict x to {a₁,…,aₘ}, select exactly one yⱼ and set x=Σaⱼyⱼ. The example allows {0,0.5,1,1.5,2}."
+      ],
+      "formulas": [
+        "x=\\sum_{j=1}^ma_jy_j,\\quad\\sum_jy_j=1,\\quad y_j\\in\\{0,1\\}"
+      ],
+      "explanation": [
+        "",
+        ""
+      ],
+      "terms": [],
+      "review": [
+        "",
+        ""
+      ],
+      "id": "etf5248-l7-k06"
+    },
+    {
+      "pages": [
+        17
+      ],
+      "title": [
+        "非负条件下的析取约束",
+        "Disjunction under nonnegativity"
+      ],
+      "lecture": [
+        "若 x≥0、a≥0、c≥0，至少满足 aᵀx≥b 或 cᵀx≥d，可写 aᵀx≥yb、cᵀx≥(1−y)d，y 二元。推广至 m 条至少满足 k 条时，aᵢᵀx≥yᵢbᵢ，Σyᵢ≥k。",
+        "When x,a,c are nonnegative, require at least one of aᵀx≥b or cᵀx≥d by using aᵀx≥yb and cᵀx≥(1−y)d with binary y. For at least k of m constraints use aᵢᵀx≥yᵢbᵢ and Σyᵢ≥k."
+      ],
+      "formulas": [
+        "a^Tx\\ge yb,\\quad c^Tx\\ge(1-y)d,\\quad y\\in\\{0,1\\}"
+      ],
+      "explanation": [
+        "被关闭的约束变成左端≥0；正是非负假设使它自动成立，不能去掉这些条件照搬。",
+        "The disabled condition becomes left-side≥0; nonnegativity makes it automatic. Do not reuse this form without its assumptions."
+      ],
+      "terms": [],
+      "review": [
+        "",
+        ""
+      ],
+      "id": "etf5248-l7-k07"
+    },
+    {
+      "pages": [
+        18,
+        19
+      ],
+      "title": [
+        "Big-M 析取与条件数量",
+        "Big-M disjunctions and counts"
+      ],
+      "lecture": [
+        "至少满足 f(x)≤0 或 g(x)≤0：f≤My、g≤M(1−y)。m 条至少 k 条可用 fᵢ≤Myᵢ、Σyᵢ≤m−k。M 必须覆盖其他约束允许范围内的相应表达式。",
+        "For f≤0 or g≤0, use f≤My and g≤M(1−y). At least k of m conditions use fᵢ≤Myᵢ and Σyᵢ≤m−k. M must bound the relevant expressions over all other feasible choices."
+      ],
+      "formulas": [],
+      "explanation": [
+        "f、g 必须是仿射表达式才能保持 MILP。M 太小会误删可行解，太大削弱松弛；优先从变量界推导有限紧界。",
+        "f,g must be affine for a MILP. Too-small M removes valid choices; excessively large M weakens relaxation. Derive tight finite bounds."
+      ],
+      "terms": [],
+      "review": [
+        "",
+        ""
+      ],
+      "id": "etf5248-l7-k08"
+    },
+    {
+      "pages": [
+        20
+      ],
+      "title": [
+        "Dorian：不开工或至少生产 1000",
+        "Dorian: zero or at least 1000 cars"
+      ],
+      "lecture": [
+        "小型、中型、大型车利润 (2000,3000,4000)，钢材 (1.5,3,5) 吨，工时 (30,25,40)。钢材 6000、工时 60000，每类若生产须≥1000。课件用 x₁≤M₁y₁ 和 1000−x₁≤M₁(1−y₁) 说明小型车析取。",
+        "Compact/midsize/large profits are (2000,3000,4000), steel (1.5,3,5) tons, labor (30,25,40) hours. Supplies are 6000 steel and 60000 labor. Each produced type must have at least 1000 units. The slide illustrates compact cars with x₁≤M₁y₁ and 1000−x₁≤M₁(1−y₁)."
+      ],
+      "formulas": [],
+      "explanation": [
+        "补充完整紧界模型：最大化 2000x₁+3000x₂+4000x₃；1.5x₁+3x₂+5x₃≤6000，30x₁+25x₂+40x₃≤60000；1000yᵢ≤xᵢ≤Uᵢyᵢ，U=(2000,2000,1200)，x 为非负整数，y 二元。U 分别由钢材与工时的单产品上界取较小值。",
+        "Added full formulation: maximize 2000x₁+3000x₂+4000x₃; impose 1.5x₁+3x₂+5x₃≤6000 and 30x₁+25x₂+40x₃≤60000; use 1000yᵢ≤xᵢ≤Uᵢyᵢ with U=(2000,2000,1200), nonnegative integer x and binary y. Each U is the smaller individual steel/labor bound."
+      ],
+      "terms": [],
+      "review": [
+        "",
+        ""
+      ],
+      "id": "etf5248-l7-k09"
+    },
+    {
+      "pages": [
+        21
+      ],
+      "title": [
+        "Big-M 条件蕴含",
+        "Big-M if–then implication"
+      ],
+      "lecture": [
+        "若 f(x)>0 蕴含 g(x)≥0，可引入二元 y 并要求 −g(x)≤My、f(x)≤M(1−y)。这是课件 if–then 模型。",
+        "To encode f(x)>0 implying g(x)≥0, introduce binary y and impose −g(x)≤My and f(x)≤M(1−y), as in the slide."
+      ],
+      "formulas": [],
+      "explanation": [
+        "检查两支：y=0 强制 g≥0；y=1 强制 f≤0，此时前件 f>0 不成立。两支并集表达 f≤0 或 g≥0。M 仍需有效上界，不能任意选择。",
+        "When y=0, g≥0 is enforced; when y=1, f≤0 makes the antecedent false. Their union is f≤0 or g≥0. M still requires valid bounds."
+      ],
+      "terms": [],
+      "review": [
+        "",
+        ""
+      ],
+      "id": "etf5248-l7-k10"
+    },
+    {
+      "pages": [
+        22,
+        23,
+        24,
+        25
+      ],
+      "title": [
+        "Kilroy 消防站集合覆盖",
+        "Kilroy fire-station set covering"
+      ],
+      "lecture": [
+        "每城必须在 15 分钟内到达至少一站。第 22 页给完整 6×6 驾车时间表；从表得到各城可覆盖站址集合：{1,2}、{1,2,6}、{3,4}、{3,4,5}、{4,5,6}、{2,5,6}。xᵢ 表示城市 i 建站，最少建站数为 2，课件解在城市 2、4 建站。第 25 页仅现场编程提示。",
+        "Each city needs a station within 15 minutes. The full driving-time table is on page 22; acceptable station sets are {1,2},{1,2,6},{3,4},{3,4,5},{4,5,6},{2,5,6}. Binary xᵢ builds a station in city i. The lecture optimum is two stations, in cities 2 and 4. Page 25 only prompts coding."
+      ],
+      "formulas": [
+        "\\min\\sum_{i=1}^6x_i,\\quad x_i\\in\\{0,1\\}",
+        "\\begin{aligned}x_1+x_2&\\ge1\\\\x_1+x_2+x_6&\\ge1\\\\x_3+x_4&\\ge1\\\\x_3+x_4+x_5&\\ge1\\\\x_4+x_5+x_6&\\ge1\\\\x_2+x_5+x_6&\\ge1\\end{aligned}"
+      ],
+      "explanation": [
+        "至少两站的下界：覆盖城市 1 需从 {1,2} 选，覆盖城市 3 需从不相交的 {3,4} 选。课件方案达到两站，因此最优。",
+        "At least two stations are necessary: city 1 requires {1,2}, city 3 the disjoint set {3,4}. The reported solution attains this bound."
+      ],
+      "terms": [],
+      "review": [
+        "",
+        ""
+      ],
+      "id": "etf5248-l7-k11"
+    },
+    {
+      "pages": [
+        26,
+        27,
+        28
+      ],
+      "title": [
+        "效率与公平：双目标权衡",
+        "Efficiency and equity: two objectives"
+      ],
+      "lecture": [
+        "城市公平影响分数 E=(8,2,4,3,9,7)。覆盖约束不变，目标为 w₁Σxᵢ−w₂ΣEᵢxᵢ。纯效率 (1,0) 选 2、4 两站，公平分 5；课件平衡方案 (10,1) 选 1、3、5 三站，公平分 21，加权目标 30−21=9。",
+        "Equity scores are E=(8,2,4,3,9,7). Keep coverage constraints and minimize w₁Σxᵢ−w₂ΣEᵢxᵢ. Pure efficiency (1,0) selects cities 2,4 with score 5; the reported (10,1) plan selects 1,3,5 with score 21 and weighted value 9."
+      ],
+      "formulas": [
+        "\\min w_1\\sum_ix_i-w_2\\sum_iE_ix_i"
+      ],
+      "explanation": [
+        "权重反映偏好和单位尺度，不是客观唯一答案。离散问题中加权和不一定找到所有 Pareto 有效点。此处 EIS 是课件给定示例评分。",
+        "Weights encode preferences and scaling, not a uniquely objective choice. Weighted sums need not recover every Pareto-efficient discrete solution. EIS values here are supplied by the lecture."
+      ],
+      "terms": [],
+      "review": [
+        "",
+        ""
+      ],
+      "id": "etf5248-l7-k12"
+    },
+    {
+      "pages": [
+        29,
+        30,
+        31,
+        32,
+        33
+      ],
+      "title": [
+        "分支定界：节点、在位解和界",
+        "Branch-and-bound: nodes, incumbent and bounds"
+      ],
+      "lecture": [
+        "精确算法给最优性保证但最坏可能很慢；近似算法带质量界，启发式不保证质量。分支定界解 LP 松弛，若某整数变量为 3.75，分为 ≤3 和 ≥4。节点 LP 不可行、得到整数最优解、或界不优于在位解时可剪枝。最大化中在位整数值为下界，尚未剪枝节点的 LP 上界给全局上界；界差为 gap。",
+        "Exact methods guarantee optimality but may be slow in the worst case; approximation methods have quality bounds, heuristics no such guarantee. Branch-and-bound solves LP relaxations and splits a fractional 3.75 into ≤3 or ≥4. Fathom infeasible, integral-optimal or nonimproving-bound nodes. In maximization the incumbent is a lower bound; active-node LP bounds yield an upper bound. Their difference is the gap."
+      ],
+      "formulas": [],
+      "explanation": [
+        "必须用“最优松弛解是整数”来结束节点，而不是发现任意整数点就结束。无活跃节点时，最优值由在位解确定；保留在位值以维护全局上界。",
+        "Fathom because the optimal relaxation solution is integral, not merely because an arbitrary integer point was found. With no active nodes, the incumbent determines the optimum; retain its value in global-bound bookkeeping."
+      ],
+      "terms": [
+        [
+          "incumbent",
+          "当前最佳整数可行解"
+        ],
+        [
+          "fathom",
+          "剪枝／终止节点"
+        ],
+        [
+          "optimality gap",
+          "最优性间隙"
+        ]
+      ],
+      "review": [
+        "",
+        ""
+      ],
+      "id": "etf5248-l7-k13"
+    },
+    {
+      "pages": [
+        34,
+        35,
+        36,
+        37
+      ],
+      "title": [
+        "分支定界例题：根与首个分支",
+        "Branch example: root and first branch"
+      ],
+      "lecture": [
+        "最大化 8x₁+5x₂，约束 x₁+x₂≤6、9x₁+5x₂≤45、x≥0 整数。根 LP 解 (3.75,2.25)，值 41.25。P₁ 增加 x₁≥4，得 (4,1.8)，值 41；P₂ 为 x₁≤3，暂后处理。P₁ 再分 x₂≥2 的 P₃（不可行）和 x₂≤1 的 P₄；P₄ 得 (40/9,1)，值 365/9≈40.5556。",
+        "Maximize 8x₁+5x₂ subject to x₁+x₂≤6,9x₁+5x₂≤45 and nonnegative integers. Root optimum (3.75,2.25) has value 41.25. P₁ adds x₁≥4 and gives (4,1.8), value 41; P₂ adds x₁≤3 and is deferred. P₁ splits into infeasible P₃ with x₂≥2 and P₄ with x₂≤1, yielding (40/9,1), value 365/9≈40.5556."
+      ],
+      "formulas": [],
+      "explanation": [
+        "P₃ 不可行因 9×4+5×2=46>45。第 37 页的 4.44、40.55 是截短显示，计算应使用分数。",
+        "P₃ is infeasible since 9×4+5×2=46>45. Page 37 truncates to 4.44 and 40.55; use fractions in calculations."
+      ],
+      "terms": [],
+      "review": [
+        "",
+        ""
+      ],
+      "id": "etf5248-l7-k14"
+    },
+    {
+      "pages": [
+        38,
+        39,
+        40,
+        41,
+        42
+      ],
+      "title": [
+        "分支定界例题：证明最优 40",
+        "Branch example: certify value 40"
+      ],
+      "lecture": [
+        "P₄ 按 x₁ 分支：P₅ 加 x₁≥5，解 (5,0)，值 40，成为在位解；P₆ 加 x₁≤4，解 (4,1)，值 37，剪枝。回到 P₂ 得 (3,3)，值 39，也剪枝。所有节点处理完，整数最优为 (5,0)，值 40。第 41 页保留完整树图。课件讨论 backtracking 与 jumptracking，并允许按指定 gap 提前停止。",
+        "P₄ splits on x₁: P₅ with x₁≥5 gives integer (5,0), value 40, becoming incumbent; P₆ with x₁≤4 gives (4,1), value 37 and is fathomed. P₂ gives (3,3), value 39 and is also fathomed. All nodes are disposed of, certifying (5,0), value 40. Page 41 shows the tree. The lecture discusses backtracking, jumptracking and stopping at a specified gap."
+      ],
+      "formulas": [],
+      "explanation": [
+        "课件图中的 41.25 是沿用的根上界，并非每一步都更新后的最紧 best bound。提前 gap 停止应报告近似证书，不应宣称严格最优。",
+        "The tree retains root bound 41.25 rather than updating the tightest best bound at every step. Gap-based early termination should report an approximation certificate, not exact optimality."
+      ],
+      "terms": [],
+      "review": [
+        "",
+        ""
+      ],
+      "id": "etf5248-l7-k15"
+    },
+    {
+      "pages": [
+        43,
+        44,
+        45,
+        46,
+        47
+      ],
+      "title": [
+        "Gomory 割：保留整数点、切掉分数点",
+        "Gomory cut: preserve integers, remove fractions"
+      ],
+      "lecture": [
+        "割平面循环：解松弛→若整数则结束→否则加入全部整数可行点都满足、当前分数解不满足的不等式。例题最优表行 x₁−1.25s₁+0.25s₂=3.75，取 floor(−1.25)=−2，得到 0.75−0.75s₁−0.25s₂≤0。代入 s₁=6−x₁−x₂、s₂=45−9x₁−5x₂，得割 3x₁+2x₂≤15。",
+        "Cutting planes repeatedly solve the relaxation and add valid inequalities excluding fractional optima. From x₁−1.25s₁+0.25s₂=3.75 and floor(−1.25)=−2, obtain 0.75−0.75s₁−0.25s₂≤0. Substitute s₁=6−x₁−x₂ and s₂=45−9x₁−5x₂ to get 3x₁+2x₂≤15."
+      ],
+      "formulas": [
+        "x_1-2s_1-3=0.75-0.75s_1-0.25s_2\\le0",
+        "3x_1+2x_2\\le15"
+      ],
+      "explanation": [
+        "左端为整数，右端≤0.75，所以左端≤0；这说明割为何有效。旧 LP 点代入得 15.75>15，故被切掉。割的质量影响收敛；课件提到求解器会组合多种割。",
+        "The left side is integer while the right is ≤0.75, so the left must be ≤0; this proves validity. The old LP point gives 15.75>15 and is removed. Cut quality matters; solvers may combine cut families."
+      ],
+      "terms": [],
+      "review": [
+        "",
+        ""
+      ],
+      "id": "etf5248-l7-k16"
+    },
+    {
+      "pages": [
+        48,
+        49,
+        50,
+        51,
+        52
+      ],
+      "title": [
+        "强模型：逐项联动优于聚合",
+        "Strong formulations: individual versus aggregate links"
+      ],
+      "lecture": [
+        "设施选址逐项约束 xᵢⱼ≤yⱼ 与聚合约束 Σᵢxᵢⱼ≤myⱼ 对二元变量等价；前者约束数 m+mn，后者 m+n。松弛后前者更紧，所以最小化下 p_聚合LP≤p_LP≤p_IP。较少约束不一定更容易求解整数问题。",
+        "Individual links xᵢⱼ≤yⱼ and aggregate links Σᵢxᵢⱼ≤myⱼ are equivalent for binaries, with m+mn versus m+n constraints. The individual relaxation is tighter, giving p_aggregateLP≤p_LP≤p_IP for minimization. Fewer constraints do not necessarily make an IP easier."
+      ],
+      "formulas": [
+        "p_{\\rm aggregate\\ LP}\\le p_{\\rm LP}\\le p_{\\rm IP}"
+      ],
+      "explanation": [
+        "例如 m=2、某设施分配 (1,0)、y=0.5 满足聚合 1≤2×0.5，却违反逐项 1≤0.5，展示聚合松弛多出的分数点。",
+        "With m=2, assignments (1,0) and y=0.5 satisfy aggregate 1≤2×0.5 but violate individual 1≤0.5, illustrating an extra fractional point."
+      ],
+      "terms": [],
+      "review": [
+        "",
+        ""
+      ],
+      "id": "etf5248-l7-k17"
+    },
+    {
+      "pages": [
+        53,
+        54
+      ],
+      "title": [
+        "凸包与模型质量",
+        "Convex hull and formulation quality"
+      ],
+      "lecture": [
+        "对相同整数可行集 T，松弛区域越接近 conv(T)，模型越强。若 P_A 包含于 P_B，A 至少与 B 一样强。第 54 页黑点是整数可行集，蓝色为凸包，额外红色区域属于松弛但不属于整数凸包。",
+        "For the same integer set T, a relaxation closer to conv(T) is stronger. If P_A is contained in P_B, A is at least as strong. Page 54 shows integer points in black, the hull in blue and additional relaxation area in red."
+      ],
+      "formulas": [
+        "\\operatorname{conv}(T)\\subseteq P_A\\subseteq P_B"
+      ],
+      "explanation": [
+        "",
+        ""
+      ],
+      "terms": [
+        [
+          "convex hull",
+          "凸包"
+        ],
+        [
+          "strong formulation",
+          "强模型"
+        ]
+      ],
+      "review": [
+        "",
+        ""
+      ],
+      "id": "etf5248-l7-k18"
+    },
+    {
+      "pages": [
+        55,
+        56,
+        57,
+        58
+      ],
+      "title": [
+        "TSP 与子回路：课件公式需核对",
+        "TSP and subtours: formulas needing review"
+      ],
+      "lecture": [
+        "目标是访问所有节点一次并返回的最低成本巡回。第 56 页比较完整路线 1–5–2–4–3–6–1 与两个小环 1–2–6–1、3–4–5–3。仅局部入出度限制不能排除子回路。第 57 页比较 MTZ 与 DFJ：前者较少约束并加顺序变量，后者约束多但松弛更强。第 58 页总结整数模型灵活性与求解难度的权衡。",
+        "The goal is a minimum-cost tour visiting every node once and returning. Page 56 compares tour 1–5–2–4–3–6–1 with subtours 1–2–6–1 and 3–4–5–3. Local degree conditions do not ensure connectivity. Page 57 contrasts MTZ (fewer constraints and ordering variables) with stronger but larger DFJ; page 58 summarizes the flexibility/computational trade-off."
+      ],
+      "formulas": [],
+      "explanation": [
+        "补充说明（非课件原公式）：有向版本通常固定起点 1，仅对 i,j∈{2,…,n}, i≠j 加 uᵢ−uⱼ+nxᵢⱼ≤n−1，配合 1≤uᵢ≤n−1 与每点一入一出。DFJ 对真子集 2≤|S|≤n−1 加 Σ_{i,j∈S}xᵢⱼ≤|S|−1。无向版本应使用每点度数=2。",
+        "Added clarification, not the original slide formula: a directed version fixes depot 1 and applies uᵢ−uⱼ+nxᵢⱼ≤n−1 only for distinct i,j∈{2,…,n}, with 1≤uᵢ≤n−1 and one incoming/outgoing arc per node. DFJ uses proper subsets 2≤|S|≤n−1. An undirected formulation instead requires degree two."
+      ],
+      "terms": [],
+      "review": [
+        "需要人工核对：第 55 页文字称无向图，公式却写每点一入一出的有向形式；第 57 页 MTZ 写“所有弧”，没有排除起点，照抄会排除完整巡回。这里不把这两页公式当成已核实的可直接运行模型。",
+        "Manual review: page 55 says undirected but uses directed in/out constraints. Page 57 applies MTZ to all arcs without excluding a depot, which would eliminate full tours. These formulas are not treated as a verified executable formulation."
+      ],
+      "id": "etf5248-l7-k19"
+    },
+    {
+      "pages": [
+        59,
+        60
+      ],
+      "title": [
+        "修改版 Giapetto 与 Workshop 割",
+        "Modified Giapetto and workshop cut"
+      ],
+      "lecture": [
+        "本次模型与旧 Giapetto 不同：最大化 4x₁+3x₂，3x₁+2x₂≤100，2x₁+3x₂≤102，非负整数。课件 LP 表给 x₁=96/5=19.2、x₂=106/5=21.2、Z=702/5=140.4；x₁ 行为 x₁+(3/5)s₁−(2/5)s₂=96/5。第 60 页要求解释非整数问题并推导割，没有给答案。",
+        "This differs from the earlier Giapetto: maximize 4x₁+3x₂ with 3x₁+2x₂≤100,2x₁+3x₂≤102 and nonnegative integers. The tableau gives x₁=96/5,x₂=106/5,Z=702/5, with row x₁+(3/5)s₁−(2/5)s₂=96/5. Page 60 asks for an integrality explanation and cut, without answers."
+      ],
+      "formulas": [
+        "\\max4x_1+3x_2\\quad\\text{s.t. }3x_1+2x_2\\le100,\\ 2x_1+3x_2\\le102,\\quad x\\in\\mathbb Z_+^2"
+      ],
+      "explanation": [
+        "Codex 推导：floor(−2/5)=−1，其小数部分为 3/5；所以 (3/5)s₁+(3/5)s₂≥1/5。代入 s₁=100−3x₁−2x₂、s₂=102−2x₁−3x₂，得 3x₁+3x₂≤121；利用整数性还可加强为 x₁+x₂≤40。这不是老师给出的书面答案。",
+        "Codex derivation: floor(−2/5)=−1 and its fractional part is 3/5, so (3/5)s₁+(3/5)s₂≥1/5. Substitute the two slacks to get 3x₁+3x₂≤121. Integrality further strengthens this to x₁+x₂≤40. This is not a written instructor answer."
+      ],
+      "terms": [],
+      "review": [
+        "",
+        ""
+      ],
+      "id": "etf5248-l7-k20"
+    }
+  ],
+  "summary": [
+    "先建正确逻辑，再争取紧松弛。LP 界帮助剪枝，整数可行解提供在位值，零 gap 才是严格最优证书。来源有疑点的 TSP 公式已单独标注。",
+    "First model the logic correctly, then strengthen the relaxation. LP bounds prune nodes, feasible integers provide incumbents, and zero gap certifies optimality. Questionable TSP slide formulas are flagged."
+  ],
+  "exercises": [
+    {
+      "question": [
+        "最大化问题在位值 40、活跃节点上界 39.5，是否继续该节点？",
+        "With incumbent 40 and a node upper bound 39.5 in maximization, should it be explored?"
+      ],
+      "answer": [
+        "可剪枝，它不可能改善在位解。",
+        "No; it cannot improve the incumbent."
+      ],
+      "pages": [
+        32,
+        33
+      ]
+    },
+    {
+      "question": [
+        "floor(−1.25) 是多少？为何不是 −1？",
+        "What is floor(−1.25), and why not −1?"
+      ],
+      "answer": [
+        "−2；floor 是不大于原数的最大整数。",
+        "−2, the greatest integer no larger than the number."
+      ],
+      "pages": [
+        45
+      ]
+    },
+    {
+      "question": [
+        "x≤y 是否要求选 B 就一定选 A？",
+        "Does x≤y force A whenever B is selected?"
+      ],
+      "answer": [
+        "不要求；(x,y)=(0,1) 允许，仅表达 A⇒B。",
+        "No; (0,1) is allowed. It encodes only A⇒B."
+      ],
+      "pages": [
+        13
+      ]
+    }
+  ],
+  "reviewPages": [
+    {
+      "pages": [
+        25
+      ],
+      "reason": [
+        "现场代码未包含在 PDF 中。",
+        "Live code is absent."
+      ]
+    },
+    {
+      "pages": [
+        55,
+        57
+      ],
+      "reason": [
+        "TSP 有向／无向表述混用，MTZ 索引范围缺失，需老师或课堂记录确认。",
+        "TSP mixes directed/undirected conventions and omits essential MTZ index restrictions; confirm with the instructor or class records."
+      ]
+    }
+  ]
+}

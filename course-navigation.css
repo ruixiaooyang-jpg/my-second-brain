@@ -1,0 +1,22 @@
+/* The original modules stay in the DOM; only the active course route is shown. */
+body.course-navigation main [hidden]{display:none!important}
+body.course-navigation header{width:270px}
+body.course-navigation main.wrap{margin-left:270px;max-width:1300px}
+body.course-navigation #nav,body.course-navigation #pdfNav,body.course-navigation .side-future{display:none}
+body.course-navigation #libraryTree{margin-top:26px;max-height:none}
+body.course-navigation #libraryTree>button{font-size:14px;font-weight:600;padding:11px 12px;margin-bottom:18px}
+body.course-navigation #libraryTree>details{padding:0;margin-bottom:18px}
+body.course-navigation #libraryTree summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:8px;min-height:38px;padding:8px 6px;font-size:13px;font-weight:600;border-radius:6px;color:#566359}
+body.course-navigation #libraryTree summary::-webkit-details-marker{display:none}
+body.course-navigation #libraryTree summary:before{content:'›';font-size:18px;line-height:1;width:12px;transition:transform .15s}
+body.course-navigation #libraryTree details[open]>summary:before{transform:rotate(90deg)}
+body.course-navigation #libraryTree summary:hover{background:#edf0ea}
+body.course-navigation #libraryTree .course-branch{margin:3px 0 8px 8px;border-left:1px solid #dce4dc;padding-left:8px}
+body.course-navigation #libraryTree .course-branch>summary{color:#303b34;font-weight:650}
+body.course-navigation #libraryTree button{font-size:13px;padding:9px 12px;border-radius:6px;margin:2px 0;white-space:normal;text-overflow:clip;line-height:1.5;text-align:left}
+body.course-navigation #libraryTree button[aria-current]{background:#e1ece5;color:#1e674e;font-weight:650;box-shadow:inset 3px 0 #2e8064}
+body.course-navigation #libraryTree .nav-empty{font-size:11px;color:#8a918b;padding-left:12px}
+body.course-navigation #libraryTree :focus-visible{outline:2px solid #78a48c;outline-offset:2px}
+body.course-navigation main>section{scroll-margin-top:24px}
+@media(max-width:1000px) and (min-width:761px){body.course-navigation header{width:230px}body.course-navigation main.wrap{margin-left:230px;padding-left:28px;padding-right:28px}}
+@media(max-width:760px){body.course-navigation header{width:100%}body.course-navigation main.wrap{margin-left:0}body.course-navigation #libraryTree{max-height:330px;overflow-y:auto;margin-top:14px}body.course-navigation #libraryTree>details{margin-bottom:10px}body.course-navigation #libraryTree>button{margin-bottom:10px}}

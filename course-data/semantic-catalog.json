@@ -1,0 +1,5849 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "id": "concept-variables",
+      "kind": "concept",
+      "lecture": 1,
+      "title": [
+        "决策变量与定义域",
+        "Decision variables and domains"
+      ],
+      "body": [
+        "决策变量表示模型需要决定的数量。定义变量时应同时说明业务含义、单位和允许取值；参数则是已知数据，不由求解器选择。非负数量和可正可负的净值不能使用相同的符号限制。",
+        "Decision variables describe quantities chosen by the model. State their meaning, units and allowed values; parameters are given data, not decisions. Nonnegative quantities and signed net values require different domains."
+      ],
+      "formulas": [
+        "x=(x_1,\\ldots,x_n)^T"
+      ],
+      "symbols": [
+        "xⱼ：第j项决策；n：决策维数。",
+        "xⱼ: decision j; n: number of decisions."
+      ],
+      "conditions": [
+        "连续LP允许实数值；不可分数量需要另行声明整数条件。",
+        "Continuous LP permits real values; indivisible quantities require integrality."
+      ],
+      "references": [
+        {
+          "lecture": 1,
+          "source": "ETF2480_ETF5248_Lecture_1 (2).pdf",
+          "pages": [
+            15,
+            16
+          ]
+        }
+      ],
+      "blocks": [],
+      "related": [
+        "case-applepie",
+        "case-diet"
+      ],
+      "origin": "course-synthesis",
+      "lectures": [
+        1
+      ]
+    },
+    {
+      "id": "concept-objective",
+      "kind": "concept",
+      "lecture": 1,
+      "title": [
+        "线性目标函数",
+        "Linear objective function"
+      ],
+      "body": [
+        "目标函数将决策转为一个可比较的指标，并声明最大化还是最小化。线性目标是固定单位系数乘决策数量的总和；在利润模型中，应区分售价和扣除相关成本后的单位贡献。改变方向不等于改变可行域。",
+        "An objective converts decisions into one comparable metric and specifies maximization or minimization. A linear objective sums fixed coefficients times quantities. In profit models, selling price differs from contribution after relevant costs. Changing direction does not change feasibility."
+      ],
+      "formulas": [
+        "z=c^Tx=\\sum_{j=1}^n c_jx_j"
+      ],
+      "symbols": [
+        "z：目标值；cⱼ：单位目标贡献；xⱼ：决策数量。",
+        "z: objective value; cⱼ: contribution per unit; xⱼ: quantity."
+      ],
+      "conditions": [
+        "系数为给定常数，所有项换算到一致的目标单位。",
+        "Coefficients are fixed and all terms use consistent objective units."
+      ],
+      "references": [
+        {
+          "lecture": 1,
+          "source": "ETF2480_ETF5248_Lecture_1 (2).pdf",
+          "pages": [
+            15,
+            16
+          ]
+        }
+      ],
+      "blocks": [],
+      "related": [
+        "case-applepie",
+        "case-giapetto",
+        "case-advertising",
+        "case-sailco",
+        "case-finco",
+        "case-blend",
+        "case-rylon",
+        "case-steve"
+      ],
+      "origin": "course-synthesis",
+      "lectures": [
+        1
+      ]
+    },
+    {
+      "id": "concept-constraints",
+      "kind": "concept",
+      "lecture": 1,
+      "title": [
+        "约束与非负条件",
+        "Constraints and nonnegativity"
+      ],
+      "body": [
+        "约束把业务限制转为允许决策满足的关系。资源上限常用≤，最低需求常用≥，严格的收支或物料平衡用等式。所有约束必须同时成立；满足其中一条不足以证明方案可行。",
+        "Constraints express restrictions on allowed decisions. Capacity often uses ≤, minimum requirements use ≥, and exact balances use equality. Every constraint must hold simultaneously; satisfying one alone does not establish feasibility."
+      ],
+      "formulas": [
+        "\\sum_j a_{ij}x_j\\le b_i,\\qquad x_j\\ge0"
+      ],
+      "symbols": [
+        "aᵢⱼ：决策j对限制i的单位影响；bᵢ：上限；i：约束索引。",
+        "aᵢⱼ: per-unit impact on restriction i; bᵢ: upper limit; i: constraint index."
+      ],
+      "conditions": [
+        "方向由业务语义决定；只有确实不允许负值时才添加非负条件。",
+        "Choose directions from the business meaning; impose nonnegativity only when justified."
+      ],
+      "references": [
+        {
+          "lecture": 1,
+          "source": "ETF2480_ETF5248_Lecture_1 (2).pdf",
+          "pages": [
+            15,
+            16
+          ]
+        }
+      ],
+      "blocks": [],
+      "related": [
+        "case-applepie",
+        "case-giapetto",
+        "case-sailco",
+        "case-finco",
+        "case-blend",
+        "case-rylon",
+        "case-steve",
+        "practice-source-nonnegative"
+      ],
+      "origin": "course-synthesis",
+      "lectures": [
+        1
+      ]
+    },
+    {
+      "id": "concept-linearity",
+      "kind": "concept",
+      "lecture": 1,
+      "title": [
+        "线性规划的结构",
+        "Structure of linear programming"
+      ],
+      "body": [
+        "线性规划用线性目标和线性等式或不等式描述决策。固定系数下，增加一单位变量的影响不随变量当前值改变，各变量贡献可相加。变量相乘、平方或以决策变量作分母通常破坏线性；矩阵只是紧凑记法。",
+        "LP uses a linear objective and linear equalities or inequalities. With fixed coefficients, a unit change has a constant effect and contributions add. Products, squares or decision-dependent denominators generally break linearity; matrix notation is only a compact representation."
+      ],
+      "formulas": [
+        "\\max c^Tx\\quad\\text{s.t. }Ax\\le b,\\ x\\ge0"
+      ],
+      "symbols": [
+        "A：约束系数矩阵；b：资源向量；c：目标系数；x：变量向量。",
+        "A: constraint matrix; b: resource vector; c: objective coefficients; x: decisions."
+      ],
+      "conditions": [
+        "这里写的是非负、≤约束的一个常用形式，不代表所有LP必须原样写成该形式。",
+        "This is one common nonnegative, ≤ form, not the only valid LP representation."
+      ],
+      "references": [
+        {
+          "lecture": 1,
+          "source": "ETF2480_ETF5248_Lecture_1 (2).pdf",
+          "pages": [
+            15,
+            16
+          ]
+        }
+      ],
+      "blocks": [],
+      "related": [
+        "practice-source-graph"
+      ],
+      "origin": "course-synthesis",
+      "lectures": [
+        1
+      ]
+    },
+    {
+      "id": "concept-matrix",
+      "kind": "concept",
+      "lecture": 1,
+      "title": [
+        "矩阵表达与内积",
+        "Matrix representation and inner products"
+      ],
+      "body": [
+        "内积把对应分量相乘后求和，结果是标量。矩阵乘向量逐行做内积，因此每一行代表一条约束、每一列代表一个决策变量。检查矩阵维数可以发现遗漏变量或系数顺序错误。",
+        "An inner product sums componentwise products and returns a scalar. Matrix-vector multiplication takes an inner product with each row, so rows represent constraints and columns represent decisions. Dimension checks expose omitted variables and inconsistent coefficient ordering."
+      ],
+      "formulas": [
+        "A\\in\\mathbb R^{m\\times n},\\quad x,c\\in\\mathbb R^n,\\quad b\\in\\mathbb R^m,\\quad (Ax)_i=\\sum_j a_{ij}x_j"
+      ],
+      "symbols": [
+        "m：约束数；n：变量数；Aᵢⱼ：第i行第j列系数。",
+        "m: constraints; n: variables; Aᵢⱼ: row-i, column-j coefficient."
+      ],
+      "conditions": [
+        "列顺序须与x和c一致，行顺序须与b一致。",
+        "Column order must match x and c; row order must match b."
+      ],
+      "references": [
+        {
+          "lecture": 1,
+          "source": "ETF2480_ETF5248_Lecture_1 (2).pdf",
+          "pages": [
+            19,
+            20,
+            21,
+            22
+          ]
+        }
+      ],
+      "blocks": [],
+      "related": [
+        "case-applepie",
+        "case-diet",
+        "practice-source-nonnegative"
+      ],
+      "origin": "course-synthesis",
+      "lectures": [
+        1
+      ]
+    },
+    {
+      "id": "concept-sign-transform",
+      "kind": "concept",
+      "lecture": 1,
+      "title": [
+        "目标与约束的等价变换",
+        "Equivalent objective and constraint transformations"
+      ],
+      "body": [
+        "最大化一个目标等价于最小化其相反数，最优决策不变而目标值变号。将不等式两边乘负数必须翻转方向。等式可拆为两个相反不等式；这些变换保留同一组允许决策，不应额外添加原问题没有的变量限制。",
+        "Maximizing an objective is equivalent to minimizing its negative: decisions stay the same while values change sign. Multiplication by a negative number reverses an inequality. An equality becomes two opposite inequalities without adding unjustified variable restrictions."
+      ],
+      "formulas": [
+        "\\max c^Tx=-\\min(-c^Tx),\\quad a^Tx=b\\iff(a^Tx\\ge b,\\ -a^Tx\\ge-b)"
+      ],
+      "symbols": [
+        "a：一条约束的系数；b：右端；c：目标系数。",
+        "a: constraint coefficients; b: right-hand side; c: objective coefficients."
+      ],
+      "conditions": [
+        "目标等式比较最优值，所有变换均保持原定义域。",
+        "The objective identity compares optimal values; transformations preserve the original domain."
+      ],
+      "references": [
+        {
+          "lecture": 1,
+          "source": "ETF2480_ETF5248_Lecture_1 (2).pdf",
+          "pages": [
+            28,
+            29,
+            30
+          ]
+        }
+      ],
+      "blocks": [],
+      "related": [],
+      "origin": "course-synthesis",
+      "lectures": [
+        1
+      ]
+    },
+    {
+      "id": "concept-feasible",
+      "kind": "concept",
+      "lecture": 2,
+      "title": [
+        "可行解与可行域",
+        "Feasible solutions and feasible region"
+      ],
+      "body": [
+        "一个解只有同时满足全部等式、不等式和变量限制才可行。可行域收集所有满足条件的点，与目标函数好坏无关。先检查可行性，再比较收益，能避免把高收益但资源超限的方案误判为最优。",
+        "A solution is feasible only if it satisfies all equalities, inequalities and variable restrictions. The feasible region collects such points independently of objective quality. Check feasibility before comparing returns, so a profitable but resource-violating plan is not mistaken for an optimum."
+      ],
+      "formulas": [
+        "F=\\{x:Ax\\le b,\\ Dx=f\\}"
+      ],
+      "symbols": [
+        "F：可行域；A,D：不等式与等式系数；b,f：相应右端。",
+        "F: feasible region; A,D: inequality/equality matrices; b,f: right-hand sides."
+      ],
+      "conditions": [
+        "变量符号与界必须包含在F中。空集意味着不可行。",
+        "Variable signs and bounds must be included in F; an empty F means infeasibility."
+      ],
+      "references": [
+        {
+          "lecture": 2,
+          "source": "ETF2480_ETF5248_Lecture_2 (2).pdf",
+          "pages": [
+            15,
+            16
+          ]
+        }
+      ],
+      "blocks": [],
+      "related": [
+        "case-ad-feasibility"
+      ],
+      "origin": "course-synthesis",
+      "lectures": [
+        2
+      ]
+    },
+    {
+      "id": "concept-optimal",
+      "kind": "concept",
+      "lecture": 2,
+      "title": [
+        "最优解与最优值",
+        "Optimal solution and optimal value"
+      ],
+      "body": [
+        "最优解是一个可行决策，其目标不劣于任何其他可行决策。最优值是把该决策代入目标得到的标量，两者不能混为一谈。多个决策可能产生同一个最优值，因此求解器返回一个向量不代表它是唯一方案。",
+        "An optimal solution is feasible and has an objective at least as good as every other feasible decision. The optimal value is the scalar obtained by evaluating it. Several decisions can share that value; one returned vector does not establish uniqueness."
+      ],
+      "formulas": [
+        "x^*\\in F,\\quad c^Tx^*\\le c^Tx\\ (x\\in F),\\quad p^*=c^Tx^*"
+      ],
+      "symbols": [
+        "x*：最优决策；p*：最优值；F：可行域。",
+        "x*: optimal decision; p*: optimal value; F: feasible region."
+      ],
+      "conditions": [
+        "这里为最小化；最大化时比较方向反转。",
+        "Shown for minimization; reverse the comparison for maximization."
+      ],
+      "references": [
+        {
+          "lecture": 2,
+          "source": "ETF2480_ETF5248_Lecture_2 (2).pdf",
+          "pages": [
+            16
+          ]
+        }
+      ],
+      "blocks": [],
+      "related": [
+        "case-giapetto"
+      ],
+      "origin": "course-synthesis",
+      "lectures": [
+        2
+      ]
+    },
+    {
+      "id": "concept-outcomes",
+      "kind": "concept",
+      "lecture": 2,
+      "title": [
+        "不可行、无界与多重最优",
+        "Infeasibility, unboundedness and multiple optima"
+      ],
+      "body": [
+        "不可行是没有任何满足全部限制的点；无界是沿可行方向能持续改善目标而没有有限最优值。可行域无限大不必导致目标无界。有限最优时可能唯一或多重；等值线与某条约束平行本身不足以证明多重最优，还需要最优支撑面包含多个可行点。",
+        "Infeasibility means no point satisfies all restrictions. Unboundedness means the objective can improve indefinitely along feasible decisions. An unbounded region need not imply an unbounded objective. A finite optimum can be unique or multiple; parallelism alone is insufficient unless the optimal supporting face contains multiple feasible points."
+      ],
+      "formulas": [
+        "p^*=-\\infty\\ (\\text{unbounded min}),\\qquad p^*=+\\infty\\ (F=\\varnothing)"
+      ],
+      "symbols": [
+        "p*：最小化问题的扩展最优值；F：可行域。",
+        "p*: extended minimization value; F: feasible region."
+      ],
+      "conditions": [
+        "无穷值是课件约定；平行性充分条件的补充说明用于避免误用。",
+        "Infinity conventions follow the slides; the qualification on parallelism prevents misuse."
+      ],
+      "references": [
+        {
+          "lecture": 2,
+          "source": "ETF2480_ETF5248_Lecture_2 (2).pdf",
+          "pages": [
+            16,
+            17,
+            29
+          ]
+        }
+      ],
+      "blocks": [],
+      "related": [
+        "case-applepie"
+      ],
+      "origin": "course-synthesis",
+      "lectures": [
+        2
+      ]
+    },
+    {
+      "id": "concept-geometry",
+      "kind": "concept",
+      "lecture": 2,
+      "title": [
+        "半空间、多面体与目标等值线",
+        "Halfspaces, polyhedra and objective level sets"
+      ],
+      "body": [
+        "线性等式定义边界超平面，线性不等式选择其一侧半空间；有限多个半空间相交得到多面体。目标等值线表示相同收益的所有点。沿目标增大方向移动等值线、观察最后接触可行域的位置，是二维图解的几何基础。",
+        "A linear equality defines a boundary hyperplane and an inequality selects a halfspace. A finite intersection forms a polyhedron. Objective level sets contain points with equal value. Moving them toward higher values until the last contact with feasibility gives the geometric basis of two-dimensional graphical solution."
+      ],
+      "formulas": [
+        "a^Tx=b,\\quad a^Tx\\ge b,\\quad c^Tx=\\alpha"
+      ],
+      "symbols": [
+        "a≠0：边界法向量；c：目标方向；α：等值线的目标值。",
+        "a≠0: boundary normal; c: objective direction; α: level value."
+      ],
+      "conditions": [
+        "图解直接适用于二维；不能忽略等式、非负限制或不可行/无界情况。",
+        "Direct graphing is two-dimensional; include equalities, sign restrictions and status checks."
+      ],
+      "references": [
+        {
+          "lecture": 2,
+          "source": "ETF2480_ETF5248_Lecture_2 (2).pdf",
+          "pages": [
+            34,
+            35,
+            36,
+            37
+          ]
+        }
+      ],
+      "blocks": [],
+      "related": [
+        "case-giapetto",
+        "case-advertising",
+        "practice-source-graph"
+      ],
+      "origin": "course-synthesis",
+      "lectures": [
+        2
+      ]
+    },
+    {
+      "id": "concept-feasibility-objective",
+      "kind": "concept",
+      "lecture": 2,
+      "title": [
+        "零目标的可行性问题",
+        "Feasibility problems with a zero objective"
+      ],
+      "body": [
+        "有时只需要知道约束能否同时满足，不需对方案排序。把目标设为零后，每个可行点都有相同目标值，因此任何可行解都完成任务。求解器仍需证明可行或不可行，而不是省略约束。",
+        "Sometimes the task is only to determine whether restrictions can hold together. With a zero objective, every feasible point has the same value, so any feasible solution suffices. The solver still checks feasibility; zeroing the objective does not remove constraints."
+      ],
+      "formulas": [
+        "\\min 0\\quad\\text{s.t. }x\\in F"
+      ],
+      "symbols": [
+        "F：需要检查的约束集合。",
+        "F: the constraint set to be tested."
+      ],
+      "conditions": [
+        "用于可行性检查，不提供不同可行方案的质量排序。",
+        "Used to test feasibility, not to rank feasible plans."
+      ],
+      "references": [
+        {
+          "lecture": 2,
+          "source": "ETF2480_ETF5248_Lecture_2 (2).pdf",
+          "pages": [
+            30,
+            31
+          ]
+        }
+      ],
+      "blocks": [],
+      "related": [
+        "case-ad-feasibility"
+      ],
+      "origin": "course-synthesis",
+      "lectures": [
+        2
+      ]
+    },
+    {
+      "id": "concept-requirements",
+      "kind": "concept",
+      "lecture": 3,
+      "title": [
+        "需求覆盖与成本最小化",
+        "Requirement coverage and cost minimization"
+      ],
+      "body": [
+        "用每种投入的数量乘单位贡献，再按需求类别相加，就能表达最低覆盖量。成本目标使用同一组数量乘单位成本。上限、下限和精确需求应分别使用不同关系；价格和贡献数据的计量单位必须一致。",
+        "Multiply each input quantity by its per-unit contribution and sum by requirement to model minimum coverage. The cost objective uses the same quantities with unit costs. Distinguish lower, upper and exact requirements, and keep quantity and contribution units consistent."
+      ],
+      "formulas": [
+        "\\min\\sum_j c_jx_j\\quad\\text{s.t. }\\sum_j a_{ij}x_j\\ge b_i,\\ x\\ge0"
+      ],
+      "symbols": [
+        "xⱼ：投入数量；cⱼ：成本；aᵢⱼ：需求i的单位贡献；bᵢ：最低需求。",
+        "xⱼ: quantity; cⱼ: cost; aᵢⱼ: contribution to requirement i; bᵢ: minimum."
+      ],
+      "conditions": [
+        "这是从配餐模型归纳的通用结构；上限需求需改为≤。",
+        "A general structure abstracted from the diet model; upper limits use ≤."
+      ],
+      "references": [
+        {
+          "lecture": 3,
+          "source": "ETF2480_ETF5248_Lecture_3 (1).pdf",
+          "pages": [
+            5,
+            6,
+            7
+          ]
+        }
+      ],
+      "blocks": [],
+      "related": [
+        "case-advertising",
+        "case-diet",
+        "practice-source-stigler"
+      ],
+      "origin": "course-synthesis",
+      "lectures": [
+        3
+      ]
+    },
+    {
+      "id": "concept-inventory",
+      "kind": "concept",
+      "lecture": 3,
+      "title": [
+        "多期库存平衡",
+        "Multi-period inventory balance"
+      ],
+      "body": [
+        "库存把相邻期间的决策联系起来。期末库存等于期初库存加当期产出减当期需求；本期末库存成为下期初库存。将库存约束为非负表示不允许欠交，而正常产能上限与加班量分别建模。",
+        "Inventory links decisions across periods. Ending inventory equals starting inventory plus current production minus demand; it becomes the next period’s starting stock. Nonnegative inventory rules out backlogging, while regular capacity and overtime are modeled separately."
+      ],
+      "formulas": [
+        "I_t=I_{t-1}+x_t+y_t-d_t"
+      ],
+      "symbols": [
+        "Iₜ：期末库存；xₜ/yₜ：正常/加班产量；dₜ：当期需求；I₀：已知初始库存。",
+        "Iₜ: ending inventory; xₜ/yₜ: regular/overtime output; dₜ: demand; I₀: initial stock."
+      ],
+      "conditions": [
+        "产品单位一致，需求按时满足；这是从Sailco平衡式归纳的方法。",
+        "Units must match and demand is met on time; abstracted from Sailco balances."
+      ],
+      "references": [
+        {
+          "lecture": 3,
+          "source": "ETF2480_ETF5248_Lecture_3 (1).pdf",
+          "pages": [
+            11,
+            12,
+            13
+          ]
+        }
+      ],
+      "blocks": [],
+      "related": [
+        "case-sailco"
+      ],
+      "origin": "course-synthesis",
+      "lectures": [
+        3
+      ]
+    },
+    {
+      "id": "concept-cashflow",
+      "kind": "concept",
+      "lecture": 3,
+      "title": [
+        "现金流守恒与资金时点",
+        "Cash-flow conservation and timing"
+      ],
+      "body": [
+        "资金只能在收到后再投入，不能把未来回款提前当成可用现金。每个时点分别建立“可用资金等于投资加留存”的平衡式，并用非负留存表达不能借款。目标应按选定终止时点汇总回款，避免跨期重复计算。",
+        "Funds can be reinvested only after receipt; future proceeds are not current cash. At each date, equate available funds to new investment plus retained funds, with nonnegative retention ruling out borrowing. Aggregate final proceeds at the chosen horizon without double counting."
+      ],
+      "formulas": [
+        "0.5x_A+1.2x_C+1.08s_0=x_B+s_1"
+      ],
+      "symbols": [
+        "xA,xB,xC：Finco对应投资额；s₀,s₁：进入货币市场的余额；系数为题定回款倍数。",
+        "xA,xB,xC: Finco investment amounts; s₀,s₁: money-market deposits; coefficients: stated cash-flow multiples."
+      ],
+      "conditions": [
+        "公式为Finco时点1的具体守恒式；一般方法按各题真实回款日期建模。",
+        "The formula is Finco’s date-1 balance; the general method uses each problem’s actual cash-flow dates."
+      ],
+      "references": [
+        {
+          "lecture": 3,
+          "source": "ETF2480_ETF5248_Lecture_3 (1).pdf",
+          "pages": [
+            14,
+            15
+          ]
+        }
+      ],
+      "blocks": [],
+      "related": [
+        "case-finco"
+      ],
+      "origin": "course-synthesis",
+      "lectures": [
+        3
+      ]
+    },
+    {
+      "id": "concept-shift-coverage",
+      "kind": "concept",
+      "lecture": 3,
+      "title": [
+        "按工作模式定义排班变量",
+        "Shift-pattern variables and coverage"
+      ],
+      "body": [
+        "排班变量应代表完整工作模式，例如从某日开始连续工作五天的人数，而不是彼此独立的每日人数。某天的供给是所有覆盖该日模式的人数之和。这样每日需求和跨日休息规则由同一组变量共同表达。",
+        "Scheduling variables should represent complete work patterns, such as a five-day shift starting on a given day, rather than unrelated daily counts. Daily staffing is the sum of patterns covering that day. One variable system then captures both demand and cross-day rest rules."
+      ],
+      "formulas": [
+        "\\sum_{i:\\,t\\in W_i}x_i\\ge d_t"
+      ],
+      "symbols": [
+        "xᵢ：采用模式i的人数；Wᵢ：该模式工作的日期；dₜ：日期t的需求。",
+        "xᵢ: employees on pattern i; Wᵢ: days worked by that pattern; dₜ: demand on day t."
+      ],
+      "conditions": [
+        "归纳自课件五连班排班；实际人数需整数，连续解仅作为松弛。",
+        "Abstracted from the five-day schedule; actual headcounts require integers, while the LP is a relaxation."
+      ],
+      "references": [
+        {
+          "lecture": 3,
+          "source": "ETF2480_ETF5248_Lecture_3 (1).pdf",
+          "pages": [
+            16,
+            17,
+            18,
+            19
+          ]
+        }
+      ],
+      "blocks": [],
+      "related": [
+        "case-schedule"
+      ],
+      "origin": "course-synthesis",
+      "lectures": [
+        3
+      ]
+    },
+    {
+      "id": "concept-blending",
+      "kind": "concept",
+      "lecture": 3,
+      "title": [
+        "混合品质约束的线性化",
+        "Linearizing blend-quality constraints"
+      ],
+      "body": [
+        "混合物的品质是各投入品质按数量加权的平均值。把品质上下限乘以总产量，就能把比例条件写成线性约束，避免直接除以决策数量。每项系数必须使用同一浓度单位，百分数不能与小数混用。",
+        "Blend quality is a quantity-weighted average of input qualities. Multiplying quality bounds by total output gives linear constraints without dividing by decision quantities. Use consistent concentration units; percentages and fractions must not be mixed."
+      ],
+      "formulas": [
+        "\\sum_i q_i x_{ij}\\ge Q_j\\sum_i x_{ij}"
+      ],
+      "symbols": [
+        "xᵢⱼ：原料i用于产品j的量；qᵢ：原料品质；Qⱼ：产品最低品质。",
+        "xᵢⱼ: input i allocated to product j; qᵢ: input quality; Qⱼ: minimum product quality."
+      ],
+      "conditions": [
+        "由Sunco辛烷值约束归纳；正总量时等价于加权平均，零产量无需定义平均值，上限品质改用≤。",
+        "Abstracted from Sunco octane limits; equivalent for positive volume, vacuous at zero volume; upper quality bounds use ≤."
+      ],
+      "references": [
+        {
+          "lecture": 3,
+          "source": "ETF2480_ETF5248_Lecture_3 (1).pdf",
+          "pages": [
+            20,
+            21,
+            22,
+            23
+          ]
+        }
+      ],
+      "blocks": [],
+      "related": [
+        "case-blend"
+      ],
+      "origin": "course-synthesis",
+      "lectures": [
+        3
+      ]
+    },
+    {
+      "id": "concept-joint-production",
+      "kind": "concept",
+      "lecture": 3,
+      "title": [
+        "联产品与替代生产的物料平衡",
+        "Joint versus alternative production balances"
+      ],
+      "body": [
+        "联产品由同一份原料同时生成多种产品，所以各产品产量分别与同一个原料量挂钩。替代生产则需要把原料分配给不同工艺，不能把同一份原料重复用于两种产出。两种业务的词语差别会改变整个物料约束结构。",
+        "Joint production yields several products from the same input, so each output is linked to that common quantity. Alternative production allocates input to separate processes and cannot reuse it twice. This business distinction changes the material-balance structure."
+      ],
+      "formulas": [
+        "B=3r,\\ C=4r\\quad\\text{vs.}\\quad B=3r_B,\\ C=4r_C,\\ r_B+r_C=r"
+      ],
+      "symbols": [
+        "B,C：两类总产量；r：总原料；rB,rC：分配给各工艺的原料。",
+        "B,C: total outputs; r: total input; rB,rC: process allocations."
+      ],
+      "conditions": [
+        "符号为Rylon模型的简写；3与4是该题收率，不是一般常数。",
+        "Notation abbreviates Rylon; 3 and 4 are its yields, not universal constants."
+      ],
+      "references": [
+        {
+          "lecture": 3,
+          "source": "ETF2480_ETF5248_Lecture_3 (1).pdf",
+          "pages": [
+            25,
+            26,
+            27
+          ]
+        }
+      ],
+      "blocks": [],
+      "related": [
+        "case-rylon"
+      ],
+      "origin": "course-synthesis",
+      "lectures": [
+        3
+      ]
+    },
+    {
+      "id": "concept-slack",
+      "kind": "concept",
+      "lecture": 4,
+      "title": [
+        "松弛变量与紧约束",
+        "Slack variables and binding constraints"
+      ],
+      "body": [
+        "给≤约束添加非负松弛变量可将其写成等式。松弛量表示在该约束单位下的剩余资源；零松弛表示约束在当前解处紧。紧约束与正影子价格不是同义词，解释资源价值还需要对偶信息。",
+        "Adding a nonnegative slack converts a ≤ constraint to equality. Slack measures unused capacity in that constraint’s units; zero slack means it is binding at the current solution. Binding does not by itself imply a positive shadow price, which requires dual information."
+      ],
+      "formulas": [
+        "a_i^Tx+s_i=b_i,\\quad s_i\\ge0"
+      ],
+      "symbols": [
+        "sᵢ：剩余量；aᵢᵀx：已使用量；bᵢ：上限。",
+        "sᵢ: unused amount; aᵢᵀx: used amount; bᵢ: upper limit."
+      ],
+      "conditions": [
+        "适用于≤约束；当前剩余量与边际价值的区别是跨Lecture4/5的补充说明。",
+        "For ≤ constraints; distinguishing slack from marginal value connects Lectures 4 and 5."
+      ],
+      "references": [
+        {
+          "lecture": 4,
+          "source": "ETF2480_ETF5248__Lecture_4 (1).pdf",
+          "pages": [
+            8,
+            9,
+            10
+          ]
+        }
+      ],
+      "blocks": [],
+      "related": [
+        "case-dakota"
+      ],
+      "origin": "course-synthesis",
+      "lectures": [
+        4
+      ]
+    },
+    {
+      "id": "concept-basis",
+      "kind": "concept",
+      "lecture": 4,
+      "title": [
+        "基本可行解",
+        "Basic feasible solution"
+      ],
+      "body": [
+        "单纯形法用基变量表示当前等式系统，其余非基变量设为零。解出基变量并满足非负限制后，得到基本可行解。对右端非负且全为≤的起始模型，松弛列可形成初始单位基；其他情形不能直接把松弛当作可行初始基。",
+        "Simplex represents the equality system with basic variables while setting nonbasic variables to zero. Solving for the basic variables and satisfying nonnegativity gives a basic feasible solution. Slack columns supply an initial identity basis for ≤ rows with nonnegative right-hand sides, but not automatically in other cases."
+      ],
+      "formulas": [
+        "x_N=0,\\quad Bx_B=b,\\quad x_B\\ge0"
+      ],
+      "symbols": [
+        "B：线性无关的基列；xB：基变量；xN：非基变量；b：右端。",
+        "B: independent basis columns; xB: basic variables; xN: nonbasic variables; b: RHS."
+      ],
+      "conditions": [
+        "B须可逆；公式是对课件表格操作的矩阵解释。",
+        "B must be invertible; the formula is a matrix explanation of the slide tableau operations."
+      ],
+      "references": [
+        {
+          "lecture": 4,
+          "source": "ETF2480_ETF5248__Lecture_4 (1).pdf",
+          "pages": [
+            7,
+            8,
+            10,
+            11
+          ]
+        }
+      ],
+      "blocks": [],
+      "related": [
+        "case-dakota"
+      ],
+      "origin": "course-synthesis",
+      "lectures": [
+        4
+      ]
+    },
+    {
+      "id": "concept-simplex-optimality",
+      "kind": "concept",
+      "lecture": 4,
+      "title": [
+        "单纯形的入基与最优性检验",
+        "Simplex entering choice and optimality test"
+      ],
+      "body": [
+        "在课件最大化表格约定中，第0行写成目标变量加其余变量项等于当前值。非基变量系数为负表示增加它可能改善目标；课件规则选择最负者入基。当前基可行且第0行所有非基系数非负时，可以停止并报告最优。",
+        "Under the lecture’s maximization tableau convention, row 0 writes the objective variable plus other terms equal to the current value. A negative nonbasic coefficient indicates a possible improvement, and the stated rule picks the most negative one. If the basis is feasible and all nonbasic row-0 coefficients are nonnegative, it is optimal."
+      ],
+      "formulas": [
+        "z+\\sum_{j\\in N}r_jx_j=z_0"
+      ],
+      "symbols": [
+        "rⱼ：本表第0行系数；N：非基变量集；z₀：当前目标值。",
+        "rⱼ: row-0 coefficient in this convention; N: nonbasic set; z₀: current objective."
+      ],
+      "conditions": [
+        "符号取决于表格约定；不可把其他软件reduced cost的正负号直接照搬。",
+        "Signs depend on convention; do not blindly copy reduced-cost signs from another solver."
+      ],
+      "references": [
+        {
+          "lecture": 4,
+          "source": "ETF2480_ETF5248__Lecture_4 (1).pdf",
+          "pages": [
+            7,
+            8,
+            15
+          ]
+        }
+      ],
+      "blocks": [],
+      "related": [
+        "case-dakota"
+      ],
+      "origin": "course-synthesis",
+      "lectures": [
+        4
+      ]
+    },
+    {
+      "id": "concept-ratio-pivot",
+      "kind": "concept",
+      "lecture": 4,
+      "title": [
+        "最小比值检验与枢轴变换",
+        "Minimum-ratio test and pivoting"
+      ],
+      "body": [
+        "增加入基变量时，必须保持所有基变量非负。对入基列中的正系数计算右端与系数之比，最小值先耗尽对应基变量，因此决定出基行。将枢轴化为1、消去该列其他元素，就得到描述同一等式系统的新表。",
+        "Increasing an entering variable must preserve nonnegative basic values. Divide each RHS by the positive coefficient in the entering column; the smallest ratio exhausts a basic variable first and selects the leaving row. Normalize the pivot to one and eliminate its column elsewhere to obtain an equivalent tableau."
+      ],
+      "formulas": [
+        "\\theta=\\min_{i:\\,\\bar a_{ij}>0}\\frac{\\bar b_i}{\\bar a_{ij}}"
+      ],
+      "symbols": [
+        "j：入基列；āᵢⱼ：当前表系数；b̄ᵢ：当前右端；θ：可增加量。",
+        "j: entering column; āᵢⱼ: current coefficient; b̄ᵢ: current RHS; θ: allowable increase."
+      ],
+      "conditions": [
+        "仅正系数参加比值；需要当前基本解可行。零系数不作除法。",
+        "Only positive coefficients enter the test; the current basis must be feasible. Do not divide by zero."
+      ],
+      "references": [
+        {
+          "lecture": 4,
+          "source": "ETF2480_ETF5248__Lecture_4 (1).pdf",
+          "pages": [
+            12,
+            13,
+            14
+          ]
+        }
+      ],
+      "blocks": [],
+      "related": [
+        "case-dakota"
+      ],
+      "origin": "course-synthesis",
+      "lectures": [
+        4
+      ]
+    },
+    {
+      "id": "concept-dual",
+      "kind": "concept",
+      "lecture": 5,
+      "title": [
+        "原问题与对偶构造",
+        "Constructing the dual"
+      ],
+      "body": [
+        "每条原约束对应一个对偶变量，每个原变量对应一条对偶约束。对最大化≤非负形式，用非负权重组合资源限制，只要组合后的单位系数盖住收益系数，就形成原目标上界；对偶寻找最小的这种上界。",
+        "Each primal constraint creates a dual variable and each primal variable creates a dual constraint. For the nonnegative maximization ≤ form, nonnegative weighted resource restrictions bound profit when their combined coefficients cover the objective coefficients. The dual minimizes that bound."
+      ],
+      "formulas": [
+        "\\max\\{c^Tx:Ax\\le b,x\\ge0\\}\\quad\\leftrightarrow\\quad\\min\\{b^Ty:A^Ty\\ge c,y\\ge0\\}"
+      ],
+      "symbols": [
+        "x：原变量；y：约束权重/对偶变量；A,b,c：原系数。",
+        "x: primal variables; y: constraint weights/dual variables; A,b,c: primal data."
+      ],
+      "conditions": [
+        "这套符号对应所示规范形式；混合方向必须使用各自符号规则。",
+        "These signs apply to this canonical form; mixed directions require the appropriate sign rules."
+      ],
+      "references": [
+        {
+          "lecture": 5,
+          "source": "ETF2480_ETF5248_Lecture_5.pdf",
+          "pages": [
+            6,
+            7,
+            8,
+            9
+          ]
+        }
+      ],
+      "blocks": [],
+      "related": [
+        "case-dakota",
+        "case-dual-bounds"
+      ],
+      "origin": "course-synthesis",
+      "lectures": [
+        5
+      ]
+    },
+    {
+      "id": "concept-weak-duality",
+      "kind": "concept",
+      "lecture": 5,
+      "title": [
+        "弱对偶与目标界",
+        "Weak duality and objective bounds"
+      ],
+      "body": [
+        "任何原可行解和对偶可行解，都满足最大化原目标不超过最小化对偶目标。该结论不要求两者已经最优，可用于检查候选解和建立上下界。原问题无界可推出对偶不可行，但原不可行并不能单独确定对偶状态。",
+        "Every primal-feasible and dual-feasible pair bounds the maximization primal objective by the minimization dual objective. Neither point needs to be optimal. This checks candidates and supplies bounds. An unbounded primal implies an infeasible dual, but primal infeasibility alone does not determine dual status."
+      ],
+      "formulas": [
+        "c^Tx\\le y^TAx\\le b^Ty"
+      ],
+      "symbols": [
+        "x,y：分别可行的原/对偶点；两端为目标值。",
+        "x,y: primal/dual feasible points; endpoints are their objective values."
+      ],
+      "conditions": [
+        "适用上一个概念的配对规范形式；可行性不可省略。",
+        "For the paired canonical form above; feasibility is essential."
+      ],
+      "references": [
+        {
+          "lecture": 5,
+          "source": "ETF2480_ETF5248_Lecture_5.pdf",
+          "pages": [
+            11,
+            12
+          ]
+        }
+      ],
+      "blocks": [],
+      "related": [
+        "case-ad-feasibility",
+        "case-dual-bounds"
+      ],
+      "origin": "course-synthesis",
+      "lectures": [
+        5
+      ]
+    },
+    {
+      "id": "concept-strong-duality",
+      "kind": "concept",
+      "lecture": 5,
+      "title": [
+        "强对偶与最优性证书",
+        "Strong duality and optimality certificates"
+      ],
+      "body": [
+        "有界可行的LP与其对偶存在相同有限最优值。实际验证中，只需给出一对原/对偶可行解且目标相等，就能用弱对偶证明双方最优。因此对偶解不仅是另一个数值结果，也是原解的可核查证书。",
+        "A feasible bounded LP and its dual attain the same finite optimal value. In practice, a feasible primal/dual pair with equal objectives is enough to prove both optimal by weak duality. A dual solution is therefore a checkable certificate, not just another numerical result."
+      ],
+      "formulas": [
+        "c^Tx^*=b^Ty^*=p^*=d^*"
+      ],
+      "symbols": [
+        "x*,y*：最优解；p*,d*：对应最优值。",
+        "x*,y*: optimal solutions; p*,d*: optimal values."
+      ],
+      "conditions": [
+        "强对偶存在性结论需要LP有界可行；证书还需逐条验证可行性。",
+        "The existence statement requires bounded feasibility; a certificate also needs both feasibility checks."
+      ],
+      "references": [
+        {
+          "lecture": 5,
+          "source": "ETF2480_ETF5248_Lecture_5.pdf",
+          "pages": [
+            13,
+            19
+          ]
+        }
+      ],
+      "blocks": [],
+      "related": [
+        "case-dual-bounds"
+      ],
+      "origin": "course-synthesis",
+      "lectures": [
+        5
+      ]
+    },
+    {
+      "id": "concept-complementarity",
+      "kind": "concept",
+      "lecture": 5,
+      "title": [
+        "互补松弛",
+        "Complementary slackness"
+      ],
+      "body": [
+        "互补松弛把原约束剩余量与对偶变量相乘为零，并把对偶约束剩余量与原变量相乘为零。原约束有正剩余时对应对偶变量必为零；对偶变量为零并不反推原约束一定有剩余。配合双方可行性，这些关系刻画最优解。",
+        "Complementary slackness sets each primal slack times its dual variable to zero, and each dual slack times its primal variable to zero. Positive primal slack forces a zero dual variable, but a zero dual variable does not force positive slack. Together with primal and dual feasibility, these relations characterize optimality."
+      ],
+      "formulas": [
+        "y_i(b_i-a_i^Tx)=0,\\quad x_j((A^Ty)_j-c_j)=0"
+      ],
+      "symbols": [
+        "aᵢᵀ：A第i行；i：原约束；j：原变量；括号内为松弛。",
+        "aᵢᵀ: row i of A; i: primal constraint; j: primal variable; parentheses are slacks."
+      ],
+      "conditions": [
+        "适用原max≤、x≥0配对形式；不能只靠乘积为零而省略可行性。",
+        "For the primal max-≤, x≥0 pair; zero products alone do not replace feasibility."
+      ],
+      "references": [
+        {
+          "lecture": 5,
+          "source": "ETF2480_ETF5248_Lecture_5.pdf",
+          "pages": [
+            18,
+            19,
+            20,
+            21
+          ]
+        }
+      ],
+      "blocks": [],
+      "related": [],
+      "origin": "course-synthesis",
+      "lectures": [
+        5
+      ]
+    },
+    {
+      "id": "concept-dual-signs",
+      "kind": "concept",
+      "lecture": 5,
+      "title": [
+        "混合约束和自由变量的对偶规则",
+        "Dual signs for mixed constraints and free variables"
+      ],
+      "body": [
+        "以最小化原问题为基准，原约束≥、≤、=分别对应对偶变量非负、非正、自由。原变量非负、非正、自由分别对应对偶列约束≤、≥、=目标系数。先固定问题方向，再逐行逐列处理，比记忆不带前提的符号更可靠。",
+        "For a minimization primal, ≥, ≤ and equality rows give nonnegative, nonpositive and free dual variables. Nonnegative, nonpositive and free primal variables give ≤, ≥ and equality dual column restrictions against objective coefficients. Fix the objective direction before applying the row and column rules."
+      ],
+      "formulas": [
+        "\\min\\{c^Tx:Ax\\ge b,\\ x\\text{ free}\\}\\leftrightarrow\\max\\{b^Ty:A^Ty=c,y\\ge0\\}"
+      ],
+      "symbols": [
+        "自由变量允许任意实数；Aᵀy第j项与cⱼ比较。",
+        "A free variable can take any real value; component j of Aᵀy is compared with cⱼ."
+      ],
+      "conditions": [
+        "公式为其中一个特例；最大化可先等价转为最小化再套规则。",
+        "The formula is one special case; a maximization primal can first be transformed to minimization."
+      ],
+      "references": [
+        {
+          "lecture": 5,
+          "source": "ETF2480_ETF5248_Lecture_5.pdf",
+          "pages": [
+            23,
+            24,
+            25,
+            26
+          ]
+        }
+      ],
+      "blocks": [],
+      "related": [],
+      "origin": "course-synthesis",
+      "lectures": [
+        5
+      ]
+    },
+    {
+      "id": "concept-sensitivity",
+      "kind": "concept",
+      "lecture": 5,
+      "title": [
+        "影子价格与右端敏感性",
+        "Shadow prices and RHS sensitivity"
+      ],
+      "body": [
+        "最优对偶变量度量资源右端在允许范围内的边际影响。改变右端后，旧对偶解通常仍给一个全局目标界；只有在同一基保持最优的范围内，目标变化才精确等于变化量与影子价格的内积。不要把局部价格外推到任意大的资源变化。",
+        "Optimal dual variables measure marginal RHS effects within an allowable range. After changing the RHS, the old dual solution still gives a global objective bound; exact linear change holds only while the same basis remains optimal. Do not extrapolate a local price to arbitrarily large changes."
+      ],
+      "formulas": [
+        "p^*(u)\\le p^*(0)+u^Ty^*,\\quad p^*(u)=p^*(0)+u^Ty^*\\ \\text{within the valid basis range}"
+      ],
+      "symbols": [
+        "u：右端变化向量；y*：原最优对偶解；p*(u)：变化后的最优值。",
+        "u: RHS perturbation; y*: original dual optimum; p*(u): perturbed optimal value."
+      ],
+      "conditions": [
+        "所示为max≤形式；局部等式需要基可行且最优，不能仅依据旧价格大小判断变化幅度。",
+        "For the max-≤ form; equality requires the basis to remain feasible and optimal, not merely a large old price."
+      ],
+      "references": [
+        {
+          "lecture": 5,
+          "source": "ETF2480_ETF5248_Lecture_5.pdf",
+          "pages": [
+            16,
+            17,
+            32,
+            33,
+            34
+          ]
+        }
+      ],
+      "blocks": [],
+      "related": [
+        "case-dakota",
+        "case-meat"
+      ],
+      "origin": "course-synthesis",
+      "lectures": [
+        5
+      ]
+    },
+    {
+      "id": "concept-objective-range",
+      "kind": "concept",
+      "lecture": 5,
+      "title": [
+        "目标系数的允许变化范围",
+        "Allowable objective-coefficient changes"
+      ],
+      "body": [
+        "价格改变会改变最优性检验。非基变量系数变化可直接检查其第0行系数是否仍满足符号条件；基变量价格变化则要先用基行消去目标行中的基列，再检查全部非基系数。范围内原产量保持最优，但基产品目标值可能随价格改变。",
+        "Price changes alter optimality tests. For a nonbasic variable, inspect its changed row-0 coefficient; for a basic variable, first eliminate the basic column from the objective row and then check all nonbasic coefficients. The original production plan remains optimal within the range, though its objective may change."
+      ],
+      "formulas": [
+        "5-\\Delta c_2\\ge0;\\quad 5+1.25\\Delta c_1\\ge0,\\ 10-0.5\\Delta c_1\\ge0,\\ 10+1.5\\Delta c_1\\ge0"
+      ],
+      "symbols": [
+        "Δc₂：Dakota table价格变化；Δc₁：desk价格变化；各式为该题表格系数。",
+        "Δc₂: Dakota table-price change; Δc₁: desk-price change; inequalities are its tableau coefficients."
+      ],
+      "conditions": [
+        "这些数值仅用于Dakota；一般方法是维护该符号约定下非基第0行系数非负。",
+        "Numbers are specific to Dakota; the general test preserves nonnegative row-0 nonbasic coefficients in this convention."
+      ],
+      "references": [
+        {
+          "lecture": 5,
+          "source": "ETF2480_ETF5248_Lecture_5.pdf",
+          "pages": [
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42
+          ]
+        }
+      ],
+      "blocks": [],
+      "related": [
+        "case-dakota",
+        "case-meat"
+      ],
+      "origin": "course-synthesis",
+      "lectures": [
+        5
+      ]
+    },
+    {
+      "id": "concept-incidence",
+      "kind": "concept",
+      "lecture": 6,
+      "title": [
+        "有向图与关联矩阵",
+        "Directed graphs and incidence matrices"
+      ],
+      "body": [
+        "有向弧是有顺序的节点对，流量正方向沿弧方向。关联矩阵在弧起点记+1、终点记−1，其他节点记0，因此每列总和为0。度数描述连接数量；有向图入度、出度应分别计算。",
+        "A directed arc is an ordered node pair and positive flow follows its direction. Its incidence column has +1 at the tail, −1 at the head and zero elsewhere, summing to zero. Degree counts connections; distinguish indegree from outdegree in directed graphs."
+      ],
+      "formulas": [
+        "A_{ij}=\\begin{cases}1&j\\text{ leaves }i\\\\-1&j\\text{ enters }i\\\\0&\\text{otherwise}\\end{cases}"
+      ],
+      "symbols": [
+        "i：节点；j：弧；A为节点数×弧数矩阵。",
+        "i: node; j: arc; A has nodes as rows and arcs as columns."
+      ],
+      "conditions": [
+        "本课采用流出为正，假设无自环；其他符号惯例必须一致转换。",
+        "The course takes outgoing flow as positive and excludes loops; convert other conventions consistently."
+      ],
+      "references": [
+        {
+          "lecture": 6,
+          "source": "ETF2480_ETF5248_Lecture_6.pdf",
+          "pages": [
+            10,
+            11,
+            12
+          ]
+        }
+      ],
+      "blocks": [],
+      "related": [
+        "case-bridges",
+        "case-shortest-network"
+      ],
+      "origin": "course-synthesis",
+      "lectures": [
+        6
+      ]
+    },
+    {
+      "id": "concept-flow-balance",
+      "kind": "concept",
+      "lecture": 6,
+      "title": [
+        "流量守恒与最小费用流",
+        "Flow balance and minimum-cost flow"
+      ],
+      "body": [
+        "节点净流出等于外部供给，需求节点的供给记负数。把所有节点平衡式堆叠成Ax=b，并对每条弧加容量上下界，就得到最小费用网络流模型。成本是单位弧成本乘流量之和，不是路径数。",
+        "Net outflow at each node equals external supply, with demand represented by negative supply. Stacking balances gives Ax=b; add arc bounds to form minimum-cost flow. Cost sums unit arc cost times flow, not the number of paths."
+      ],
+      "formulas": [
+        "\\min c^Tx\\quad\\text{s.t. }Ax=b,\\ l\\le x\\le u"
+      ],
+      "symbols": [
+        "xⱼ：弧流量；cⱼ：单位成本；bᵢ：净供给；lⱼ,uⱼ：弧界。",
+        "xⱼ: arc flow; cⱼ: unit cost; bᵢ: net supply; lⱼ,uⱼ: arc bounds."
+      ],
+      "conditions": [
+        "封闭网络必须供需平衡；若允许负流量，需明确其反向含义与界。",
+        "A closed network must balance supply and demand; negative flow needs explicit interpretation and bounds."
+      ],
+      "references": [
+        {
+          "lecture": 6,
+          "source": "ETF2480_ETF5248_Lecture_6.pdf",
+          "pages": [
+            13,
+            14,
+            15
+          ]
+        }
+      ],
+      "blocks": [],
+      "related": [
+        "case-powerco",
+        "case-replacement",
+        "case-pipeline"
+      ],
+      "origin": "course-synthesis",
+      "lectures": [
+        6
+      ]
+    },
+    {
+      "id": "concept-tu",
+      "kind": "concept",
+      "lecture": 6,
+      "title": [
+        "全幺模矩阵",
+        "Totally unimodular matrices"
+      ],
+      "body": [
+        "全幺模要求每个方形子矩阵的行列式都属于−1、0、1。只检查矩阵元素属于这三个数并不足够，因为还要检查更高阶子式。有向图关联矩阵具备这一结构，它是网络流整数性结论的基础。",
+        "Total unimodularity requires every square submatrix determinant to be −1, 0 or 1. Having entries in this set is necessary but insufficient; larger minors also matter. Directed incidence matrices have this structure, supporting network-flow integrality."
+      ],
+      "formulas": [
+        "\\det(B)\\in\\{-1,0,1\\}\\quad\\text{for every square submatrix }B"
+      ],
+      "symbols": [
+        "B：A任意方形子矩阵；det：行列式。",
+        "B: any square submatrix of A; det: determinant."
+      ],
+      "conditions": [
+        "TU是矩阵性质；整数解结论还需整数右端与有限界。",
+        "TU is a matrix property; solution integrality also needs integer RHS and finite bounds."
+      ],
+      "references": [
+        {
+          "lecture": 6,
+          "source": "ETF2480_ETF5248_Lecture_6.pdf",
+          "pages": [
+            16
+          ]
+        }
+      ],
+      "blocks": [],
+      "related": [
+        "case-machineco"
+      ],
+      "origin": "course-synthesis",
+      "lectures": [
+        6
+      ]
+    },
+    {
+      "id": "concept-integrality",
+      "kind": "concept",
+      "lecture": 6,
+      "title": [
+        "网络流整数极点定理",
+        "Integral extreme points in network flow"
+      ],
+      "body": [
+        "当约束矩阵全幺模、右端以及有限上下界为整数时，可行多面体的每个极点都是整数。若求到最优极点，就能用连续LP解决相应整数流问题。不能据此声称所有可行点或最优点都整数，因为整数极点之间的凸组合可为分数。",
+        "With a TU matrix and integer RHS and finite bounds, every feasible extreme point is integral. An optimal extreme point therefore solves the corresponding integer-flow problem through LP. This does not make every feasible or optimal point integral: convex combinations can be fractional."
+      ],
+      "formulas": [
+        "P=\\{x:Ax=b,\\ l\\le x\\le u\\}"
+      ],
+      "symbols": [
+        "A：TU矩阵；b：整数向量；l,u：有限分量为整数的界。",
+        "A: TU matrix; b: integer vector; l,u: bounds whose finite components are integer."
+      ],
+      "conditions": [
+        "需要存在并取得最优极点；额外的非网络约束可能破坏结构。",
+        "An optimal extreme point must exist and be obtained; extra nonnetwork restrictions can break the structure."
+      ],
+      "references": [
+        {
+          "lecture": 6,
+          "source": "ETF2480_ETF5248_Lecture_6.pdf",
+          "pages": [
+            17,
+            18,
+            19,
+            20,
+            21
+          ]
+        }
+      ],
+      "blocks": [],
+      "related": [
+        "case-machineco",
+        "case-shortest-network"
+      ],
+      "origin": "course-synthesis",
+      "lectures": [
+        6
+      ]
+    },
+    {
+      "id": "concept-transport",
+      "kind": "concept",
+      "lecture": 6,
+      "title": [
+        "运输模型与供需平衡",
+        "Transportation models and balance"
+      ],
+      "body": [
+        "运输模型把供给点和需求点分成两组，以运量决定每条连接的使用量。每个供给点的运出总量等于供给，每个需求点的运入总量等于需求。两组等式一起要求总供给等于总需求，目标为运输费用最小。",
+        "Transportation separates supply and demand nodes and chooses shipment quantities. Each supply node’s outgoing total equals its supply, and each demand node’s incoming total equals demand. These equalities require total balance and minimize shipping cost."
+      ],
+      "formulas": [
+        "\\min\\sum_{i,j}c_{ij}x_{ij},\\quad\\sum_jx_{ij}=s_i,\\quad\\sum_ix_{ij}=d_j,\\quad x_{ij}\\ge0"
+      ],
+      "symbols": [
+        "sᵢ,dⱼ：供需；xᵢⱼ：运量；cᵢⱼ：单位运费。",
+        "sᵢ,dⱼ: supply/demand; xᵢⱼ: shipment; cᵢⱼ: unit cost."
+      ],
+      "conditions": [
+        "公式为平衡运输；Hitchcock情形包含每个供给—需求组合。",
+        "For balanced transportation; Hitchcock includes every supply-demand pair."
+      ],
+      "references": [
+        {
+          "lecture": 6,
+          "source": "ETF2480_ETF5248_Lecture_6.pdf",
+          "pages": [
+            23,
+            24,
+            25,
+            26,
+            27
+          ]
+        }
+      ],
+      "blocks": [],
+      "related": [
+        "case-powerco"
+      ],
+      "origin": "course-synthesis",
+      "lectures": [
+        6
+      ]
+    },
+    {
+      "id": "concept-dummy",
+      "kind": "concept",
+      "lecture": 6,
+      "title": [
+        "虚拟节点与供需不平衡",
+        "Dummy nodes for unbalanced transportation"
+      ],
+      "body": [
+        "多余供给可发往虚拟需求节点，表示未实际运输的余量。若供给不足且全部需求必须满足，原模型不可行；只有业务允许缺货时，才可加入虚拟供给并按未满足需求计惩罚。虚拟节点是在明确业务含义后使用的建模工具。",
+        "Excess supply can go to a dummy demand node to represent unused quantity. A shortage makes the all-demand-required model infeasible; only when shortages are permitted may dummy supply represent unmet demand with a penalty. Dummy nodes require a clear business meaning."
+      ],
+      "formulas": [
+        "s_{\\rm dummy}=\\max(0,\\sum_jd_j-\\sum_is_i)"
+      ],
+      "symbols": [
+        "sdummy：允许缺货时所需虚拟供给量；sᵢ,dⱼ：原供需。",
+        "sdummy: dummy supply when shortage is permitted; sᵢ,dⱼ: original supply/demand."
+      ],
+      "conditions": [
+        "课件对虚拟需求使用零成本；虚拟供给惩罚需按业务设置。",
+        "The slides use zero cost for dummy demand; dummy-supply penalties depend on the business."
+      ],
+      "references": [
+        {
+          "lecture": 6,
+          "source": "ETF2480_ETF5248_Lecture_6.pdf",
+          "pages": [
+            31,
+            32
+          ]
+        }
+      ],
+      "blocks": [],
+      "related": [
+        "case-powerco"
+      ],
+      "origin": "course-synthesis",
+      "lectures": [
+        6
+      ]
+    },
+    {
+      "id": "concept-assignment",
+      "kind": "concept",
+      "lecture": 6,
+      "title": [
+        "一对一指派模型",
+        "One-to-one assignment model"
+      ],
+      "body": [
+        "指派把每个人分配给恰好一个任务，并让每个任务恰好由一个人完成。二元变量描述是否配对。这是每个节点供需为1的运输模型，因此标准结构的LP最优极点可为整数，不需要任意四舍五入分数方案。",
+        "Assignment matches every person to exactly one task and every task to exactly one person. Binary variables identify matches. It is a transportation model with unit supplies and demands, so the standard LP has integral optimal extreme points without arbitrary rounding."
+      ],
+      "formulas": [
+        "\\sum_jx_{ij}=1,\\quad\\sum_ix_{ij}=1,\\quad 0\\le x_{ij}\\le1"
+      ],
+      "symbols": [
+        "xᵢⱼ：人/机器i是否执行任务j；费用目标为Σcᵢⱼxᵢⱼ。",
+        "xᵢⱼ: whether person/machine i performs task j; cost is Σcᵢⱼxᵢⱼ."
+      ],
+      "conditions": [
+        "LP替代二元模型依赖标准运输结构；添加额外联动约束后需重新判断。",
+        "LP replaces the binary model under the standard transport structure; extra links require reassessment."
+      ],
+      "references": [
+        {
+          "lecture": 6,
+          "source": "ETF2480_ETF5248_Lecture_6.pdf",
+          "pages": [
+            33,
+            34
+          ]
+        }
+      ],
+      "blocks": [],
+      "related": [
+        "case-machineco"
+      ],
+      "origin": "course-synthesis",
+      "lectures": [
+        6
+      ]
+    },
+    {
+      "id": "concept-shortest-path",
+      "kind": "concept",
+      "lecture": 6,
+      "title": [
+        "最短路的单位流模型",
+        "Unit-flow shortest-path model"
+      ],
+      "body": [
+        "从起点发出一单位流，在终点接收一单位流，其余节点净流量为零。以弧长为成本的最小费用流便刻画路径选择。使用整数最优极点可以得到选中弧；解释路径时还应检查是否有额外环。",
+        "Send one unit from the source to the sink, with zero net flow elsewhere. Minimum cost with arc lengths models path selection. An integral optimal extreme point identifies selected arcs; check for extra cycles when interpreting a path."
+      ],
+      "formulas": [
+        "\\min c^Tx,\\quad Ax=e_s-e_t,\\quad0\\le x\\le1"
+      ],
+      "symbols": [
+        "s,t：起终点；e：单位向量；xⱼ：弧选择；cⱼ：弧长。",
+        "s,t: source/sink; e: unit vector; xⱼ: arc selection; cⱼ: arc length."
+      ],
+      "conditions": [
+        "在课件非负弧长例中可移除无益环；负费用环会使“纯路径”解释失效。",
+        "For the nonnegative-length example, nonbeneficial cycles can be removed; negative-cost cycles invalidate a pure-path interpretation."
+      ],
+      "references": [
+        {
+          "lecture": 6,
+          "source": "ETF2480_ETF5248_Lecture_6.pdf",
+          "pages": [
+            37,
+            38,
+            39
+          ]
+        }
+      ],
+      "blocks": [],
+      "related": [
+        "case-shortest-network",
+        "case-replacement"
+      ],
+      "origin": "course-synthesis",
+      "lectures": [
+        6
+      ]
+    },
+    {
+      "id": "concept-maxflow",
+      "kind": "concept",
+      "lecture": 6,
+      "title": [
+        "最大流及回流弧转换",
+        "Maximum flow and return-arc conversion"
+      ],
+      "body": [
+        "最大流在容量限制内最大化起点净流出，所有中间节点守恒。增加一条从终点回起点的负单位成本弧，可把最大流量转为最小费用环流。回流弧流量等于原网络送达量，并不是额外的实际运输需求。",
+        "Maximum flow maximizes net source outflow under capacities while conserving intermediate nodes. A sink-to-source arc with negative unit cost converts it to minimum-cost circulation. Its flow equals delivery through the original network, not an additional physical demand."
+      ],
+      "formulas": [
+        "\\max v\\quad\\text{s.t. }Ax=v(e_s-e_t),\\quad0\\le x\\le u"
+      ],
+      "symbols": [
+        "v：总流量；u：弧容量；A：关联矩阵；s,t：起终点。",
+        "v: total flow; u: capacities; A: incidence matrix; s,t: source/sink."
+      ],
+      "conditions": [
+        "转换中原弧成本为0、回流弧成本−1；实际最大流仍受原弧容量限制。",
+        "Original arcs cost zero and the return arc costs −1; original capacities still limit throughput."
+      ],
+      "references": [
+        {
+          "lecture": 6,
+          "source": "ETF2480_ETF5248_Lecture_6.pdf",
+          "pages": [
+            43,
+            44
+          ]
+        }
+      ],
+      "blocks": [],
+      "related": [
+        "case-pipeline"
+      ],
+      "origin": "course-synthesis",
+      "lectures": [
+        6
+      ]
+    },
+    {
+      "id": "concept-integer",
+      "kind": "concept",
+      "lecture": 7,
+      "title": [
+        "整数规划与二元变量",
+        "Integer programming and binary variables"
+      ],
+      "body": [
+        "整数规划为部分或全部变量添加整数要求，表达人数、件数或开关决策。二元变量只取0或1，适用于选择与否。线性目标和约束并不保证连续最优解满足整数要求，必须把定义域作为模型的一部分。",
+        "Integer programming restricts some or all variables to integers for counts or discrete decisions. Binary variables take only zero or one for choices. Linear objectives and constraints do not guarantee an integral continuous optimum; the domain is part of the model."
+      ],
+      "formulas": [
+        "x_j\\in\\mathbb Z\\ (j\\in I),\\qquad y_k\\in\\{0,1\\}"
+      ],
+      "symbols": [
+        "I：整数变量索引；xⱼ：整数数量；yₖ：二元选择。",
+        "I: integer-variable index set; xⱼ: count; yₖ: binary choice."
+      ],
+      "conditions": [
+        "只限定部分变量是混合整数规划；是否非负仍须单独声明。",
+        "Restricting only some variables gives mixed-integer programming; signs still require specification."
+      ],
+      "references": [
+        {
+          "lecture": 7,
+          "source": "ETF2480_ETF5248_Lecture_7.pdf",
+          "pages": [
+            3,
+            4
+          ]
+        }
+      ],
+      "blocks": [],
+      "related": [
+        "case-schedule",
+        "case-stockco",
+        "case-facility",
+        "case-dorian",
+        "case-kilroy",
+        "case-tsp",
+        "case-steve"
+      ],
+      "origin": "course-synthesis",
+      "lectures": [
+        7
+      ]
+    },
+    {
+      "id": "concept-relaxation",
+      "kind": "concept",
+      "lecture": 7,
+      "title": [
+        "LP 松弛、界与取整风险",
+        "LP relaxation, bounds and rounding risk"
+      ],
+      "body": [
+        "去掉整数要求扩大可行域，最大化松弛值给整数最优值上界，最小化则给下界。若最优松弛解恰为整数，就已解决整数问题。对分数解直接四舍五入可能破坏约束，向上或向下取整即使可行也不保证最优。",
+        "Removing integrality enlarges feasibility: the maximization relaxation gives an upper bound and minimization a lower bound. An integral optimal relaxation solution solves the integer problem. Rounding may violate constraints, and even feasible upward or downward rounding need not be optimal."
+      ],
+      "formulas": [
+        "z^*_{IP}\\le z^*_{LP}\\quad(\\max)"
+      ],
+      "symbols": [
+        "z*IP：整数最优值；z*LP：松弛最优值。",
+        "z*IP: integer optimum; z*LP: relaxation optimum."
+      ],
+      "conditions": [
+        "比较同一目标和相同其余约束；松弛解需最优且整数才给证书。",
+        "Use the same objective and other constraints; the relaxation solution must be both optimal and integral."
+      ],
+      "references": [
+        {
+          "lecture": 7,
+          "source": "ETF2480_ETF5248_Lecture_7.pdf",
+          "pages": [
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        }
+      ],
+      "blocks": [],
+      "related": [
+        "case-schedule",
+        "case-branch",
+        "practice-source-gomory"
+      ],
+      "origin": "course-synthesis",
+      "lectures": [
+        7
+      ]
+    },
+    {
+      "id": "concept-knapsack",
+      "kind": "concept",
+      "lecture": 7,
+      "title": [
+        "0–1 背包模型",
+        "Binary knapsack model"
+      ],
+      "body": [
+        "背包问题在有限容量内选择一组不能拆分的项目。每个项目以二元变量表达选或不选，用重量/资金消耗系数限制总用量，以价值系数计算总收益。它与允许购买项目分数份额的连续组合模型不同。",
+        "Knapsack selects indivisible items under a capacity limit. A binary variable records each choice, resource coefficients limit total use, and value coefficients determine return. This differs from a continuous model permitting fractional investments."
+      ],
+      "formulas": [
+        "\\max\\sum_jv_jx_j\\quad\\text{s.t. }\\sum_jw_jx_j\\le W,\\quad x_j\\in\\{0,1\\}"
+      ],
+      "symbols": [
+        "vⱼ：价值；wⱼ：消耗；W：容量；xⱼ：是否选择。",
+        "vⱼ: value; wⱼ: consumption; W: capacity; xⱼ: selection."
+      ],
+      "conditions": [
+        "适用可分开选择且每项至多一次的项目；其他依赖关系需另加约束。",
+        "For separately selectable items used at most once; dependencies need extra constraints."
+      ],
+      "references": [
+        {
+          "lecture": 7,
+          "source": "ETF2480_ETF5248_Lecture_7.pdf",
+          "pages": [
+            11,
+            12
+          ]
+        }
+      ],
+      "blocks": [],
+      "related": [
+        "case-stockco"
+      ],
+      "origin": "course-synthesis",
+      "lectures": [
+        7
+      ]
+    },
+    {
+      "id": "concept-implication-binary",
+      "kind": "concept",
+      "lecture": 7,
+      "title": [
+        "二元决策依赖",
+        "Binary decision dependencies"
+      ],
+      "body": [
+        "若A只能在B被选时选择，令对应二元变量满足x≤y。这个限制排除(1,0)，保留(0,1)，所以只表达单向依赖而不是两者必须同时选。设施选址用同一关系禁止未开设施服务客户。",
+        "If A can be selected only when B is selected, impose x≤y on their binaries. It excludes (1,0) but permits (0,1), expressing a one-way dependency rather than equivalence. Facility location uses this to prevent service from closed facilities."
+      ],
+      "formulas": [
+        "x\\le y,\\quad x,y\\in\\{0,1\\}"
+      ],
+      "symbols": [
+        "x：选A；y：选B；设施模型中xᵢⱼ为分配、yⱼ为开设。",
+        "x: choose A; y: choose B; facility xᵢⱼ is assignment and yⱼ opening."
+      ],
+      "conditions": [
+        "必须使用二元含义；若需双向等价，应另表达反向依赖。",
+        "Requires binary interpretation; equivalence also needs the reverse implication."
+      ],
+      "references": [
+        {
+          "lecture": 7,
+          "source": "ETF2480_ETF5248_Lecture_7.pdf",
+          "pages": [
+            13,
+            14
+          ]
+        }
+      ],
+      "blocks": [],
+      "related": [
+        "case-facility"
+      ],
+      "origin": "course-synthesis",
+      "lectures": [
+        7
+      ]
+    },
+    {
+      "id": "concept-cardinality",
+      "kind": "concept",
+      "lecture": 7,
+      "title": [
+        "选择数量与有限取值",
+        "Cardinality and finite-value selection"
+      ],
+      "body": [
+        "二元变量的和就是选中项目数，可以表达至多、至少或恰好选若干项。若一个变量只能取有限集合中的值，用一组恰好选一个的二元变量再作加权和。这样既保留线性关系，也不会允许集合之外的连续中间值。",
+        "The sum of binary variables counts selected items, enabling at-most, at-least and exact-cardinality rules. To restrict a variable to a finite set, use one-of-many binaries and their weighted sum. This stays linear without allowing intermediate values outside the set."
+      ],
+      "formulas": [
+        "x=\\sum_ja_jy_j,\\quad\\sum_jy_j=1,\\quad y_j\\in\\{0,1\\}"
+      ],
+      "symbols": [
+        "aⱼ：允许的数值；yⱼ：是否选择该值；x：最终取值。",
+        "aⱼ: allowed value; yⱼ: whether it is selected; x: resulting value."
+      ],
+      "conditions": [
+        "集合由题目给定；恰选一个与至多一个不能互换。",
+        "The set is specified by the problem; exactly one and at most one differ."
+      ],
+      "references": [
+        {
+          "lecture": 7,
+          "source": "ETF2480_ETF5248_Lecture_7.pdf",
+          "pages": [
+            15,
+            16
+          ]
+        }
+      ],
+      "blocks": [],
+      "related": [],
+      "origin": "course-synthesis",
+      "lectures": [
+        7
+      ]
+    },
+    {
+      "id": "concept-bigm",
+      "kind": "concept",
+      "lecture": 7,
+      "title": [
+        "析取约束与有效 Big-M",
+        "Disjunctions and valid Big-M bounds"
+      ],
+      "body": [
+        "析取要求若干条件中至少一部分成立。对两个≤条件，引入二元变量，使一条生效时另一条由M放松。M必须覆盖其他约束允许范围中的表达式上界；过小会错误排除解，过大可能削弱松弛。至少k条成立可限制被放松的条件不超过m−k。",
+        "A disjunction requires at least some conditions to hold. For two ≤ conditions, a binary activates one while M relaxes the other. M must bound the expressions over the domain allowed by other constraints; too small removes valid solutions and too large weakens the relaxation. At least k conditions can be enforced by limiting relaxations to m−k."
+      ],
+      "formulas": [
+        "f(x)\\le My,\\quad g(x)\\le M(1-y),\\quad y\\in\\{0,1\\}"
+      ],
+      "symbols": [
+        "f,g：仿射表达式；M：有效上界；y：选择放松哪条条件。",
+        "f,g: affine expressions; M: valid upper bound; y: which condition is relaxed."
+      ],
+      "conditions": [
+        "一般式需有限有效界。p17的无M写法另依赖非负x和非负系数，不能任意推广。",
+        "General form requires finite valid bounds. The no-M form on p17 also assumes nonnegative x and coefficients."
+      ],
+      "references": [
+        {
+          "lecture": 7,
+          "source": "ETF2480_ETF5248_Lecture_7.pdf",
+          "pages": [
+            17,
+            18,
+            19,
+            20
+          ]
+        }
+      ],
+      "blocks": [],
+      "related": [
+        "case-dorian"
+      ],
+      "origin": "course-synthesis",
+      "lectures": [
+        7
+      ]
+    },
+    {
+      "id": "concept-ifthen",
+      "kind": "concept",
+      "lecture": 7,
+      "title": [
+        "条件蕴含的线性建模",
+        "Linear modeling of if–then conditions"
+      ],
+      "body": [
+        "“若f>0则g≥0”等价于“f≤0或g≥0”。二元分支分别允许前件不成立或强制后件成立，因此不需要把严格不等式直接交给LP求解器。不要把条件蕴含错误改成无条件要求g≥0。",
+        "“If f>0 then g≥0” is equivalent to “f≤0 or g≥0.” Binary branches either invalidate the premise or enforce the consequence, avoiding a strict inequality in the LP model. Do not replace the implication by the unconditional requirement g≥0."
+      ],
+      "formulas": [
+        "-g(x)\\le My,\\quad f(x)\\le M(1-y),\\quad y\\in\\{0,1\\}"
+      ],
+      "symbols": [
+        "f,g：仿射函数；y：分支；M：对−g和f均有效的上界。",
+        "f,g: affine functions; y: branch; M: valid upper bound for both −g and f."
+      ],
+      "conditions": [
+        "使用其他约束推导M；f=0时前件不成立，不要求后件。",
+        "Derive M from the other constraints; at f=0 the premise is false and the consequence is not required."
+      ],
+      "references": [
+        {
+          "lecture": 7,
+          "source": "ETF2480_ETF5248_Lecture_7.pdf",
+          "pages": [
+            21
+          ]
+        }
+      ],
+      "blocks": [],
+      "related": [],
+      "origin": "course-synthesis",
+      "lectures": [
+        7
+      ]
+    },
+    {
+      "id": "concept-set-cover",
+      "kind": "concept",
+      "lecture": 7,
+      "title": [
+        "集合覆盖",
+        "Set covering"
+      ],
+      "body": [
+        "集合覆盖选择尽量少或成本尽量低的设施，使每个需求点至少被一个允许设施覆盖。先从时间或距离表建立每个需求点的可覆盖集合，再写二元变量求和≥1。覆盖不等于一对一指派，一个设施可以覆盖多个点。",
+        "Set covering selects few or low-cost facilities so every demand point is covered by at least one eligible facility. Build eligibility sets from travel-time or distance data, then require the relevant binary sum to be at least one. Coverage is not one-to-one assignment: one facility may cover several points."
+      ],
+      "formulas": [
+        "\\min\\sum_i x_i\\quad\\text{s.t. }\\sum_{i\\in N_j}x_i\\ge1,\\ x_i\\in\\{0,1\\}"
+      ],
+      "symbols": [
+        "xᵢ：地点i是否设点；Nⱼ：能覆盖需求点j的位置集合。",
+        "xᵢ: open location i; Nⱼ: locations able to cover demand point j."
+      ],
+      "conditions": [
+        "这里所有设施成本相同；若有不同成本需以成本加权。",
+        "This form has equal facility costs; unequal costs require weights."
+      ],
+      "references": [
+        {
+          "lecture": 7,
+          "source": "ETF2480_ETF5248_Lecture_7.pdf",
+          "pages": [
+            22,
+            23,
+            24
+          ]
+        }
+      ],
+      "blocks": [],
+      "related": [
+        "case-kilroy"
+      ],
+      "origin": "course-synthesis",
+      "lectures": [
+        7
+      ]
+    },
+    {
+      "id": "concept-multiobjective",
+      "kind": "concept",
+      "lecture": 7,
+      "title": [
+        "多目标的加权组合",
+        "Weighted combinations of objectives"
+      ],
+      "body": [
+        "目标可能互相冲突，例如减少设施数量与提高公平影响。把最大化项变号后与最小化项加权相加，形成单一目标供求解器使用。权重反映偏好和量纲尺度，改变权重通常会改变折中方案。",
+        "Objectives may conflict, such as fewer facilities versus greater equity impact. Negate maximization terms and combine them with minimization terms using weights. Weights express preferences and scales, and changing them can change the compromise solution."
+      ],
+      "formulas": [
+        "\\min w_1\\sum_i x_i-w_2\\sum_iE_ix_i"
+      ],
+      "symbols": [
+        "w₁,w₂：非负偏好权重；Eᵢ：地点i影响评分；xᵢ：选择变量。",
+        "w₁,w₂: nonnegative preference weights; Eᵢ: impact score; xᵢ: selection."
+      ],
+      "conditions": [
+        "覆盖约束仍须满足；权重不代表唯一客观正确的取舍。",
+        "Coverage constraints still hold; weights do not define a uniquely objective trade-off."
+      ],
+      "references": [
+        {
+          "lecture": 7,
+          "source": "ETF2480_ETF5248_Lecture_7.pdf",
+          "pages": [
+            26,
+            27,
+            28
+          ]
+        }
+      ],
+      "blocks": [],
+      "related": [
+        "case-kilroy"
+      ],
+      "origin": "course-synthesis",
+      "lectures": [
+        7
+      ]
+    },
+    {
+      "id": "concept-branch-bound",
+      "kind": "concept",
+      "lecture": 7,
+      "title": [
+        "分支定界与剪枝证书",
+        "Branch-and-bound and pruning certificates"
+      ],
+      "body": [
+        "对分数整数变量分成向下和向上两个整数分支，分别求LP松弛。当前最好整数可行解是incumbent；最大化时节点LP值是上界。不可行、最优松弛解已整数或节点上界不优于incumbent时可以剪枝，直到没有未处理的改进可能。",
+        "Split a fractional integer variable into lower and upper integer branches and solve node LP relaxations. The incumbent is the best integer feasible solution; in maximization, a node LP gives an upper bound. Prune infeasible nodes, integral optimal LP nodes or nodes whose bound cannot beat the incumbent."
+      ],
+      "formulas": [
+        "x_j\\le\\lfloor\\bar x_j\\rfloor\\quad\\text{or}\\quad x_j\\ge\\lceil\\bar x_j\\rceil"
+      ],
+      "symbols": [
+        "x̄ⱼ：当前分数松弛值；incumbent：已知最佳整数可行方案。",
+        "x̄ⱼ: current fractional LP value; incumbent: best known integer feasible plan."
+      ],
+      "conditions": [
+        "剪枝比较依赖正确目标方向和可靠界；任意整数点不能替代节点最优性检验。",
+        "Use correct objective direction and valid bounds; an arbitrary integer point does not certify a node optimum."
+      ],
+      "references": [
+        {
+          "lecture": 7,
+          "source": "ETF2480_ETF5248_Lecture_7.pdf",
+          "pages": [
+            30,
+            31,
+            32,
+            33
+          ]
+        }
+      ],
+      "blocks": [],
+      "related": [
+        "case-branch"
+      ],
+      "origin": "course-synthesis",
+      "lectures": [
+        7
+      ]
+    },
+    {
+      "id": "concept-cuts",
+      "kind": "concept",
+      "lecture": 7,
+      "title": [
+        "有效割与 Gomory 分数割",
+        "Valid cuts and Gomory fractional cuts"
+      ],
+      "body": [
+        "有效割必须保留全部整数可行解，同时排除当前分数松弛解。Gomory例子利用表行中整数表达式只能取整数的性质，将小数上界加强。负数取floor应向负无穷，例如floor(−1.25)=−2；错误处理负数会产生无效割。",
+        "A valid cut preserves every integer feasible point while excluding the current fractional relaxation solution. The Gomory example strengthens a fractional bound because an integer expression can take only integer values. Floor rounds toward negative infinity, so floor(−1.25)=−2; mishandling negative fractions can invalidate a cut."
+      ],
+      "formulas": [
+        "x_1-2s_1-3=0.75-0.75s_1-0.25s_2\\le0"
+      ],
+      "symbols": [
+        "x₁：整数变量；s₁,s₂：该例非负整数松弛；左式为整数。",
+        "x₁: integer variable; s₁,s₂: nonnegative integer slacks in this example; the left side is integer."
+      ],
+      "conditions": [
+        "式中整数性来自该纯整数例及整数系数；不能无条件移用于混合整数表行。",
+        "Integrality follows from this pure-integer example and integer coefficients; it does not transfer unchanged to mixed-integer rows."
+      ],
+      "references": [
+        {
+          "lecture": 7,
+          "source": "ETF2480_ETF5248_Lecture_7.pdf",
+          "pages": [
+            43,
+            44,
+            45,
+            46,
+            47
+          ]
+        }
+      ],
+      "blocks": [],
+      "related": [
+        "case-branch",
+        "practice-source-gomory"
+      ],
+      "origin": "course-synthesis",
+      "lectures": [
+        7
+      ]
+    },
+    {
+      "id": "concept-strength",
+      "kind": "concept",
+      "lecture": 7,
+      "title": [
+        "强松弛与整数凸包",
+        "Strong relaxations and the integer hull"
+      ],
+      "body": [
+        "两个模型可以拥有相同整数可行解，却拥有不同LP松弛。松弛越接近整数点凸包，通常给出越紧的目标界。约束少不一定让整数规划更快；逐项联动可比聚合联动更强。",
+        "Two formulations may share all integer feasible points yet have different LP relaxations. A relaxation closer to the integer hull gives tighter bounds. Fewer constraints need not make an IP faster; individual links can be stronger than aggregate links."
+      ],
+      "formulas": [
+        "\\operatorname{conv}(T)\\subseteq P_A\\subseteq P_B"
+      ],
+      "symbols": [
+        "T：整数可行集；conv(T)：其凸包；PA,PB：两种松弛。",
+        "T: integer feasible set; conv(T): its convex hull; PA,PB: two relaxations."
+      ],
+      "conditions": [
+        "比较必须针对同一整数可行集和目标；集合包含表示A至少不弱于B。",
+        "Compare the same integer set and objective; inclusion makes A at least as strong as B."
+      ],
+      "references": [
+        {
+          "lecture": 7,
+          "source": "ETF2480_ETF5248_Lecture_7.pdf",
+          "pages": [
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54
+          ]
+        }
+      ],
+      "blocks": [],
+      "related": [
+        "case-facility",
+        "case-tsp"
+      ],
+      "origin": "course-synthesis",
+      "lectures": [
+        7
+      ]
+    },
+    {
+      "id": "concept-subtour",
+      "kind": "concept",
+      "lecture": 7,
+      "title": [
+        "巡回连通性与子回路",
+        "Tour connectivity and subtours"
+      ],
+      "body": [
+        "旅行商巡回必须访问所有节点并连通返回。仅限制每个节点的局部度数可能得到几个分离的小环，因此还需子回路消除约束。课件比较MTZ和DFJ的规模与松弛强度，但有向/无向表述及MTZ索引范围有疑点，不能直接复制为已核实代码。",
+        "A traveling-salesman tour must visit all nodes in one connected cycle. Local degree constraints can produce separate cycles, so subtour elimination is also needed. The slides compare MTZ and DFJ size and strength, but their directed/undirected wording and MTZ index scope need correction before implementation."
+      ],
+      "formulas": [
+        "\\sum_{i,j\\in S}x_{ij}\\le |S|-1\\quad(2\\le|S|\\le n-1)"
+      ],
+      "symbols": [
+        "xᵢⱼ：有向弧是否选中；S：不含全部节点的子集；n：节点总数。",
+        "xᵢⱼ: selected directed arc; S: proper node subset; n: number of nodes."
+      ],
+      "conditions": [
+        "此处DFJ写法明确采用有向版本和真子集，是对p57范围的补充澄清；原课件疑点保留。",
+        "This DFJ form explicitly uses directed arcs and proper subsets, clarifying p57; the original slide caveat remains."
+      ],
+      "references": [
+        {
+          "lecture": 7,
+          "source": "ETF2480_ETF5248_Lecture_7.pdf",
+          "pages": [
+            55,
+            56,
+            57
+          ]
+        }
+      ],
+      "blocks": [],
+      "related": [
+        "case-tsp"
+      ],
+      "origin": "course-synthesis",
+      "lectures": [
+        7
+      ]
+    },
+    {
+      "id": "case-applepie",
+      "kind": "case",
+      "lecture": 1,
+      "title": [
+        "ApplePie 电脑订购",
+        "ApplePie computer orders"
+      ],
+      "blocks": [
+        "etf5248-l1-k06",
+        "etf5248-l1-k09",
+        "etf5248-l1-k10"
+      ],
+      "references": [
+        {
+          "lecture": 1,
+          "source": "ETF2480_ETF5248_Lecture_1 (2).pdf",
+          "pages": [
+            17,
+            18,
+            23,
+            24,
+            25,
+            26
+          ]
+        }
+      ],
+      "related": [
+        "concept-variables",
+        "concept-objective",
+        "concept-constraints",
+        "concept-matrix",
+        "concept-outcomes"
+      ],
+      "origin": "instructor-case",
+      "lectures": [
+        1
+      ]
+    },
+    {
+      "id": "case-giapetto",
+      "kind": "case",
+      "lecture": 1,
+      "title": [
+        "Giapetto 木制玩具",
+        "Giapetto wooden toys"
+      ],
+      "blocks": [
+        "etf5248-l1-k16",
+        "etf5248-l2-k08",
+        "etf5248-l2-k09"
+      ],
+      "references": [
+        {
+          "lecture": 1,
+          "source": "ETF2480_ETF5248_Lecture_1 (2).pdf",
+          "pages": [
+            36
+          ]
+        },
+        {
+          "lecture": 2,
+          "source": "ETF2480_ETF5248_Lecture_2 (2).pdf",
+          "pages": [
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28
+          ]
+        }
+      ],
+      "related": [
+        "concept-objective",
+        "concept-constraints",
+        "concept-geometry",
+        "concept-optimal",
+        "practice-source-giapetto"
+      ],
+      "origin": "instructor-case",
+      "lectures": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "case-advertising",
+      "kind": "case",
+      "lecture": 2,
+      "title": [
+        "广告投放组合",
+        "Advertising mix"
+      ],
+      "blocks": [
+        "etf5248-l2-k15"
+      ],
+      "references": [
+        {
+          "lecture": 2,
+          "source": "ETF2480_ETF5248_Lecture_2 (2).pdf",
+          "pages": [
+            41,
+            42
+          ]
+        }
+      ],
+      "related": [
+        "concept-requirements",
+        "concept-objective",
+        "concept-geometry"
+      ],
+      "origin": "instructor-case",
+      "lectures": [
+        2
+      ]
+    },
+    {
+      "id": "case-diet",
+      "kind": "case",
+      "lecture": 3,
+      "title": [
+        "Diet 六食物配餐",
+        "Six-food diet"
+      ],
+      "blocks": [
+        "etf5248-l3-k01",
+        "etf5248-l3-k02",
+        "etf5248-l3-k03"
+      ],
+      "references": [
+        {
+          "lecture": 3,
+          "source": "ETF2480_ETF5248_Lecture_3 (1).pdf",
+          "pages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        }
+      ],
+      "related": [
+        "concept-requirements",
+        "concept-variables",
+        "concept-matrix"
+      ],
+      "origin": "instructor-case",
+      "lectures": [
+        3
+      ]
+    },
+    {
+      "id": "case-sailco",
+      "kind": "case",
+      "lecture": 3,
+      "title": [
+        "Sailco 帆船生产与库存",
+        "Sailco production and inventory"
+      ],
+      "blocks": [
+        "etf5248-l3-k05"
+      ],
+      "references": [
+        {
+          "lecture": 3,
+          "source": "ETF2480_ETF5248_Lecture_3 (1).pdf",
+          "pages": [
+            11,
+            12,
+            13
+          ]
+        }
+      ],
+      "related": [
+        "concept-inventory",
+        "concept-objective",
+        "concept-constraints"
+      ],
+      "origin": "instructor-case",
+      "lectures": [
+        3
+      ]
+    },
+    {
+      "id": "case-finco",
+      "kind": "case",
+      "lecture": 3,
+      "title": [
+        "Finco 多期投资",
+        "Finco multi-period investments"
+      ],
+      "blocks": [
+        "etf5248-l3-k06",
+        "etf5248-l3-k07"
+      ],
+      "references": [
+        {
+          "lecture": 3,
+          "source": "ETF2480_ETF5248_Lecture_3 (1).pdf",
+          "pages": [
+            14,
+            15
+          ]
+        }
+      ],
+      "related": [
+        "concept-cashflow",
+        "concept-objective",
+        "concept-constraints"
+      ],
+      "origin": "instructor-case",
+      "lectures": [
+        3
+      ]
+    },
+    {
+      "id": "case-schedule",
+      "kind": "case",
+      "lecture": 3,
+      "title": [
+        "五连班员工排班",
+        "Five-day employee scheduling"
+      ],
+      "blocks": [
+        "etf5248-l3-k08",
+        "etf5248-l3-k09",
+        "etf5248-l7-k03"
+      ],
+      "references": [
+        {
+          "lecture": 3,
+          "source": "ETF2480_ETF5248_Lecture_3 (1).pdf",
+          "pages": [
+            16,
+            17,
+            18,
+            19
+          ]
+        },
+        {
+          "lecture": 7,
+          "source": "ETF2480_ETF5248_Lecture_7.pdf",
+          "pages": [
+            7,
+            8,
+            9
+          ]
+        }
+      ],
+      "related": [
+        "concept-shift-coverage",
+        "concept-integer",
+        "concept-relaxation"
+      ],
+      "origin": "instructor-case",
+      "lectures": [
+        3,
+        7
+      ]
+    },
+    {
+      "id": "case-blend",
+      "kind": "case",
+      "lecture": 3,
+      "title": [
+        "Sunco 汽油混合",
+        "Sunco gasoline blending"
+      ],
+      "blocks": [
+        "etf5248-l3-k10",
+        "etf5248-l3-k11"
+      ],
+      "references": [
+        {
+          "lecture": 3,
+          "source": "ETF2480_ETF5248_Lecture_3 (1).pdf",
+          "pages": [
+            20,
+            21,
+            22,
+            23,
+            24
+          ]
+        }
+      ],
+      "related": [
+        "concept-blending",
+        "concept-objective",
+        "concept-constraints"
+      ],
+      "origin": "instructor-case",
+      "lectures": [
+        3
+      ]
+    },
+    {
+      "id": "case-rylon",
+      "kind": "case",
+      "lecture": 3,
+      "title": [
+        "Rylon 香水生产与工艺选择",
+        "Rylon perfume production"
+      ],
+      "blocks": [
+        "etf5248-l3-k12",
+        "etf5248-l3-k13"
+      ],
+      "references": [
+        {
+          "lecture": 3,
+          "source": "ETF2480_ETF5248_Lecture_3 (1).pdf",
+          "pages": [
+            25,
+            26,
+            27,
+            28
+          ]
+        }
+      ],
+      "related": [
+        "concept-joint-production",
+        "concept-objective",
+        "concept-constraints"
+      ],
+      "origin": "instructor-case",
+      "lectures": [
+        3
+      ]
+    },
+    {
+      "id": "case-ad-feasibility",
+      "kind": "case",
+      "lecture": 4,
+      "title": [
+        "电视广告的可行性",
+        "TV advertising feasibility"
+      ],
+      "blocks": [
+        "etf5248-l4-k01"
+      ],
+      "references": [
+        {
+          "lecture": 4,
+          "source": "ETF2480_ETF5248__Lecture_4 (1).pdf",
+          "pages": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        }
+      ],
+      "related": [
+        "concept-feasible",
+        "concept-feasibility-objective",
+        "concept-weak-duality"
+      ],
+      "origin": "instructor-case",
+      "lectures": [
+        4
+      ]
+    },
+    {
+      "id": "case-dakota",
+      "kind": "case",
+      "lecture": 4,
+      "title": [
+        "Dakota 家具生产与敏感性",
+        "Dakota production and sensitivity"
+      ],
+      "blocks": [
+        "etf5248-l4-k03",
+        "etf5248-l4-k04",
+        "etf5248-l4-k05",
+        "etf5248-l4-k06",
+        "etf5248-l4-k07",
+        "etf5248-l5-k06",
+        "etf5248-l5-k07",
+        "etf5248-l5-k13",
+        "etf5248-l5-k14"
+      ],
+      "references": [
+        {
+          "lecture": 4,
+          "source": "ETF2480_ETF5248__Lecture_4 (1).pdf",
+          "pages": [
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        {
+          "lecture": 5,
+          "source": "ETF2480_ETF5248_Lecture_5.pdf",
+          "pages": [
+            14,
+            15,
+            16,
+            17,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42
+          ]
+        }
+      ],
+      "related": [
+        "concept-slack",
+        "concept-basis",
+        "concept-simplex-optimality",
+        "concept-ratio-pivot",
+        "concept-dual",
+        "concept-sensitivity",
+        "concept-objective-range"
+      ],
+      "origin": "instructor-case",
+      "lectures": [
+        4,
+        5
+      ]
+    },
+    {
+      "id": "case-dual-bounds",
+      "kind": "case",
+      "lecture": 5,
+      "title": [
+        "三变量目标界例题",
+        "Three-variable objective bounds"
+      ],
+      "blocks": [
+        "etf5248-l5-k01",
+        "etf5248-l5-k02"
+      ],
+      "references": [
+        {
+          "lecture": 5,
+          "source": "ETF2480_ETF5248_Lecture_5.pdf",
+          "pages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ]
+        }
+      ],
+      "related": [
+        "concept-dual",
+        "concept-weak-duality",
+        "concept-strong-duality"
+      ],
+      "origin": "instructor-case",
+      "lectures": [
+        5
+      ]
+    },
+    {
+      "id": "case-meat",
+      "kind": "case",
+      "lecture": 5,
+      "title": [
+        "肉类供应与参数变化",
+        "Meat supply and parameter changes"
+      ],
+      "blocks": [
+        "etf5248-l5-k11"
+      ],
+      "references": [
+        {
+          "lecture": 5,
+          "source": "ETF2480_ETF5248_Lecture_5.pdf",
+          "pages": [
+            27,
+            28,
+            29,
+            30,
+            31
+          ]
+        }
+      ],
+      "related": [
+        "concept-sensitivity",
+        "concept-objective-range"
+      ],
+      "origin": "instructor-case",
+      "lectures": [
+        5
+      ]
+    },
+    {
+      "id": "case-bridges",
+      "kind": "case",
+      "lecture": 6,
+      "title": [
+        "柯尼斯堡七桥",
+        "Königsberg bridges"
+      ],
+      "blocks": [
+        "etf5248-l6-k02"
+      ],
+      "references": [
+        {
+          "lecture": 6,
+          "source": "ETF2480_ETF5248_Lecture_6.pdf",
+          "pages": [
+            8,
+            9
+          ]
+        }
+      ],
+      "related": [
+        "concept-incidence"
+      ],
+      "origin": "instructor-case",
+      "lectures": [
+        6
+      ]
+    },
+    {
+      "id": "case-powerco",
+      "kind": "case",
+      "lecture": 6,
+      "title": [
+        "Powerco 电力运输",
+        "Powerco electricity transportation"
+      ],
+      "blocks": [
+        "etf5248-l6-k09"
+      ],
+      "references": [
+        {
+          "lecture": 6,
+          "source": "ETF2480_ETF5248_Lecture_6.pdf",
+          "pages": [
+            28,
+            29,
+            30
+          ]
+        }
+      ],
+      "related": [
+        "concept-transport",
+        "concept-dummy",
+        "concept-flow-balance"
+      ],
+      "origin": "instructor-case",
+      "lectures": [
+        6
+      ]
+    },
+    {
+      "id": "case-machineco",
+      "kind": "case",
+      "lecture": 6,
+      "title": [
+        "Machineco 机器任务指派",
+        "Machineco job assignment"
+      ],
+      "blocks": [
+        "etf5248-l6-k11"
+      ],
+      "references": [
+        {
+          "lecture": 6,
+          "source": "ETF2480_ETF5248_Lecture_6.pdf",
+          "pages": [
+            33,
+            34,
+            35,
+            36
+          ]
+        }
+      ],
+      "related": [
+        "concept-assignment",
+        "concept-tu",
+        "concept-integrality"
+      ],
+      "origin": "instructor-case",
+      "lectures": [
+        6
+      ]
+    },
+    {
+      "id": "case-shortest-network",
+      "kind": "case",
+      "lecture": 6,
+      "title": [
+        "七节点最短路",
+        "Seven-node shortest path"
+      ],
+      "blocks": [
+        "etf5248-l6-k12"
+      ],
+      "references": [
+        {
+          "lecture": 6,
+          "source": "ETF2480_ETF5248_Lecture_6.pdf",
+          "pages": [
+            37,
+            38,
+            39
+          ]
+        }
+      ],
+      "related": [
+        "concept-incidence",
+        "concept-shortest-path",
+        "concept-integrality"
+      ],
+      "origin": "instructor-case",
+      "lectures": [
+        6
+      ]
+    },
+    {
+      "id": "case-replacement",
+      "kind": "case",
+      "lecture": 6,
+      "title": [
+        "六年汽车更换",
+        "Six-year car replacement"
+      ],
+      "blocks": [
+        "etf5248-l6-k13"
+      ],
+      "references": [
+        {
+          "lecture": 6,
+          "source": "ETF2480_ETF5248_Lecture_6.pdf",
+          "pages": [
+            40,
+            41,
+            42
+          ]
+        }
+      ],
+      "related": [
+        "concept-shortest-path",
+        "concept-flow-balance"
+      ],
+      "origin": "instructor-case",
+      "lectures": [
+        6
+      ]
+    },
+    {
+      "id": "case-pipeline",
+      "kind": "case",
+      "lecture": 6,
+      "title": [
+        "Sunco 输油管道",
+        "Sunco oil pipeline"
+      ],
+      "blocks": [
+        "etf5248-l6-k15"
+      ],
+      "references": [
+        {
+          "lecture": 6,
+          "source": "ETF2480_ETF5248_Lecture_6.pdf",
+          "pages": [
+            45,
+            46,
+            47
+          ]
+        }
+      ],
+      "related": [
+        "concept-maxflow",
+        "concept-flow-balance"
+      ],
+      "origin": "instructor-case",
+      "lectures": [
+        6
+      ]
+    },
+    {
+      "id": "case-stockco",
+      "kind": "case",
+      "lecture": 7,
+      "title": [
+        "Stockco 投资选择",
+        "Stockco investment selection"
+      ],
+      "blocks": [
+        "etf5248-l7-k04"
+      ],
+      "references": [
+        {
+          "lecture": 7,
+          "source": "ETF2480_ETF5248_Lecture_7.pdf",
+          "pages": [
+            10,
+            11,
+            12
+          ]
+        }
+      ],
+      "related": [
+        "concept-knapsack",
+        "concept-integer"
+      ],
+      "origin": "instructor-case",
+      "lectures": [
+        7
+      ]
+    },
+    {
+      "id": "case-facility",
+      "kind": "case",
+      "lecture": 7,
+      "title": [
+        "设施选址与客户分配",
+        "Facility location and client assignment"
+      ],
+      "blocks": [
+        "etf5248-l7-k05",
+        "etf5248-l7-k17"
+      ],
+      "references": [
+        {
+          "lecture": 7,
+          "source": "ETF2480_ETF5248_Lecture_7.pdf",
+          "pages": [
+            13,
+            14,
+            48,
+            49,
+            50,
+            51,
+            52
+          ]
+        }
+      ],
+      "related": [
+        "concept-implication-binary",
+        "concept-strength",
+        "concept-integer"
+      ],
+      "origin": "instructor-case",
+      "lectures": [
+        7
+      ]
+    },
+    {
+      "id": "case-dorian",
+      "kind": "case",
+      "lecture": 7,
+      "title": [
+        "Dorian 汽车最小批量",
+        "Dorian minimum production batches"
+      ],
+      "blocks": [
+        "etf5248-l7-k09"
+      ],
+      "references": [
+        {
+          "lecture": 7,
+          "source": "ETF2480_ETF5248_Lecture_7.pdf",
+          "pages": [
+            20
+          ]
+        }
+      ],
+      "related": [
+        "concept-bigm",
+        "concept-integer"
+      ],
+      "origin": "instructor-case",
+      "lectures": [
+        7
+      ]
+    },
+    {
+      "id": "case-kilroy",
+      "kind": "case",
+      "lecture": 7,
+      "title": [
+        "Kilroy 消防覆盖与公平",
+        "Kilroy coverage and equity"
+      ],
+      "blocks": [
+        "etf5248-l7-k11",
+        "etf5248-l7-k12"
+      ],
+      "references": [
+        {
+          "lecture": 7,
+          "source": "ETF2480_ETF5248_Lecture_7.pdf",
+          "pages": [
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28
+          ]
+        }
+      ],
+      "related": [
+        "concept-set-cover",
+        "concept-multiobjective",
+        "concept-integer"
+      ],
+      "origin": "instructor-case",
+      "lectures": [
+        7
+      ]
+    },
+    {
+      "id": "case-branch",
+      "kind": "case",
+      "lecture": 7,
+      "title": [
+        "二维整数模型的分支与割",
+        "Branching and cuts in a two-variable IP"
+      ],
+      "blocks": [
+        "etf5248-l7-k14",
+        "etf5248-l7-k15",
+        "etf5248-l7-k16"
+      ],
+      "references": [
+        {
+          "lecture": 7,
+          "source": "ETF2480_ETF5248_Lecture_7.pdf",
+          "pages": [
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47
+          ]
+        }
+      ],
+      "related": [
+        "concept-branch-bound",
+        "concept-cuts",
+        "concept-relaxation"
+      ],
+      "origin": "instructor-case",
+      "lectures": [
+        7
+      ]
+    },
+    {
+      "id": "case-tsp",
+      "kind": "case",
+      "lecture": 7,
+      "title": [
+        "六节点旅行商巡回",
+        "Six-node traveling-salesman tour"
+      ],
+      "blocks": [
+        "etf5248-l7-k19"
+      ],
+      "references": [
+        {
+          "lecture": 7,
+          "source": "ETF2480_ETF5248_Lecture_7.pdf",
+          "pages": [
+            55,
+            56,
+            57,
+            58
+          ]
+        }
+      ],
+      "related": [
+        "concept-subtour",
+        "concept-strength",
+        "concept-integer"
+      ],
+      "origin": "instructor-case",
+      "lectures": [
+        7
+      ]
+    },
+    {
+      "id": "case-steve",
+      "kind": "case",
+      "lecture": 1,
+      "title": [
+        "Steve 蜡烛与香薰网店",
+        "Steve candles and diffusers"
+      ],
+      "blocks": [
+        "etf5248-l1-k15"
+      ],
+      "references": [
+        {
+          "lecture": 1,
+          "source": "ETF2480_ETF5248_Lecture_1 (2).pdf",
+          "pages": [
+            33,
+            34,
+            35
+          ]
+        }
+      ],
+      "related": [
+        "concept-objective",
+        "concept-constraints",
+        "concept-integer",
+        "practice-source-steve"
+      ],
+      "origin": "instructor-case",
+      "lectures": [
+        1
+      ]
+    },
+    {
+      "id": "practice-source-steve",
+      "kind": "practice",
+      "lecture": 1,
+      "title": [
+        "Steve：建立模型并求解",
+        "Steve: formulate and solve"
+      ],
+      "body": [
+        "根据蜡烛和香薰的收益、制作时间和上限建立线性规划，并用R求解。",
+        "Formulate the candles/diffusers LP from margins, time and limits, then solve it in R."
+      ],
+      "blocks": [
+        "etf5248-l1-k15"
+      ],
+      "references": [
+        {
+          "lecture": 1,
+          "source": "ETF2480_ETF5248_Lecture_1 (2).pdf",
+          "pages": [
+            33,
+            34,
+            35
+          ]
+        }
+      ],
+      "related": [
+        "case-steve"
+      ],
+      "origin": "instructor-question",
+      "lectures": [
+        1
+      ]
+    },
+    {
+      "id": "practice-source-giapetto",
+      "kind": "practice",
+      "lecture": 1,
+      "title": [
+        "Giapetto：生产计划建模",
+        "Giapetto: production planning"
+      ],
+      "body": [
+        "为士兵和火车的生产建立LP，并用R求解。",
+        "Formulate the soldier/train production LP and solve it in R."
+      ],
+      "blocks": [
+        "etf5248-l1-k16"
+      ],
+      "references": [
+        {
+          "lecture": 1,
+          "source": "ETF2480_ETF5248_Lecture_1 (2).pdf",
+          "pages": [
+            36
+          ]
+        }
+      ],
+      "related": [
+        "case-giapetto"
+      ],
+      "origin": "instructor-question",
+      "lectures": [
+        1
+      ]
+    },
+    {
+      "id": "practice-source-nonnegative",
+      "kind": "practice",
+      "lecture": 2,
+      "title": [
+        "把非负条件写入矩阵",
+        "Incorporate nonnegativity into the matrix"
+      ],
+      "body": [
+        "如何把非负条件x≥0与已有线性不等式放在同一个矩阵系统中？",
+        "How can x≥0 be included with the existing linear inequalities in one matrix system?"
+      ],
+      "blocks": [
+        "etf5248-l2-k05"
+      ],
+      "references": [
+        {
+          "lecture": 2,
+          "source": "ETF2480_ETF5248_Lecture_2 (2).pdf",
+          "pages": [
+            11,
+            12
+          ]
+        }
+      ],
+      "related": [
+        "concept-matrix",
+        "concept-constraints"
+      ],
+      "origin": "instructor-question",
+      "lectures": [
+        2
+      ]
+    },
+    {
+      "id": "practice-source-graph",
+      "kind": "practice",
+      "lecture": 2,
+      "title": [
+        "Workshop：图解与模型变化",
+        "Workshop: graphical solution and changes"
+      ],
+      "body": [
+        "图解课件的二维LP，并讨论非线性目标或非线性约束会改变什么。",
+        "Graph the supplied two-variable LP and discuss changes under nonlinear objectives or constraints."
+      ],
+      "blocks": [
+        "etf5248-l2-k14"
+      ],
+      "references": [
+        {
+          "lecture": 2,
+          "source": "ETF2480_ETF5248_Lecture_2 (2).pdf",
+          "pages": [
+            38,
+            39,
+            40
+          ]
+        }
+      ],
+      "related": [
+        "concept-geometry",
+        "concept-linearity"
+      ],
+      "origin": "instructor-question",
+      "lectures": [
+        2
+      ]
+    },
+    {
+      "id": "practice-source-stigler",
+      "kind": "practice",
+      "lecture": 3,
+      "title": [
+        "Stigler：按单位价格建模",
+        "Stigler: modeling per-dollar portions"
+      ],
+      "body": [
+        "使用课件指定的数据文件建立Stigler配餐模型，讨论其最优饮食。配套CSV未包含在PDF中。",
+        "Use the referenced files to formulate the Stigler diet problem and discuss its optimum. The companion CSV files are not included in the PDF."
+      ],
+      "blocks": [
+        "etf5248-l3-k14"
+      ],
+      "references": [
+        {
+          "lecture": 3,
+          "source": "ETF2480_ETF5248_Lecture_3 (1).pdf",
+          "pages": [
+            29
+          ]
+        }
+      ],
+      "related": [
+        "concept-requirements"
+      ],
+      "origin": "instructor-question",
+      "lectures": [
+        3
+      ]
+    },
+    {
+      "id": "practice-source-gomory",
+      "kind": "practice",
+      "lecture": 7,
+      "title": [
+        "修改版 Giapetto：推导分数割",
+        "Modified Giapetto: derive a fractional cut"
+      ],
+      "body": [
+        "解释LP解为何不是整数规划解；写出x₁所在表行，推导Gomory分数割，再代入松弛变量写成x₁、x₂的不等式。",
+        "Explain why the LP solution is invalid for the IP; write the x₁ tableau row, derive a Gomory fractional cut and substitute the slacks to obtain an inequality in x₁,x₂."
+      ],
+      "blocks": [
+        "etf5248-l7-k20"
+      ],
+      "references": [
+        {
+          "lecture": 7,
+          "source": "ETF2480_ETF5248_Lecture_7.pdf",
+          "pages": [
+            59,
+            60
+          ]
+        }
+      ],
+      "related": [
+        "concept-cuts",
+        "concept-relaxation"
+      ],
+      "origin": "instructor-question",
+      "lectures": [
+        7
+      ]
+    },
+    {
+      "id": "practice-generated-l1-1",
+      "kind": "practice",
+      "lecture": 1,
+      "title": [
+        "Lecture 1 巩固练习 1",
+        "Lecture 1 practice 1"
+      ],
+      "body": [
+        "为什么ApplePie的最优利润不超过90000？",
+        "Why can ApplePie profit not exceed 90000?"
+      ],
+      "answer": [
+        "因为目标等于300倍使用工时，而工时≤300。",
+        "The objective is 300 times labour used, and labour is at most 300."
+      ],
+      "blocks": [],
+      "references": [
+        {
+          "lecture": 1,
+          "source": "ETF2480_ETF5248_Lecture_1 (2).pdf",
+          "pages": [
+            17,
+            18
+          ]
+        }
+      ],
+      "related": [],
+      "origin": "codex-exercise",
+      "lectures": [
+        1
+      ]
+    },
+    {
+      "id": "practice-generated-l1-2",
+      "kind": "practice",
+      "lecture": 1,
+      "title": [
+        "Lecture 1 巩固练习 2",
+        "Lecture 1 practice 2"
+      ],
+      "body": [
+        "把2x₁−x₂≤7改写为≥约束。",
+        "Rewrite 2x₁−x₂≤7 as a ≥ constraint."
+      ],
+      "answer": [
+        "−2x₁+x₂≥−7。",
+        "−2x₁+x₂≥−7."
+      ],
+      "blocks": [],
+      "references": [
+        {
+          "lecture": 1,
+          "source": "ETF2480_ETF5248_Lecture_1 (2).pdf",
+          "pages": [
+            29
+          ]
+        }
+      ],
+      "related": [],
+      "origin": "codex-exercise",
+      "lectures": [
+        1
+      ]
+    },
+    {
+      "id": "practice-generated-l1-3",
+      "kind": "practice",
+      "lecture": 1,
+      "title": [
+        "Lecture 1 巩固练习 3",
+        "Lecture 1 practice 3"
+      ],
+      "body": [
+        "m=5,n=8时A、b、c分别什么维度？",
+        "What are the dimensions of A, b and c when m=5,n=8?"
+      ],
+      "answer": [
+        "A为5×8，b为5维，c为8维。",
+        "A is 5×8; b has 5 entries and c has 8."
+      ],
+      "blocks": [],
+      "references": [
+        {
+          "lecture": 1,
+          "source": "ETF2480_ETF5248_Lecture_1 (2).pdf",
+          "pages": [
+            21,
+            22,
+            32
+          ]
+        }
+      ],
+      "related": [],
+      "origin": "codex-exercise",
+      "lectures": [
+        1
+      ]
+    },
+    {
+      "id": "practice-generated-l2-1",
+      "kind": "practice",
+      "lecture": 2,
+      "title": [
+        "Lecture 2 巩固练习 1",
+        "Lecture 2 practice 1"
+      ],
+      "body": [
+        "Giapetto 的 (40,40) 是否可行？",
+        "Is (40,40) feasible for Giapetto?"
+      ],
+      "answer": [
+        "不可行：精加工用量 2×40+40=120>100。",
+        "No: finishing usage is 120>100."
+      ],
+      "blocks": [],
+      "references": [
+        {
+          "lecture": 2,
+          "source": "ETF2480_ETF5248_Lecture_2 (2).pdf",
+          "pages": [
+            20
+          ]
+        }
+      ],
+      "related": [],
+      "origin": "codex-exercise",
+      "lectures": [
+        2
+      ]
+    },
+    {
+      "id": "practice-generated-l2-2",
+      "kind": "practice",
+      "lecture": 2,
+      "title": [
+        "Lecture 2 巩固练习 2",
+        "Lecture 2 practice 2"
+      ],
+      "body": [
+        "若 c=0 且可行集非空，最优值是多少？",
+        "If c=0 and the feasible set is nonempty, what is the optimum?"
+      ],
+      "answer": [
+        "0；每个可行点都是最优点。",
+        "Zero; every feasible point is optimal."
+      ],
+      "blocks": [],
+      "references": [
+        {
+          "lecture": 2,
+          "source": "ETF2480_ETF5248_Lecture_2 (2).pdf",
+          "pages": [
+            31
+          ]
+        }
+      ],
+      "related": [],
+      "origin": "codex-exercise",
+      "lectures": [
+        2
+      ]
+    },
+    {
+      "id": "practice-generated-l3-1",
+      "kind": "practice",
+      "lecture": 3,
+      "title": [
+        "Lecture 3 巩固练习 1",
+        "Lecture 3 practice 1"
+      ],
+      "body": [
+        "Sailco 若第二季正常生产 40、加班 10、期初库存 10，期末库存？",
+        "Sailco: starting inventory 10, regular 40 and overtime 10 in quarter 2. Ending inventory?"
+      ],
+      "answer": [
+        "10+40+10−60=0。",
+        "10+40+10−60=0."
+      ],
+      "blocks": [],
+      "references": [
+        {
+          "lecture": 3,
+          "source": "ETF2480_ETF5248_Lecture_3 (1).pdf",
+          "pages": [
+            12,
+            13
+          ]
+        }
+      ],
+      "related": [],
+      "origin": "codex-exercise",
+      "lectures": [
+        3
+      ]
+    },
+    {
+      "id": "practice-generated-l3-2",
+      "kind": "practice",
+      "lecture": 3,
+      "title": [
+        "Lecture 3 巩固练习 2",
+        "Lecture 3 practice 2"
+      ],
+      "body": [
+        "为什么豪华 Brute 的目标系数是 14 而不是 18？",
+        "Why is the luxury Brute coefficient 14 rather than 18?"
+      ],
+      "answer": [
+        "18 元售价扣除 4 元再加工成本；原料成本由 −3x₅ 另计。",
+        "Subtract the further-processing cost of 4; material costs are separately counted in −3x₅."
+      ],
+      "blocks": [],
+      "references": [
+        {
+          "lecture": 3,
+          "source": "ETF2480_ETF5248_Lecture_3 (1).pdf",
+          "pages": [
+            25,
+            26
+          ]
+        }
+      ],
+      "related": [],
+      "origin": "codex-exercise",
+      "lectures": [
+        3
+      ]
+    },
+    {
+      "id": "practice-generated-l4-1",
+      "kind": "practice",
+      "lecture": 4,
+      "title": [
+        "Lecture 4 巩固练习 1",
+        "Lecture 4 practice 1"
+      ],
+      "body": [
+        "第一次比值检验为什么不能选择 6？",
+        "Why not choose 6 in the first ratio test?"
+      ],
+      "answer": [
+        "木工在 x₁=4 时已经用完；取 6 会违反可行性。",
+        "Carpentry is exhausted at x₁=4; choosing 6 violates feasibility."
+      ],
+      "blocks": [],
+      "references": [
+        {
+          "lecture": 4,
+          "source": "ETF2480_ETF5248__Lecture_4 (1).pdf",
+          "pages": [
+            13
+          ]
+        }
+      ],
+      "related": [],
+      "origin": "codex-exercise",
+      "lectures": [
+        4
+      ]
+    },
+    {
+      "id": "practice-generated-l4-2",
+      "kind": "practice",
+      "lecture": 4,
+      "title": [
+        "Lecture 4 巩固练习 2",
+        "Lecture 4 practice 2"
+      ],
+      "body": [
+        "最优解还剩多少木材？",
+        "How much lumber remains at the optimum?"
+      ],
+      "answer": [
+        "48−8×2−1×8=24。",
+        "48−8×2−1×8=24."
+      ],
+      "blocks": [],
+      "references": [
+        {
+          "lecture": 4,
+          "source": "ETF2480_ETF5248__Lecture_4 (1).pdf",
+          "pages": [
+            15
+          ]
+        }
+      ],
+      "related": [],
+      "origin": "codex-exercise",
+      "lectures": [
+        4
+      ]
+    },
+    {
+      "id": "practice-generated-l5-1",
+      "kind": "practice",
+      "lecture": 5,
+      "title": [
+        "Lecture 5 巩固练习 1",
+        "Lecture 5 practice 1"
+      ],
+      "body": [
+        "Dakota 的 table 收益升至 34，原解仍最优吗？",
+        "If table revenue rises to 34, does the old solution remain optimal?"
+      ],
+      "answer": [
+        "是，34≤35；x₂=0，收入仍为 280。",
+        "Yes, 34≤35; x₂=0 and revenue stays 280."
+      ],
+      "blocks": [],
+      "references": [
+        {
+          "lecture": 5,
+          "source": "ETF2480_ETF5248_Lecture_5.pdf",
+          "pages": [
+            38
+          ]
+        }
+      ],
+      "related": [],
+      "origin": "codex-exercise",
+      "lectures": [
+        5
+      ]
+    },
+    {
+      "id": "practice-generated-l5-2",
+      "kind": "practice",
+      "lecture": 5,
+      "title": [
+        "Lecture 5 巩固练习 2",
+        "Lecture 5 practice 2"
+      ],
+      "body": [
+        "desk 收益变为 70，范围内收入是多少？",
+        "With desk revenue 70, what is the value within the valid range?"
+      ],
+      "answer": [
+        "Δc₁=10，在 [−4,20] 内；280+2×10=300。",
+        "Δc₁=10 lies in [−4,20]; 280+2×10=300."
+      ],
+      "blocks": [],
+      "references": [
+        {
+          "lecture": 5,
+          "source": "ETF2480_ETF5248_Lecture_5.pdf",
+          "pages": [
+            41,
+            42
+          ]
+        }
+      ],
+      "related": [],
+      "origin": "codex-exercise",
+      "lectures": [
+        5
+      ]
+    },
+    {
+      "id": "practice-generated-l6-1",
+      "kind": "practice",
+      "lecture": 6,
+      "title": [
+        "Lecture 6 巩固练习 1",
+        "Lecture 6 practice 1"
+      ],
+      "body": [
+        "供给总量 80、需求 70，虚拟需求是多少？",
+        "Supply totals 80 and demand 70. What dummy demand is needed?"
+      ],
+      "answer": [
+        "10，零成本表示未实际运出的剩余量。",
+        "10; zero cost represents unused supply rather than real shipment."
+      ],
+      "blocks": [],
+      "references": [
+        {
+          "lecture": 6,
+          "source": "ETF2480_ETF5248_Lecture_6.pdf",
+          "pages": [
+            31
+          ]
+        }
+      ],
+      "related": [],
+      "origin": "codex-exercise",
+      "lectures": [
+        6
+      ]
+    },
+    {
+      "id": "practice-generated-l6-2",
+      "kind": "practice",
+      "lecture": 6,
+      "title": [
+        "Lecture 6 巩固练习 2",
+        "Lecture 6 practice 2"
+      ],
+      "body": [
+        "TU 矩阵配上容量 0.5，是否保证整数极点？",
+        "Does TU with capacity 0.5 guarantee integral vertices?"
+      ],
+      "answer": [
+        "不保证；有限界也必须为整数。",
+        "No; finite bounds must also be integral."
+      ],
+      "blocks": [],
+      "references": [
+        {
+          "lecture": 6,
+          "source": "ETF2480_ETF5248_Lecture_6.pdf",
+          "pages": [
+            17
+          ]
+        }
+      ],
+      "related": [],
+      "origin": "codex-exercise",
+      "lectures": [
+        6
+      ]
+    },
+    {
+      "id": "practice-generated-l7-1",
+      "kind": "practice",
+      "lecture": 7,
+      "title": [
+        "Lecture 7 巩固练习 1",
+        "Lecture 7 practice 1"
+      ],
+      "body": [
+        "最大化问题在位值 40、活跃节点上界 39.5，是否继续该节点？",
+        "With incumbent 40 and a node upper bound 39.5 in maximization, should it be explored?"
+      ],
+      "answer": [
+        "可剪枝，它不可能改善在位解。",
+        "No; it cannot improve the incumbent."
+      ],
+      "blocks": [],
+      "references": [
+        {
+          "lecture": 7,
+          "source": "ETF2480_ETF5248_Lecture_7.pdf",
+          "pages": [
+            32,
+            33
+          ]
+        }
+      ],
+      "related": [],
+      "origin": "codex-exercise",
+      "lectures": [
+        7
+      ]
+    },
+    {
+      "id": "practice-generated-l7-2",
+      "kind": "practice",
+      "lecture": 7,
+      "title": [
+        "Lecture 7 巩固练习 2",
+        "Lecture 7 practice 2"
+      ],
+      "body": [
+        "floor(−1.25) 是多少？为何不是 −1？",
+        "What is floor(−1.25), and why not −1?"
+      ],
+      "answer": [
+        "−2；floor 是不大于原数的最大整数。",
+        "−2, the greatest integer no larger than the number."
+      ],
+      "blocks": [],
+      "references": [
+        {
+          "lecture": 7,
+          "source": "ETF2480_ETF5248_Lecture_7.pdf",
+          "pages": [
+            45
+          ]
+        }
+      ],
+      "related": [],
+      "origin": "codex-exercise",
+      "lectures": [
+        7
+      ]
+    },
+    {
+      "id": "practice-generated-l7-3",
+      "kind": "practice",
+      "lecture": 7,
+      "title": [
+        "Lecture 7 巩固练习 3",
+        "Lecture 7 practice 3"
+      ],
+      "body": [
+        "x≤y 是否要求选 B 就一定选 A？",
+        "Does x≤y force A whenever B is selected?"
+      ],
+      "answer": [
+        "不要求；(x,y)=(0,1) 允许，仅表达 A⇒B。",
+        "No; (0,1) is allowed. It encodes only A⇒B."
+      ],
+      "blocks": [],
+      "references": [
+        {
+          "lecture": 7,
+          "source": "ETF2480_ETF5248_Lecture_7.pdf",
+          "pages": [
+            13
+          ]
+        }
+      ],
+      "related": [],
+      "origin": "codex-exercise",
+      "lectures": [
+        7
+      ]
+    }
+  ],
+  "originalClassification": [
+    {
+      "originalId": "etf5248-l1-k01",
+      "lecture": 1,
+      "title": [
+        "课程介绍、学习目标与工具",
+        "Course introduction, objectives and tools"
+      ],
+      "pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "roles": [
+        "guide"
+      ],
+      "linkedEntries": []
+    },
+    {
+      "originalId": "etf5248-l1-k02",
+      "lecture": 1,
+      "title": [
+        "课程路线与考核信息",
+        "Roadmap and assessment information"
+      ],
+      "pages": [
+        7,
+        8
+      ],
+      "roles": [
+        "guide"
+      ],
+      "linkedEntries": []
+    },
+    {
+      "originalId": "etf5248-l1-k03",
+      "lecture": 1,
+      "title": [
+        "从商业分析到决策支持",
+        "From business analytics to decision support"
+      ],
+      "pages": [
+        9,
+        10,
+        11,
+        12
+      ],
+      "roles": [
+        "guide"
+      ],
+      "linkedEntries": []
+    },
+    {
+      "originalId": "etf5248-l1-k04",
+      "lecture": 1,
+      "title": [
+        "商业优化的三步流程",
+        "Three steps in business optimisation"
+      ],
+      "pages": [
+        13,
+        14
+      ],
+      "roles": [
+        "guide"
+      ],
+      "linkedEntries": []
+    },
+    {
+      "originalId": "etf5248-l1-k05",
+      "lecture": 1,
+      "title": [
+        "目标函数、决策变量与约束",
+        "Objective, decision variables and constraints"
+      ],
+      "pages": [
+        15,
+        16
+      ],
+      "roles": [
+        "concept-source"
+      ],
+      "linkedEntries": [
+        "concept-variables",
+        "concept-objective",
+        "concept-constraints",
+        "concept-linearity"
+      ]
+    },
+    {
+      "originalId": "etf5248-l1-k06",
+      "lecture": 1,
+      "title": [
+        "ApplePie：业务条件与 LP 建模",
+        "ApplePie: business conditions and LP formulation"
+      ],
+      "pages": [
+        17,
+        18
+      ],
+      "roles": [
+        "case"
+      ],
+      "linkedEntries": [
+        "case-applepie"
+      ]
+    },
+    {
+      "originalId": "etf5248-l1-k07",
+      "lecture": 1,
+      "title": [
+        "向量、矩阵和维度",
+        "Vectors, matrices and dimensions"
+      ],
+      "pages": [
+        19,
+        20,
+        21
+      ],
+      "roles": [
+        "concept-source"
+      ],
+      "linkedEntries": [
+        "concept-matrix"
+      ]
+    },
+    {
+      "originalId": "etf5248-l1-k08",
+      "lecture": 1,
+      "title": [
+        "内积与矩阵乘法",
+        "Inner products and matrix multiplication"
+      ],
+      "pages": [
+        22
+      ],
+      "roles": [
+        "concept-source"
+      ],
+      "linkedEntries": [
+        "concept-matrix"
+      ]
+    },
+    {
+      "originalId": "etf5248-l1-k09",
+      "lecture": 1,
+      "title": [
+        "ApplePie 的矩阵形式与 R 求解",
+        "ApplePie matrix form and R solution"
+      ],
+      "pages": [
+        23,
+        24
+      ],
+      "roles": [
+        "case"
+      ],
+      "linkedEntries": [
+        "case-applepie"
+      ]
+    },
+    {
+      "originalId": "etf5248-l1-k10",
+      "lecture": 1,
+      "title": [
+        "Python 求解与规模扩展",
+        "Python solution and scaling"
+      ],
+      "pages": [
+        25,
+        26
+      ],
+      "roles": [
+        "case",
+        "guide"
+      ],
+      "linkedEntries": [
+        "case-applepie"
+      ]
+    },
+    {
+      "originalId": "etf5248-l1-k11",
+      "lecture": 1,
+      "title": [
+        "最大化与最小化的等价转换",
+        "Equivalent maximisation and minimisation"
+      ],
+      "pages": [
+        27,
+        28
+      ],
+      "roles": [
+        "concept-source"
+      ],
+      "linkedEntries": [
+        "concept-sign-transform"
+      ]
+    },
+    {
+      "originalId": "etf5248-l1-k12",
+      "lecture": 1,
+      "title": [
+        "约束等价变换与不等式形式",
+        "Equivalent constraints and inequality form"
+      ],
+      "pages": [
+        29,
+        30
+      ],
+      "roles": [
+        "concept-source"
+      ],
+      "linkedEntries": [
+        "concept-sign-transform"
+      ]
+    },
+    {
+      "originalId": "etf5248-l1-k13",
+      "lecture": 1,
+      "title": [
+        "混合约束转换：完整矩阵例题",
+        "Mixed constraints: complete matrix example"
+      ],
+      "pages": [
+        31
+      ],
+      "roles": [
+        "reference"
+      ],
+      "linkedEntries": []
+    },
+    {
+      "originalId": "etf5248-l1-k14",
+      "lecture": 1,
+      "title": [
+        "建模与求解检查清单",
+        "Modelling and solution checklist"
+      ],
+      "pages": [
+        32
+      ],
+      "roles": [
+        "guide"
+      ],
+      "linkedEntries": []
+    },
+    {
+      "originalId": "etf5248-l1-k15",
+      "lecture": 1,
+      "title": [
+        "Steve 网店：课件练习与补充推导",
+        "Steve’s shop: lecture exercise and additional derivation"
+      ],
+      "pages": [
+        33,
+        34,
+        35
+      ],
+      "roles": [
+        "case",
+        "practice"
+      ],
+      "linkedEntries": [
+        "case-steve",
+        "practice-source-steve"
+      ]
+    },
+    {
+      "originalId": "etf5248-l1-k16",
+      "lecture": 1,
+      "title": [
+        "Giapetto：木制士兵和火车",
+        "Giapetto: wooden soldiers and trains"
+      ],
+      "pages": [
+        36
+      ],
+      "roles": [
+        "case",
+        "practice"
+      ],
+      "linkedEntries": [
+        "case-giapetto",
+        "practice-source-giapetto"
+      ]
+    },
+    {
+      "originalId": "etf5248-l2-k01",
+      "lecture": 2,
+      "title": [
+        "学习路线与向量",
+        "Learning route and vectors"
+      ],
+      "pages": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "roles": [
+        "guide"
+      ],
+      "linkedEntries": []
+    },
+    {
+      "originalId": "etf5248-l2-k02",
+      "lecture": 2,
+      "title": [
+        "向量运算与内积",
+        "Vector operations and inner product"
+      ],
+      "pages": [
+        5,
+        6
+      ],
+      "roles": [
+        "reference"
+      ],
+      "linkedEntries": []
+    },
+    {
+      "originalId": "etf5248-l2-k03",
+      "lecture": 2,
+      "title": [
+        "矩阵尺寸、数乘与加法",
+        "Matrix dimensions, scaling and addition"
+      ],
+      "pages": [
+        7,
+        8
+      ],
+      "roles": [
+        "reference"
+      ],
+      "linkedEntries": []
+    },
+    {
+      "originalId": "etf5248-l2-k04",
+      "lecture": 2,
+      "title": [
+        "转置与线性方程组",
+        "Transpose and linear systems"
+      ],
+      "pages": [
+        9,
+        10
+      ],
+      "roles": [
+        "reference"
+      ],
+      "linkedEntries": []
+    },
+    {
+      "originalId": "etf5248-l2-k05",
+      "lecture": 2,
+      "title": [
+        "非负约束与补充阅读",
+        "Nonnegativity and further reading"
+      ],
+      "pages": [
+        11,
+        12,
+        13
+      ],
+      "roles": [
+        "practice",
+        "guide"
+      ],
+      "linkedEntries": [
+        "practice-source-nonnegative"
+      ]
+    },
+    {
+      "originalId": "etf5248-l2-k06",
+      "lecture": 2,
+      "title": [
+        "一般 LP、可行解与最优解",
+        "General LP, feasibility and optimality"
+      ],
+      "pages": [
+        14,
+        15,
+        16
+      ],
+      "roles": [
+        "concept-source"
+      ],
+      "linkedEntries": [
+        "concept-feasible",
+        "concept-optimal",
+        "concept-outcomes"
+      ]
+    },
+    {
+      "originalId": "etf5248-l2-k07",
+      "lecture": 2,
+      "title": [
+        "最大化转换与无穷值约定",
+        "Maximization and extended-value conventions"
+      ],
+      "pages": [
+        17,
+        18
+      ],
+      "roles": [
+        "concept-source"
+      ],
+      "linkedEntries": [
+        "concept-outcomes"
+      ]
+    },
+    {
+      "originalId": "etf5248-l2-k08",
+      "lecture": 2,
+      "title": [
+        "Giapetto：从成本到完整模型",
+        "Giapetto: from costs to the model"
+      ],
+      "pages": [
+        19,
+        20
+      ],
+      "roles": [
+        "case"
+      ],
+      "linkedEntries": [
+        "case-giapetto"
+      ]
+    },
+    {
+      "originalId": "etf5248-l2-k09",
+      "lecture": 2,
+      "title": [
+        "Giapetto：逐步图解与最优产量",
+        "Giapetto: graphical solution"
+      ],
+      "pages": [
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28
+      ],
+      "roles": [
+        "case"
+      ],
+      "linkedEntries": [
+        "case-giapetto"
+      ]
+    },
+    {
+      "originalId": "etf5248-l2-k10",
+      "lecture": 2,
+      "title": [
+        "LP 的四种结果",
+        "Four LP outcomes"
+      ],
+      "pages": [
+        29
+      ],
+      "roles": [
+        "concept-source"
+      ],
+      "linkedEntries": [
+        "concept-outcomes"
+      ]
+    },
+    {
+      "originalId": "etf5248-l2-k11",
+      "lecture": 2,
+      "title": [
+        "可行性问题及本讲总结",
+        "Feasibility problems and recap"
+      ],
+      "pages": [
+        30,
+        31,
+        32
+      ],
+      "roles": [
+        "concept-source"
+      ],
+      "linkedEntries": [
+        "concept-feasibility-objective"
+      ]
+    },
+    {
+      "originalId": "etf5248-l2-k12",
+      "lecture": 2,
+      "title": [
+        "超平面、半空间和法向量",
+        "Hyperplanes, halfspaces and normals"
+      ],
+      "pages": [
+        33,
+        34
+      ],
+      "roles": [
+        "concept-source"
+      ],
+      "linkedEntries": [
+        "concept-geometry"
+      ]
+    },
+    {
+      "originalId": "etf5248-l2-k13",
+      "lecture": 2,
+      "title": [
+        "多面体与目标等值线",
+        "Polyhedra and objective contours"
+      ],
+      "pages": [
+        35,
+        36,
+        37
+      ],
+      "roles": [
+        "concept-source"
+      ],
+      "linkedEntries": [
+        "concept-geometry"
+      ]
+    },
+    {
+      "originalId": "etf5248-l2-k14",
+      "lecture": 2,
+      "title": [
+        "Workshop 图解与非线性讨论",
+        "Workshop geometry and nonlinear discussion"
+      ],
+      "pages": [
+        38,
+        39,
+        40
+      ],
+      "roles": [
+        "practice"
+      ],
+      "linkedEntries": [
+        "practice-source-graph"
+      ]
+    },
+    {
+      "originalId": "etf5248-l2-k15",
+      "lecture": 2,
+      "title": [
+        "广告组合：覆盖目标与成本",
+        "Advertising mix: reach and cost"
+      ],
+      "pages": [
+        41,
+        42
+      ],
+      "roles": [
+        "case"
+      ],
+      "linkedEntries": [
+        "case-advertising"
+      ]
+    },
+    {
+      "originalId": "etf5248-l3-k01",
+      "lecture": 3,
+      "title": [
+        "配餐与产品组合的共同结构",
+        "Diet and product-mix structure"
+      ],
+      "pages": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "roles": [
+        "case",
+        "concept-source"
+      ],
+      "linkedEntries": [
+        "case-diet",
+        "concept-requirements"
+      ]
+    },
+    {
+      "originalId": "etf5248-l3-k02",
+      "lecture": 3,
+      "title": [
+        "六种食物的数据与单位",
+        "Six-food data and units"
+      ],
+      "pages": [
+        6
+      ],
+      "roles": [
+        "case",
+        "concept-source"
+      ],
+      "linkedEntries": [
+        "case-diet",
+        "concept-requirements"
+      ]
+    },
+    {
+      "originalId": "etf5248-l3-k03",
+      "lecture": 3,
+      "title": [
+        "配餐模型与课件给出的解",
+        "Diet formulation and reported solution"
+      ],
+      "pages": [
+        7,
+        8
+      ],
+      "roles": [
+        "case",
+        "concept-source"
+      ],
+      "linkedEntries": [
+        "case-diet",
+        "concept-requirements"
+      ]
+    },
+    {
+      "originalId": "etf5248-l3-k04",
+      "lecture": 3,
+      "title": [
+        "Stigler 历史背景与跨案例联系",
+        "Stigler background and connections"
+      ],
+      "pages": [
+        9,
+        10
+      ],
+      "roles": [
+        "guide"
+      ],
+      "linkedEntries": []
+    },
+    {
+      "originalId": "etf5248-l3-k05",
+      "lecture": 3,
+      "title": [
+        "Sailco 多期库存：平衡方程",
+        "Sailco inventory: balance equations"
+      ],
+      "pages": [
+        11,
+        12,
+        13
+      ],
+      "roles": [
+        "case",
+        "concept-source"
+      ],
+      "linkedEntries": [
+        "case-sailco",
+        "concept-inventory"
+      ]
+    },
+    {
+      "originalId": "etf5248-l3-k06",
+      "lecture": 3,
+      "title": [
+        "Finco：现金流时间表",
+        "Finco: cash-flow timeline"
+      ],
+      "pages": [
+        14
+      ],
+      "roles": [
+        "case",
+        "concept-source"
+      ],
+      "linkedEntries": [
+        "case-finco",
+        "concept-cashflow"
+      ]
+    },
+    {
+      "originalId": "etf5248-l3-k07",
+      "lecture": 3,
+      "title": [
+        "Finco：资金守恒与终值",
+        "Finco: cash balance and terminal wealth"
+      ],
+      "pages": [
+        15
+      ],
+      "roles": [
+        "case",
+        "concept-source"
+      ],
+      "linkedEntries": [
+        "case-finco",
+        "concept-cashflow"
+      ]
+    },
+    {
+      "originalId": "etf5248-l3-k08",
+      "lecture": 3,
+      "title": [
+        "排班：错误变量为什么失效",
+        "Scheduling: why the wrong variables fail"
+      ],
+      "pages": [
+        16,
+        17
+      ],
+      "roles": [
+        "case",
+        "concept-source"
+      ],
+      "linkedEntries": [
+        "case-schedule",
+        "concept-shift-coverage"
+      ]
+    },
+    {
+      "originalId": "etf5248-l3-k09",
+      "lecture": 3,
+      "title": [
+        "排班覆盖约束与整数差别",
+        "Coverage constraints and integrality"
+      ],
+      "pages": [
+        18,
+        19
+      ],
+      "roles": [
+        "case",
+        "concept-source"
+      ],
+      "linkedEntries": [
+        "case-schedule",
+        "concept-shift-coverage"
+      ]
+    },
+    {
+      "originalId": "etf5248-l3-k10",
+      "lecture": 3,
+      "title": [
+        "Sunco 混合：价格、品质与广告",
+        "Sunco blending: prices, quality and advertising"
+      ],
+      "pages": [
+        20,
+        21,
+        22
+      ],
+      "roles": [
+        "case",
+        "concept-source"
+      ],
+      "linkedEntries": [
+        "case-blend",
+        "concept-blending"
+      ]
+    },
+    {
+      "originalId": "etf5248-l3-k11",
+      "lecture": 3,
+      "title": [
+        "Sunco 模型：加权平均线性化",
+        "Sunco model: linearized weighted averages"
+      ],
+      "pages": [
+        23,
+        24
+      ],
+      "roles": [
+        "case",
+        "concept-source"
+      ],
+      "linkedEntries": [
+        "case-blend",
+        "concept-blending"
+      ]
+    },
+    {
+      "originalId": "etf5248-l3-k12",
+      "lecture": 3,
+      "title": [
+        "Rylon 联产品与再加工",
+        "Rylon joint products and further processing"
+      ],
+      "pages": [
+        25,
+        26
+      ],
+      "roles": [
+        "case",
+        "concept-source"
+      ],
+      "linkedEntries": [
+        "case-rylon",
+        "concept-joint-production"
+      ]
+    },
+    {
+      "originalId": "etf5248-l3-k13",
+      "lecture": 3,
+      "title": [
+        "替代生产与联产品的差别",
+        "Alternative versus joint production"
+      ],
+      "pages": [
+        27,
+        28
+      ],
+      "roles": [
+        "case",
+        "concept-source"
+      ],
+      "linkedEntries": [
+        "case-rylon",
+        "concept-joint-production"
+      ]
+    },
+    {
+      "originalId": "etf5248-l3-k14",
+      "lecture": 3,
+      "title": [
+        "Stigler Workshop 的单位转换",
+        "Stigler workshop units"
+      ],
+      "pages": [
+        29
+      ],
+      "roles": [
+        "practice"
+      ],
+      "linkedEntries": [
+        "practice-source-stigler"
+      ]
+    },
+    {
+      "originalId": "etf5248-l4-k01",
+      "lecture": 4,
+      "title": [
+        "广告计划可行吗？",
+        "Is the advertising plan feasible?"
+      ],
+      "pages": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "roles": [
+        "case"
+      ],
+      "linkedEntries": [
+        "case-ad-feasibility"
+      ]
+    },
+    {
+      "originalId": "etf5248-l4-k02",
+      "lecture": 4,
+      "title": [
+        "单纯形算法流程与符号约定",
+        "Simplex workflow and sign convention"
+      ],
+      "pages": [
+        6,
+        7,
+        8
+      ],
+      "roles": [
+        "concept-source"
+      ],
+      "linkedEntries": [
+        "concept-slack",
+        "concept-basis",
+        "concept-simplex-optimality"
+      ]
+    },
+    {
+      "originalId": "etf5248-l4-k03",
+      "lecture": 4,
+      "title": [
+        "Dakota：建模和松弛变量",
+        "Dakota: model and slack variables"
+      ],
+      "pages": [
+        9,
+        10
+      ],
+      "roles": [
+        "case",
+        "concept-source"
+      ],
+      "linkedEntries": [
+        "case-dakota",
+        "concept-slack",
+        "concept-basis"
+      ]
+    },
+    {
+      "originalId": "etf5248-l4-k04",
+      "lecture": 4,
+      "title": [
+        "初始单纯形表",
+        "Initial simplex tableau"
+      ],
+      "pages": [
+        11
+      ],
+      "roles": [
+        "case",
+        "concept-source"
+      ],
+      "linkedEntries": [
+        "case-dakota",
+        "concept-basis"
+      ]
+    },
+    {
+      "originalId": "etf5248-l4-k05",
+      "lecture": 4,
+      "title": [
+        "第一次入基与最小比值",
+        "First entering variable and ratio test"
+      ],
+      "pages": [
+        12,
+        13
+      ],
+      "roles": [
+        "case",
+        "concept-source"
+      ],
+      "linkedEntries": [
+        "case-dakota",
+        "concept-ratio-pivot"
+      ]
+    },
+    {
+      "originalId": "etf5248-l4-k06",
+      "lecture": 4,
+      "title": [
+        "第一次枢轴后的表",
+        "Tableau after the first pivot"
+      ],
+      "pages": [
+        14
+      ],
+      "roles": [
+        "case",
+        "concept-source"
+      ],
+      "linkedEntries": [
+        "case-dakota",
+        "concept-ratio-pivot"
+      ]
+    },
+    {
+      "originalId": "etf5248-l4-k07",
+      "lecture": 4,
+      "title": [
+        "第二次枢轴、最优解与紧约束",
+        "Second pivot, optimum and binding constraints"
+      ],
+      "pages": [
+        15
+      ],
+      "roles": [
+        "case",
+        "concept-source"
+      ],
+      "linkedEntries": [
+        "case-dakota",
+        "concept-simplex-optimality"
+      ]
+    },
+    {
+      "originalId": "etf5248-l4-k08",
+      "lecture": 4,
+      "title": [
+        "复杂度：最坏情况与实践",
+        "Complexity: worst case and practice"
+      ],
+      "pages": [
+        16
+      ],
+      "roles": [
+        "guide"
+      ],
+      "linkedEntries": []
+    },
+    {
+      "originalId": "etf5248-l5-k01",
+      "lecture": 5,
+      "title": [
+        "对偶的动机：夹住最优值",
+        "Duality motivation: bounding the optimum"
+      ],
+      "pages": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "roles": [
+        "case"
+      ],
+      "linkedEntries": [
+        "case-dual-bounds"
+      ]
+    },
+    {
+      "originalId": "etf5248-l5-k02",
+      "lecture": 5,
+      "title": [
+        "寻找最紧上界",
+        "Finding the tightest upper bound"
+      ],
+      "pages": [
+        6,
+        7
+      ],
+      "roles": [
+        "case",
+        "concept-source"
+      ],
+      "linkedEntries": [
+        "case-dual-bounds",
+        "concept-dual"
+      ]
+    },
+    {
+      "originalId": "etf5248-l5-k03",
+      "lecture": 5,
+      "title": [
+        "规范形式与对偶的对偶",
+        "Canonical dual and dual of the dual"
+      ],
+      "pages": [
+        8,
+        9
+      ],
+      "roles": [
+        "concept-source"
+      ],
+      "linkedEntries": [
+        "concept-dual"
+      ]
+    },
+    {
+      "originalId": "etf5248-l5-k04",
+      "lecture": 5,
+      "title": [
+        "弱对偶及状态推论",
+        "Weak duality and status implications"
+      ],
+      "pages": [
+        10,
+        11,
+        12
+      ],
+      "roles": [
+        "concept-source"
+      ],
+      "linkedEntries": [
+        "concept-weak-duality"
+      ]
+    },
+    {
+      "originalId": "etf5248-l5-k05",
+      "lecture": 5,
+      "title": [
+        "强对偶与最优性证书",
+        "Strong duality and optimality certificates"
+      ],
+      "pages": [
+        13
+      ],
+      "roles": [
+        "concept-source"
+      ],
+      "linkedEntries": [
+        "concept-strong-duality"
+      ]
+    },
+    {
+      "originalId": "etf5248-l5-k06",
+      "lecture": 5,
+      "title": [
+        "Dakota 的原对偶解",
+        "Dakota primal and dual solutions"
+      ],
+      "pages": [
+        14,
+        15
+      ],
+      "roles": [
+        "case"
+      ],
+      "linkedEntries": [
+        "case-dakota"
+      ]
+    },
+    {
+      "originalId": "etf5248-l5-k07",
+      "lecture": 5,
+      "title": [
+        "影子价格的含义和范围",
+        "Shadow-price meaning and validity"
+      ],
+      "pages": [
+        16,
+        17
+      ],
+      "roles": [
+        "case",
+        "concept-source"
+      ],
+      "linkedEntries": [
+        "case-dakota",
+        "concept-sensitivity"
+      ]
+    },
+    {
+      "originalId": "etf5248-l5-k08",
+      "lecture": 5,
+      "title": [
+        "互补松弛与三项最优条件",
+        "Complementary slackness and optimality"
+      ],
+      "pages": [
+        18,
+        19,
+        20,
+        21
+      ],
+      "roles": [
+        "concept-source"
+      ],
+      "linkedEntries": [
+        "concept-strong-duality",
+        "concept-complementarity"
+      ]
+    },
+    {
+      "originalId": "etf5248-l5-k09",
+      "lecture": 5,
+      "title": [
+        "自由变量和等式的对偶",
+        "Free variables and equality constraints"
+      ],
+      "pages": [
+        22,
+        23,
+        24
+      ],
+      "roles": [
+        "concept-source"
+      ],
+      "linkedEntries": [
+        "concept-dual-signs"
+      ]
+    },
+    {
+      "originalId": "etf5248-l5-k10",
+      "lecture": 5,
+      "title": [
+        "混合符号规则与例题",
+        "Mixed-sign rules and example"
+      ],
+      "pages": [
+        25,
+        26
+      ],
+      "roles": [
+        "concept-source"
+      ],
+      "linkedEntries": [
+        "concept-dual-signs"
+      ]
+    },
+    {
+      "originalId": "etf5248-l5-k11",
+      "lecture": 5,
+      "title": [
+        "敏感性分析的业务动机",
+        "Business motivation for sensitivity"
+      ],
+      "pages": [
+        27,
+        28,
+        29,
+        30,
+        31
+      ],
+      "roles": [
+        "case"
+      ],
+      "linkedEntries": [
+        "case-meat"
+      ]
+    },
+    {
+      "originalId": "etf5248-l5-k12",
+      "lecture": 5,
+      "title": [
+        "右端变化：全局界与局部等式",
+        "RHS changes: global bound and local equality"
+      ],
+      "pages": [
+        32,
+        33,
+        34
+      ],
+      "roles": [
+        "concept-source"
+      ],
+      "linkedEntries": [
+        "concept-sensitivity"
+      ]
+    },
+    {
+      "originalId": "etf5248-l5-k13",
+      "lecture": 5,
+      "title": [
+        "非基产品售价范围：table",
+        "Nonbasic price range: tables"
+      ],
+      "pages": [
+        35,
+        36,
+        37,
+        38
+      ],
+      "roles": [
+        "case",
+        "concept-source"
+      ],
+      "linkedEntries": [
+        "case-dakota",
+        "concept-objective-range"
+      ]
+    },
+    {
+      "originalId": "etf5248-l5-k14",
+      "lecture": 5,
+      "title": [
+        "基产品售价范围：desk",
+        "Basic price range: desks"
+      ],
+      "pages": [
+        39,
+        40,
+        41,
+        42
+      ],
+      "roles": [
+        "case",
+        "concept-source"
+      ],
+      "linkedEntries": [
+        "case-dakota",
+        "concept-objective-range"
+      ]
+    },
+    {
+      "originalId": "etf5248-l5-k15",
+      "lecture": 5,
+      "title": [
+        "求解器接口与自由变量",
+        "Solver interfaces and free variables"
+      ],
+      "pages": [
+        43,
+        44,
+        45,
+        46,
+        47
+      ],
+      "roles": [
+        "guide"
+      ],
+      "linkedEntries": []
+    },
+    {
+      "originalId": "etf5248-l5-k16",
+      "lecture": 5,
+      "title": [
+        "对偶与敏感性复习",
+        "Duality and sensitivity recap"
+      ],
+      "pages": [
+        48,
+        49
+      ],
+      "roles": [
+        "guide"
+      ],
+      "linkedEntries": []
+    },
+    {
+      "originalId": "etf5248-l6-k01",
+      "lecture": 6,
+      "title": [
+        "网络如何表示业务关系",
+        "Networks as business representations"
+      ],
+      "pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "roles": [
+        "guide"
+      ],
+      "linkedEntries": []
+    },
+    {
+      "originalId": "etf5248-l6-k02",
+      "lecture": 6,
+      "title": [
+        "七桥问题：结构决定可行性",
+        "Seven bridges: structure determines feasibility"
+      ],
+      "pages": [
+        8,
+        9
+      ],
+      "roles": [
+        "case"
+      ],
+      "linkedEntries": [
+        "case-bridges"
+      ]
+    },
+    {
+      "originalId": "etf5248-l6-k03",
+      "lecture": 6,
+      "title": [
+        "有向图与节点—弧关联矩阵",
+        "Directed graphs and incidence matrices"
+      ],
+      "pages": [
+        10,
+        11
+      ],
+      "roles": [
+        "concept-source"
+      ],
+      "linkedEntries": [
+        "concept-incidence"
+      ]
+    },
+    {
+      "originalId": "etf5248-l6-k04",
+      "lecture": 6,
+      "title": [
+        "度、入度与出度",
+        "Degree, indegree and outdegree"
+      ],
+      "pages": [
+        12
+      ],
+      "roles": [
+        "concept-source"
+      ],
+      "linkedEntries": [
+        "concept-incidence"
+      ]
+    },
+    {
+      "originalId": "etf5248-l6-k05",
+      "lecture": 6,
+      "title": [
+        "流量守恒与最小费用网络流",
+        "Flow conservation and minimum-cost flow"
+      ],
+      "pages": [
+        13,
+        14,
+        15
+      ],
+      "roles": [
+        "concept-source"
+      ],
+      "linkedEntries": [
+        "concept-flow-balance"
+      ]
+    },
+    {
+      "originalId": "etf5248-l6-k06",
+      "lecture": 6,
+      "title": [
+        "全幺模矩阵 TU",
+        "Totally unimodular matrices"
+      ],
+      "pages": [
+        16
+      ],
+      "roles": [
+        "concept-source"
+      ],
+      "linkedEntries": [
+        "concept-tu"
+      ]
+    },
+    {
+      "originalId": "etf5248-l6-k07",
+      "lecture": 6,
+      "title": [
+        "整数极点定理与 LP 松弛",
+        "Integral vertices and LP relaxation"
+      ],
+      "pages": [
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "roles": [
+        "concept-source"
+      ],
+      "linkedEntries": [
+        "concept-integrality"
+      ]
+    },
+    {
+      "originalId": "etf5248-l6-k08",
+      "lecture": 6,
+      "title": [
+        "运输问题与二部图",
+        "Transportation and bipartite graphs"
+      ],
+      "pages": [
+        22,
+        23,
+        24,
+        25,
+        26,
+        27
+      ],
+      "roles": [
+        "concept-source"
+      ],
+      "linkedEntries": [
+        "concept-transport"
+      ]
+    },
+    {
+      "originalId": "etf5248-l6-k09",
+      "lecture": 6,
+      "title": [
+        "Powerco 电力运输例题",
+        "Powerco electricity transportation"
+      ],
+      "pages": [
+        28,
+        29,
+        30
+      ],
+      "roles": [
+        "case"
+      ],
+      "linkedEntries": [
+        "case-powerco"
+      ]
+    },
+    {
+      "originalId": "etf5248-l6-k10",
+      "lecture": 6,
+      "title": [
+        "供需不平衡与虚拟节点",
+        "Imbalance and dummy nodes"
+      ],
+      "pages": [
+        31,
+        32
+      ],
+      "roles": [
+        "concept-source"
+      ],
+      "linkedEntries": [
+        "concept-dummy"
+      ]
+    },
+    {
+      "originalId": "etf5248-l6-k11",
+      "lecture": 6,
+      "title": [
+        "指派问题与 Machineco",
+        "Assignment and Machineco"
+      ],
+      "pages": [
+        33,
+        34,
+        35,
+        36
+      ],
+      "roles": [
+        "case",
+        "concept-source"
+      ],
+      "linkedEntries": [
+        "case-machineco",
+        "concept-assignment"
+      ]
+    },
+    {
+      "originalId": "etf5248-l6-k12",
+      "lecture": 6,
+      "title": [
+        "最短路：单位流模型",
+        "Shortest paths as unit flows"
+      ],
+      "pages": [
+        37,
+        38,
+        39
+      ],
+      "roles": [
+        "case",
+        "concept-source"
+      ],
+      "linkedEntries": [
+        "case-shortest-network",
+        "concept-shortest-path"
+      ]
+    },
+    {
+      "originalId": "etf5248-l6-k13",
+      "lecture": 6,
+      "title": [
+        "汽车更换：时间网络",
+        "Car replacement as a time network"
+      ],
+      "pages": [
+        40,
+        41,
+        42
+      ],
+      "roles": [
+        "case"
+      ],
+      "linkedEntries": [
+        "case-replacement"
+      ]
+    },
+    {
+      "originalId": "etf5248-l6-k14",
+      "lecture": 6,
+      "title": [
+        "最大流与回流弧转换",
+        "Maximum flow and return-arc conversion"
+      ],
+      "pages": [
+        43,
+        44
+      ],
+      "roles": [
+        "concept-source"
+      ],
+      "linkedEntries": [
+        "concept-maxflow"
+      ]
+    },
+    {
+      "originalId": "etf5248-l6-k15",
+      "lecture": 6,
+      "title": [
+        "Sunco 管道最大流与总结",
+        "Sunco pipeline maximum flow and recap"
+      ],
+      "pages": [
+        45,
+        46,
+        47
+      ],
+      "roles": [
+        "case"
+      ],
+      "linkedEntries": [
+        "case-pipeline"
+      ]
+    },
+    {
+      "originalId": "etf5248-l7-k01",
+      "lecture": 7,
+      "title": [
+        "整数、混合整数与二元规划",
+        "Integer, mixed-integer and binary programming"
+      ],
+      "pages": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "roles": [
+        "concept-source"
+      ],
+      "linkedEntries": [
+        "concept-integer"
+      ]
+    },
+    {
+      "originalId": "etf5248-l7-k02",
+      "lecture": 7,
+      "title": [
+        "取整为何不能替代整数求解",
+        "Why rounding is not an IP algorithm"
+      ],
+      "pages": [
+        5,
+        6
+      ],
+      "roles": [
+        "concept-source"
+      ],
+      "linkedEntries": [
+        "concept-relaxation"
+      ]
+    },
+    {
+      "originalId": "etf5248-l7-k03",
+      "lecture": 7,
+      "title": [
+        "排班重访与 LP 松弛",
+        "Scheduling revisited and LP relaxation"
+      ],
+      "pages": [
+        7,
+        8,
+        9
+      ],
+      "roles": [
+        "case",
+        "concept-source"
+      ],
+      "linkedEntries": [
+        "case-schedule",
+        "concept-relaxation"
+      ]
+    },
+    {
+      "originalId": "etf5248-l7-k04",
+      "lecture": 7,
+      "title": [
+        "背包与 Stockco 投资选择",
+        "Knapsack and Stockco choices"
+      ],
+      "pages": [
+        10,
+        11,
+        12
+      ],
+      "roles": [
+        "case",
+        "concept-source"
+      ],
+      "linkedEntries": [
+        "case-stockco",
+        "concept-knapsack"
+      ]
+    },
+    {
+      "originalId": "etf5248-l7-k05",
+      "lecture": 7,
+      "title": [
+        "依赖关系与设施选址",
+        "Dependencies and facility location"
+      ],
+      "pages": [
+        13,
+        14
+      ],
+      "roles": [
+        "case",
+        "concept-source"
+      ],
+      "linkedEntries": [
+        "case-facility",
+        "concept-implication-binary"
+      ]
+    },
+    {
+      "originalId": "etf5248-l7-k06",
+      "lecture": 7,
+      "title": [
+        "数量逻辑与有限取值",
+        "Cardinality and finite values"
+      ],
+      "pages": [
+        15,
+        16
+      ],
+      "roles": [
+        "concept-source"
+      ],
+      "linkedEntries": [
+        "concept-cardinality"
+      ]
+    },
+    {
+      "originalId": "etf5248-l7-k07",
+      "lecture": 7,
+      "title": [
+        "非负条件下的析取约束",
+        "Disjunction under nonnegativity"
+      ],
+      "pages": [
+        17
+      ],
+      "roles": [
+        "concept-source"
+      ],
+      "linkedEntries": [
+        "concept-bigm"
+      ]
+    },
+    {
+      "originalId": "etf5248-l7-k08",
+      "lecture": 7,
+      "title": [
+        "Big-M 析取与条件数量",
+        "Big-M disjunctions and counts"
+      ],
+      "pages": [
+        18,
+        19
+      ],
+      "roles": [
+        "concept-source"
+      ],
+      "linkedEntries": [
+        "concept-bigm"
+      ]
+    },
+    {
+      "originalId": "etf5248-l7-k09",
+      "lecture": 7,
+      "title": [
+        "Dorian：不开工或至少生产 1000",
+        "Dorian: zero or at least 1000 cars"
+      ],
+      "pages": [
+        20
+      ],
+      "roles": [
+        "case",
+        "concept-source"
+      ],
+      "linkedEntries": [
+        "case-dorian",
+        "concept-bigm"
+      ]
+    },
+    {
+      "originalId": "etf5248-l7-k10",
+      "lecture": 7,
+      "title": [
+        "Big-M 条件蕴含",
+        "Big-M if–then implication"
+      ],
+      "pages": [
+        21
+      ],
+      "roles": [
+        "concept-source"
+      ],
+      "linkedEntries": [
+        "concept-ifthen"
+      ]
+    },
+    {
+      "originalId": "etf5248-l7-k11",
+      "lecture": 7,
+      "title": [
+        "Kilroy 消防站集合覆盖",
+        "Kilroy fire-station set covering"
+      ],
+      "pages": [
+        22,
+        23,
+        24,
+        25
+      ],
+      "roles": [
+        "case",
+        "concept-source"
+      ],
+      "linkedEntries": [
+        "case-kilroy",
+        "concept-set-cover"
+      ]
+    },
+    {
+      "originalId": "etf5248-l7-k12",
+      "lecture": 7,
+      "title": [
+        "效率与公平：双目标权衡",
+        "Efficiency and equity: two objectives"
+      ],
+      "pages": [
+        26,
+        27,
+        28
+      ],
+      "roles": [
+        "case",
+        "concept-source"
+      ],
+      "linkedEntries": [
+        "case-kilroy",
+        "concept-multiobjective"
+      ]
+    },
+    {
+      "originalId": "etf5248-l7-k13",
+      "lecture": 7,
+      "title": [
+        "分支定界：节点、在位解和界",
+        "Branch-and-bound: nodes, incumbent and bounds"
+      ],
+      "pages": [
+        29,
+        30,
+        31,
+        32,
+        33
+      ],
+      "roles": [
+        "concept-source"
+      ],
+      "linkedEntries": [
+        "concept-branch-bound"
+      ]
+    },
+    {
+      "originalId": "etf5248-l7-k14",
+      "lecture": 7,
+      "title": [
+        "分支定界例题：根与首个分支",
+        "Branch example: root and first branch"
+      ],
+      "pages": [
+        34,
+        35,
+        36,
+        37
+      ],
+      "roles": [
+        "case"
+      ],
+      "linkedEntries": [
+        "case-branch"
+      ]
+    },
+    {
+      "originalId": "etf5248-l7-k15",
+      "lecture": 7,
+      "title": [
+        "分支定界例题：证明最优 40",
+        "Branch example: certify value 40"
+      ],
+      "pages": [
+        38,
+        39,
+        40,
+        41,
+        42
+      ],
+      "roles": [
+        "case"
+      ],
+      "linkedEntries": [
+        "case-branch"
+      ]
+    },
+    {
+      "originalId": "etf5248-l7-k16",
+      "lecture": 7,
+      "title": [
+        "Gomory 割：保留整数点、切掉分数点",
+        "Gomory cut: preserve integers, remove fractions"
+      ],
+      "pages": [
+        43,
+        44,
+        45,
+        46,
+        47
+      ],
+      "roles": [
+        "case",
+        "concept-source"
+      ],
+      "linkedEntries": [
+        "case-branch",
+        "concept-cuts"
+      ]
+    },
+    {
+      "originalId": "etf5248-l7-k17",
+      "lecture": 7,
+      "title": [
+        "强模型：逐项联动优于聚合",
+        "Strong formulations: individual versus aggregate links"
+      ],
+      "pages": [
+        48,
+        49,
+        50,
+        51,
+        52
+      ],
+      "roles": [
+        "case",
+        "concept-source"
+      ],
+      "linkedEntries": [
+        "case-facility",
+        "concept-strength"
+      ]
+    },
+    {
+      "originalId": "etf5248-l7-k18",
+      "lecture": 7,
+      "title": [
+        "凸包与模型质量",
+        "Convex hull and formulation quality"
+      ],
+      "pages": [
+        53,
+        54
+      ],
+      "roles": [
+        "concept-source"
+      ],
+      "linkedEntries": [
+        "concept-strength"
+      ]
+    },
+    {
+      "originalId": "etf5248-l7-k19",
+      "lecture": 7,
+      "title": [
+        "TSP 与子回路：课件公式需核对",
+        "TSP and subtours: formulas needing review"
+      ],
+      "pages": [
+        55,
+        56,
+        57,
+        58
+      ],
+      "roles": [
+        "case",
+        "concept-source"
+      ],
+      "linkedEntries": [
+        "case-tsp",
+        "concept-subtour"
+      ]
+    },
+    {
+      "originalId": "etf5248-l7-k20",
+      "lecture": 7,
+      "title": [
+        "修改版 Giapetto 与 Workshop 割",
+        "Modified Giapetto and workshop cut"
+      ],
+      "pages": [
+        59,
+        60
+      ],
+      "roles": [
+        "practice"
+      ],
+      "linkedEntries": [
+        "practice-source-gomory"
+      ]
+    }
+  ],
+  "counting": "Unique conceptual entries, unified cases, and question sets; original 104 retained separately."
+}

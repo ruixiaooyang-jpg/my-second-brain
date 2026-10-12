@@ -1,0 +1,728 @@
+window.ETF5248Lectures=window.ETF5248Lectures||{};
+window.ETF5248Lectures[1]={
+  "lecture": 1,
+  "source": "ETF2480_ETF5248_Lecture_1 (2).pdf",
+  "sha256": "adbcb70888b9d45f6a8015f2937c73c46616c364b82b19182382d2bccadd8e55",
+  "pages": [
+    {
+      "page": 1,
+      "text": "1 / 36",
+      "image": "course-materials/etf5248/lecture-1/page-001.jpg"
+    },
+    {
+      "page": 2,
+      "text": "Introduction\nLecture 1\nETF2480 & ETF5248 - S2, 2026\nJessica Leung, PhD, CAP-X, SFHEA\n2 / 36",
+      "image": "course-materials/etf5248/lecture-1/page-002.jpg"
+    },
+    {
+      "page": 3,
+      "text": "T oday’s Goal\nAdmin\nWhat is Optimisation?\nLinear Programming: what and how?\nSome Linear Algebra\nUseful T ransformation\n3 / 36",
+      "image": "course-materials/etf5248/lecture-1/page-003.jpg"
+    },
+    {
+      "page": 4,
+      "text": "Seminars, Workshops, Tutorials and\nCommunications\nSeminars & Workshops:T uesdays, 12nn-3pm\nTutorials:T utorials are on Mondays and Thursdays. Please refer to your\ntimetable for the exact time and location.\nMoodle Site:Let’s have a look on Moodle.\nWe are usingEd Discussion Boardfor announcements, discussion, coding\nsyntax and tutorial guide!\n4 / 36",
+      "image": "course-materials/etf5248/lecture-1/page-004.jpg"
+    },
+    {
+      "page": 5,
+      "text": "T eaching T eam\nChief Examiner/Lecturer\nDr Jessica Leung\nConsultation:T uesday 10:00am\nEmail:jessica.leung@monash.edu\nTutors\nMs Ziyi Deng -Email:ziyi.deng1@monash.edu\nMs Tina Jafari -Email:tina.rashidjafari@monash.edu\nMr Hamed Vosgha -Email:hamed.vosgha@monash.edu\nY ou can also ﬁnd our contact details on Moodle.\n5 / 36",
+      "image": "course-materials/etf5248/lecture-1/page-005.jpg"
+    },
+    {
+      "page": 6,
+      "text": "T extbook and Software\nY ou don’t need to buy textbook$.\nThere are no required textbooks in this unit. However, the following texts can serve\nas auxiliary or reference texts.\n– D. Bertsimas and J. N. T sitsiklis,Introduction to Linear Optimization.\n– W. L. Winston,Operations Research: Applications and Algorithms.\n– B. T aylor,Introduction to Management Science: Global Edition.\n– R. J. Vanderbei,Linear Programming: Foundations and Extensions.\nWe teach in R and support Python.\nWe’ll be using R as a tool to solve optimisation problems in this course.\n– open source (like all real languages)\n– can be used to write simple scripts but also is very eﬃcient\n– supports really fancy stuﬀ (that we won’t use in this course)\n– two of the most popular languages for data analytics and data science\n– We will start from the basics, with templates to follow\n– We are also very happy tosupport intermediate Python users using the\nGurobi interface and packages such as PuLP.\nMore information in the ﬁrst tutorial and on Moodle.\n6 / 36",
+      "image": "course-materials/etf5248/lecture-1/page-006.jpg"
+    },
+    {
+      "page": 7,
+      "text": "The Roadmap: What is this unit about?\nT opics to cover\n– LP Basics and Examples (Week 1-4)\n– Duality and Sensitivity (Week 5-7)\n– Network Flow Problems (Week 7-8)\n– (Mixed) Integer Programming (Week 9-10)\n– Advanced Modelling (Week 11)\n– Review (Week 12)\n7 / 36",
+      "image": "course-materials/etf5248/lecture-1/page-007.jpg"
+    },
+    {
+      "page": 8,
+      "text": "Assessments\nAssessment taskWeight Due date Group or individual CC or AI-enable?\nAssignment 1 15% Week 4 Individual Both\nMid Semester T est20% Week 6 Seminar Time Individual CC\nAssignment 2 15% Week 10 Individual Both\nFinal Exam 50% Final Exam Period Individual CC\nT able: Assessment Summary\nNote: \"CC\" stands for Core Competency. This designation signiﬁes that students are expected to\ndemonstrate mastery of these tasks independently, without the use of any Generative AI tools.\n8 / 36",
+      "image": "course-materials/etf5248/lecture-1/page-008.jpg"
+    },
+    {
+      "page": 9,
+      "text": "AI transforms entry level work\nHere is a quote from 2026 AI Global Jobs Barometer by PwC: “The traditional career ladder is\ncompressing. AI-exposed junior roles are seven times more likely to demand traditionally senior skills.\nWhile overall early-career job postings have ﬂatlined in highly AI exposed sectors, ’seniorised’ entry level\nroles are thriving, showing 35% growth since 2019. \"\nFigure:Bloom’s T axonomy (Revised). The picture is by Tidema - Own work, CC BY 4.0,\nhttps:/ /commons.wikimedia.org/w/index.php?curid=152872571. This is a hierarchical model for cognitive\nskills. Y ou cannot analyze a concept if you do not understand it, and you cannot create something new\nwithout evaluating existing data. 9 / 36",
+      "image": "course-materials/etf5248/lecture-1/page-009.jpg"
+    },
+    {
+      "page": 10,
+      "text": "Any Questions?\nDo you have any questions about the admin side of things?\n10 / 36",
+      "image": "course-materials/etf5248/lecture-1/page-010.jpg"
+    },
+    {
+      "page": 11,
+      "text": "What is\nOptimisation in Business?\nSo, what is Optimisation in Business?\nHmmm...perhaps we should start with...\nWhat is Business Analytics?\n11 / 36",
+      "image": "course-materials/etf5248/lecture-1/page-011.jpg"
+    },
+    {
+      "page": 12,
+      "text": "\"Business analyticscan be viewed as the intersection of a variety of disciplines, of\nwhich Operations Research, machine learning, and information systems are of particular\nrelevance . As a process, it can be characterised bydescriptive, predictive, and\nprescriptivemodel building using heterogeneous and ‘big’ data sources. \"\nHindle et al 2020, European Journal of Operations Research\n12 / 36",
+      "image": "course-materials/etf5248/lecture-1/page-012.jpg"
+    },
+    {
+      "page": 13,
+      "text": "Optimisation\nin Business\nRepresent your complex business problems as\nmathematical models, which you can adjust to\naccurately reﬂect your company’s present-day\nreality. Use those models to help you tackle\nyour real-world business problems and make\nthe best possible decisions.\n1 What business problem are you\nfacing? What do you get to decide?\n2 Formulate a mathematical\noptimisation problem that models\nyour decision problem.\n3 Solve the optimisation problem and\nmake the decision.\nInteresting read:\n1 How a Mathematical Optimization model can help your business deal with disruption(Forbes\n2020): Link to article\n2 Business analytics: Deﬁning the ﬁeld and identifying a research agenda(EJOR 2020): Link to article\n13 / 36",
+      "image": "course-materials/etf5248/lecture-1/page-013.jpg"
+    },
+    {
+      "page": 14,
+      "text": "Linear Programming:\nwhat and how?\nWhat is linear programming?\nIt is a type of mathematical optimizationproblem.\nSo there is no programming?\nWe’ll use some R or Python code to solve LPs.\n14 / 36",
+      "image": "course-materials/etf5248/lecture-1/page-014.jpg"
+    },
+    {
+      "page": 15,
+      "text": "A mathematical optimization problem\nMaximizef(x)\nsubject tog(x)≤b\nx≥0\nObjective Function:\nA function we want to optimize (maximise or minimise)\nDecision Variables:\nVariables whose values are under our control\nConstraints:\nRestrictions on the decision variables values\n→Whenf(x)andg(x)are both linear, we have an LP .\n15 / 36",
+      "image": "course-materials/etf5248/lecture-1/page-015.jpg"
+    },
+    {
+      "page": 16,
+      "text": "A mathematical optimization problem\nMaximizef(x)\nsubject tog(x)≤b\nx≥0\nObjective Function:\nA function we want to optimize (maximise or minimise)\nDecision Variables:\nVariables whose values are under our control\nConstraints:\nRestrictions on the decision variables values\n→Whenf(x)andg(x)are both linear, we have an LP .\nLinear Programming (LP)\nwith 2 variables\nMaximizec 1x1 +c 2x2\nsubject toA 11x1 +A 12x2 ≤b 1\nA21x1 +A 22x2 ≤b 2\nx1,x 2 ≥0\n16 / 36",
+      "image": "course-materials/etf5248/lecture-1/page-016.jpg"
+    },
+    {
+      "page": 17,
+      "text": "Simple Example\nApplePieis a computer retail store that sells desktops and laptops.\nThe company earns $600 on each desktop computer it sells and $900\non each laptop.\nDue to COVID19 supply chain disruption, the supplier of ApplePie\ncannot ship more than 80 desktops and 75 laptops to ApplePie next\nmonth.\nThe employees at ApplePie must spend 2 hours installing software and\nchecking each desktop computer they sell. They spend 3 hours to com-\nplete this process for laptop computers. They expect to have about 300\nhours available for this purpose during the next month.\nThe store’s management is fairly certain that they can sell all the com-\nputers they order, but are unsure how many desktops and laptops they\nshould order tomaximize proﬁts.\n17 / 36",
+      "image": "course-materials/etf5248/lecture-1/page-017.jpg"
+    },
+    {
+      "page": 18,
+      "text": "Simple Example\nApplePieis a computer retail store that sells desktops and laptops.\nThe company earns $600 on each desktop computer it sells and $900\non each laptop.\nDue to COVID19 supply chain disruption, the supplier of ApplePie\ncannot ship more than 80 desktops and 75 laptops to ApplePie next\nmonth.\nThe employees at ApplePie must spend 2 hours installing software and\nchecking each desktop computer they sell. They spend 3 hours to com-\nplete this process for laptop computers. They expect to have about 300\nhours available for this purpose during the next month.\nThe store’s management is fairly certain that they can sell all the com-\nputers they order, but are unsure how many desktops and laptops they\nshould order tomaximize proﬁts.\nLP formulation\nLetx 1 andx 2 be the number of\ndesktop computers and laptop\ncomputers ApplePie order\nrespectively.\nMaximize600x 1 +900x 2\nsubject to2x 1 +3x 2 ≤300\nx1 ≤80\nx2 ≤75\nx1,x 2 ≥0\n18 / 36",
+      "image": "course-materials/etf5248/lecture-1/page-018.jpg"
+    },
+    {
+      "page": 19,
+      "text": "(Some) Linear Algebra\nWhat do you know about the matrix?\nThe movie?\nNo, the rectangular array of numbers that can be used to\nexpress an LP.\n19 / 36",
+      "image": "course-materials/etf5248/lecture-1/page-019.jpg"
+    },
+    {
+      "page": 20,
+      "text": "We need some\ntools to solve\nthe LPs.\nA (gentle) introduction to vector, matrix, some\nlinear algebraic operations and how do we use\nthem to represent an LP . We will see how it all\nmakes sense in R (and Python).\n20 / 36",
+      "image": "course-materials/etf5248/lecture-1/page-020.jpg"
+    },
+    {
+      "page": 21,
+      "text": "Vector\nA vector of size n (or n-vector)\nx=\n\n\nx1\nx2\n...\nxn\n\n\nWe can also write\nx= (x 1,x 2, . . . ,x n).\nxi is the i-thelement/ component/ entryofx.\nThese entries are real numbers unless speciﬁed otherwise.\nSometimes you may see us write\nx∈R n\nMatrix\nA matrix of sizem×n(mbyn)\nA=\n\n\nA11 A12 · · ·A 1n\nA21 A22 · · ·A 2n\n...\n...\n...\nAm1 Am2 · · ·A mn\n\n\nAij is thei-th rowj-th columncomponent/ element/ entry\nofA.\nY ou can view matrix as a bunch of vectors stick together.\nSometimes you may see us write\nA∈R m×n\n21 / 36",
+      "image": "course-materials/etf5248/lecture-1/page-021.jpg"
+    },
+    {
+      "page": 22,
+      "text": "Operations\nInner productofn-vectors\nc T x=c 1x1 +c 2x2 +. . .+c nxn\nis thesumproductof every entry in both vectors. That means we can express our linearobjective functionin a compact way.\nMatrix-vector multiplication\nAx=\n\n\nA11 A12 · · ·A 1n\nA21 A22 · · ·A 2n\n...\n...\n...\nAm1 Am2 · · ·A mn\n\n\n\n\nx1\nx2\n...\nxn\n\n\n=\n\n\nA11x1 +A 12x2 +· · ·+A 1nxn\nA21x1 +A 22x2 +· · ·+A 2nxn\n...\nAm1x1 +A m2x2 +· · ·+A mnxn\n\n\nThat means we can express our linearconstraintsin a compact way.\nA11x1 +A 12x2 +· · ·+A 1nxn ≤b 1\nA21x1 +A 22x2 +· · ·+A 2nxn ≤b 2\n...\nAm1x1 +A m2x2 +· · ·+A mnxn ≤b m\n↓\nAx≤b\n22 / 36",
+      "image": "course-materials/etf5248/lecture-1/page-022.jpg"
+    },
+    {
+      "page": 23,
+      "text": "So, the ApplePie LP can be represented like this...\nLP formulation\nLetx 1 andx 2 be the number of\ndesktop computers and laptop\ncomputers ApplePie order\nrespectively.\nMaximize600x 1 +900x 2\nsubject to2x 1 +3x 2 ≤300\nx1 ≤80\nx2 ≤75\nx1,x 2 ≥0\n23 / 36",
+      "image": "course-materials/etf5248/lecture-1/page-023.jpg"
+    },
+    {
+      "page": 24,
+      "text": "The matrix-vector form helps us code in R!\nLP formulation\nMaximizec T x\nsubject toAx≤b\nx≥0\nc=\n\u0014\n600\n900\n\u0015\nb=\n\n\n300\n80\n75\n\n\nA=\n\n\n2 3\n1 0\n0 1\n\n\nR code to solve the Applepie LP\nlibrary(lpSolve)\nc <- c(600, 900)\nA <- matrix(c(2,3,1,0,0,1), nrow=3, byrow=T)\nb <- c(300,80,75)\nres <- lp(\"max\", c, A, \"<=\", b)\nres\nres$solution\n24 / 36",
+      "image": "course-materials/etf5248/lecture-1/page-024.jpg"
+    },
+    {
+      "page": 25,
+      "text": "The same goes with Python!\nPlease refer to this page for explanation of the code\nPython code to solve the Applepie LP\nimport gurobipy as grb\nimport numpy as np\nc = np.array([600, 900])\nA = np.array([[2,3],[1,0],[0,1]])\nb = np.array([300,80,75])\nM = grb.Model(‘Applepie’)\nx = M.addMVar(2)\nM.setObjective(c@x, grb.GRB.MAXIMIZE)\nM.addConstr(A@x <= b)\nM.optimize()\nprint(M.objVal)\nprint(x.x)\n25 / 36",
+      "image": "course-materials/etf5248/lecture-1/page-025.jpg"
+    },
+    {
+      "page": 26,
+      "text": "Compact and scalable ApplePie LP\nNow imagine Applepie oﬀers 3000 products.\n▶How would the dimensions of the matrix and vector change?\n▶Does the matrix-vector mathematical representation of the LP\nchange?\n▶How would the coding syntax change?\n26 / 36",
+      "image": "course-materials/etf5248/lecture-1/page-026.jpg"
+    },
+    {
+      "page": 27,
+      "text": "Useful T ransformations\nThere are more than one way to express an LP .\n27 / 36",
+      "image": "course-materials/etf5248/lecture-1/page-027.jpg"
+    },
+    {
+      "page": 28,
+      "text": "A max problem can be solved as a min problem.\nWe can solve themaximisation problem\nmaximizec T x\nsubject toAx≤b\nDx=f\nby minimising the function−c T xsubject to the same constraints:\nminimize−c T x\nsubject toAx≤b\nDx=f\n28 / 36",
+      "image": "course-materials/etf5248/lecture-1/page-028.jpg"
+    },
+    {
+      "page": 29,
+      "text": "Equivalent problems\nTwo problems are (informally)equivalentif the solution of one is readily\nobtained from the solution of the other, and vice-versa.\nT ransforming maximisation problem into minimisation is a good example\n(see previous slide).\nSome common transformations:\n▶converting “≤” constraints to “≥” constraints:\naT\ni x≤b i is equivalent to(−a i )T x≥ −b i\n▶eliminating equality constraints:a T\ni x=b i is equivalent to two\ninequality constraints\n(−ai )T x≥ −b i anda T\ni x≥b i\n29 / 36",
+      "image": "course-materials/etf5248/lecture-1/page-029.jpg"
+    },
+    {
+      "page": 30,
+      "text": "LP in inequality form\nBecause all constraints are linear, only three cases are possible:\n▶a T\ni x≤b i\n▶a T\ni x≥b i\n▶a T\ni x=b i\nWe can convert all constraints to≥form:\n▶a T\ni x≤b i can be rewritten as(−a i )T x≥ −b i\n▶a T\ni x=b i is equivalent to two inequality constraints\n(−ai )T x≥ −b i anda T\ni x≥b i\nHence, any LP can be written as\nminimizec T x\nsubject toAx≥b\n30 / 36",
+      "image": "course-materials/etf5248/lecture-1/page-030.jpg"
+    },
+    {
+      "page": 31,
+      "text": "Example\nminimize2x 1 −x 2 +4x 3\nsubject tox 1 +x 2 +x 4 ≤2\n3x2 −x 3 =5\nx3 +x 4 ≥3\nx1 ≥0\nx3 ≤0\nin matrix notation\nminimizec T x\nsubject toAx≥b\nwhere\nA=\n\n\n−1−1 0−1\n0 3−1 0\n0−3 1 0\n0 0 1 1\n1 0 0 0\n0 0−1 0\n\n\n,b=\n\n\n−2\n5\n−5\n3\n0\n0\n\n\n,c=\n\n\n2\n−1\n4\n0\n\n .\n31 / 36",
+      "image": "course-materials/etf5248/lecture-1/page-031.jpg"
+    },
+    {
+      "page": 32,
+      "text": "Quick Summary\n1 Identify the decisions you have to make (decision variables)\n2 Formulate an optimisation problem for the business scenario (objective function and constraints).\n3 Solve the optimisation problem (with R and report the result).\nLinear Programming (LP) formulation\nMaximizec T x\nsubject toAx≤b\nx≥0\n⇕\nMinimize−c T x\nsubject toAx≤b\nx≥0\nbis am-vector\ncis an-vector\nxis an-vector\nAis am×nmatrix.\nR code to solve the LP\nlibrary(lpSolve)\nc <- c(...)\nA <- matrix(c(...), nrow=..., byrow=T)\nb <- c(...)\nres <- lp(\"max\", c, A, \"<=\", b)\nres\nres$solution\n32 / 36",
+      "image": "course-materials/etf5248/lecture-1/page-032.jpg"
+    },
+    {
+      "page": 33,
+      "text": "Workshop: Check your understanding\n(Attempt: 10 mins)\nSteve’s online shop\nSteve has an online shop where he sells hand made candles and diﬀusers that uses natural and high quality essential oil. He\nsells the candle for $20 and the diﬀusers for $40. It takes him, on average, 20 minutes to prepare 1 candle and 35 minutes to\nprepare 1 diﬀuser. Steve has a day job and he only run the online business when he has time. He cannot spend more than 8\nhours a week to make candles and diﬀusers. Additionally, he should make not more than 50 candles and 10 diﬀusers per week.\nIt costs him $15 dollars to make each candle and $18 dollars to make each diﬀuser. How many candles and diﬀusers should he\nmake each week to maximize his proﬁt. Formulate and solve the LP to Steve model his business.\n33 / 36",
+      "image": "course-materials/etf5248/lecture-1/page-033.jpg"
+    },
+    {
+      "page": 34,
+      "text": "Steve’s online shop: LP formulation\n34 / 36",
+      "image": "course-materials/etf5248/lecture-1/page-034.jpg"
+    },
+    {
+      "page": 35,
+      "text": "Live Coding Time! (Attempt: 10 mins)\nLet’s code Steve’s online shop problem together!\n35 / 36",
+      "image": "course-materials/etf5248/lecture-1/page-035.jpg"
+    },
+    {
+      "page": 36,
+      "text": "T ake home: Check your understanding\nGiapetto’s Woodcarving, Inc., manufactures wooden soldiers and trains.\nEach soldier built:\n– Sells for $27 and uses $10 worth of raw materials.\n– Increases Giapetto’s variable labor/overhead costs by $14.\n– Requires 2 hours of ﬁnishing labor.\n– Requires 1 hour of carpentry labor.\nEach train built:\n– Sells for $21 and uses $9 worth of raw materials.\n– Increases Giapetto’s variable labor/overhead costs by $10.\n– Requires 1 hour of ﬁnishing labor.\n– Requires 1 hour of carpentry labor.\nEach week Giapetto can obtain:\n– All needed raw material.\n– Only 100 ﬁnishing hours.\n– Only 80 carpentry hours.\nDemand for the trains is unlimited. At most 40 soldiers are bought each week. Giapetto wants to maximize weekly proﬁt.\nFormulate an LP and solve using R.\n36 / 36",
+      "image": "course-materials/etf5248/lecture-1/page-036.jpg"
+    }
+  ],
+  "version": 1,
+  "title": [
+    "优化入门与 LP 建模",
+    "Introduction to optimisation and LP modelling"
+  ],
+  "overview": [
+    "从业务决策到线性模型、矩阵表达、软件求解和等价变换。",
+    "From business decisions to linear models, matrix notation, solver inputs and equivalent transformations."
+  ],
+  "goals": [
+    [
+      "识别变量、目标、约束和单位",
+      "Identify variables, objectives, constraints and units"
+    ],
+    [
+      "用矩阵描述并转换LP",
+      "Represent and transform LPs in matrix form"
+    ],
+    [
+      "区分课件题目与补充答案",
+      "Distinguish lecture exercises from additional solutions"
+    ]
+  ],
+  "cards": [
+    {
+      "pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "title": [
+        "课程介绍、学习目标与工具",
+        "Course introduction, objectives and tools"
+      ],
+      "lecture": [
+        "本讲从课程安排开始，依次介绍商业优化、线性规划、线性代数和等价变换。课件说明主要使用 R 教学，并支持具备基础的 Python 用户；没有必购教材。录课通知、授课团队和沟通方式见原页。",
+        "The lecture introduces administration, business optimisation, linear programming, linear algebra and equivalent transformations. Teaching mainly uses R, with support for intermediate Python users; no textbook purchase is required. Recording, staff and communication information remain on the source pages."
+      ],
+      "formulas": [],
+      "explanation": [
+        "",
+        ""
+      ],
+      "terms": [
+        [
+          "optimisation",
+          "优化"
+        ],
+        [
+          "linear programming (LP)",
+          "线性规划"
+        ]
+      ],
+      "review": [
+        "",
+        ""
+      ],
+      "id": "etf5248-l1-k01"
+    },
+    {
+      "pages": [
+        7,
+        8
+      ],
+      "title": [
+        "课程路线与考核信息",
+        "Roadmap and assessment information"
+      ],
+      "lecture": [
+        "路线图：LP 基础和例题 Week 1–4；对偶和敏感性 Week 5–7；网络流 Week 7–8；混合整数规划 Week 9–10；高级建模 Week 11；复习 Week 12。课件列出两次作业各15%、期中20%、期末50%；CC 表示独立掌握的核心能力任务。这里记录课件版本，实际安排应以课程最新通知为准，不把 Lecture 编号直接当作 Week。",
+        "The roadmap places LP in Weeks 1–4, duality/sensitivity in 5–7, network flows in 7–8, mixed-integer programming in 9–10, advanced modelling in 11 and revision in 12. The slide lists assignments at 15% each, a mid-semester test at 20% and a final exam at 50%. CC denotes independently demonstrated core competency. These are slide-version details, not a live timetable; lecture numbers are not assumed to equal weeks."
+      ],
+      "formulas": [],
+      "explanation": [
+        "",
+        ""
+      ],
+      "terms": [],
+      "review": [
+        "",
+        ""
+      ],
+      "id": "etf5248-l1-k02"
+    },
+    {
+      "pages": [
+        9,
+        10,
+        11,
+        12
+      ],
+      "title": [
+        "从商业分析到决策支持",
+        "From business analytics to decision support"
+      ],
+      "lecture": [
+        "课件用 Bloom 分类说明记忆、理解、应用、分析、评价和创造之间的关系。商业分析结合运筹学、机器学习及信息系统；描述性分析解释过去，预测性分析讨论未来，规范性分析帮助选择行动。第9页的就业数据是课件引用，未在本次独立核实。",
+        "The Bloom diagram connects remembering, understanding, applying, analysing, evaluating and creating. Business analytics draws on operations research, machine learning and information systems. Descriptive analytics explains the past, predictive analytics considers what may happen, and prescriptive analytics supports action selection. Employment statistics on page 9 are slide-attributed, not independently checked here."
+      ],
+      "formulas": [],
+      "explanation": [
+        "",
+        ""
+      ],
+      "terms": [
+        [
+          "descriptive / predictive / prescriptive analytics",
+          "描述性／预测性／规范性分析"
+        ]
+      ],
+      "review": [
+        "",
+        ""
+      ],
+      "id": "etf5248-l1-k03"
+    },
+    {
+      "pages": [
+        13,
+        14
+      ],
+      "title": [
+        "商业优化的三步流程",
+        "Three steps in business optimisation"
+      ],
+      "lecture": [
+        "先识别业务问题和可控制的决策，再建立数学优化模型，最后求解并解释决策。Linear Programming 是一种数学优化问题，Programming 不等于程序编码；R/Python 是求解工具。",
+        "Identify the business problem and controllable decisions, formulate a mathematical optimisation model, then solve and interpret the decision. Linear programming is a mathematical problem class; programming in its name is not synonymous with writing code. R/Python are implementation tools."
+      ],
+      "formulas": [],
+      "explanation": [
+        "连接后续：每个例题都应按“变量—目标—约束—求解—业务解释”检查，而不是先写求解器代码。",
+        "Connection: check variables, objective, constraints, solution and business interpretation before focusing on solver syntax."
+      ],
+      "terms": [],
+      "review": [
+        "",
+        ""
+      ],
+      "id": "etf5248-l1-k04"
+    },
+    {
+      "pages": [
+        15,
+        16
+      ],
+      "title": [
+        "目标函数、决策变量与约束",
+        "Objective, decision variables and constraints"
+      ],
+      "lecture": [
+        "目标函数是要最大化或最小化的数量；决策变量是能够控制的量；约束限制可选值。目标和约束均为线性时构成 LP。课件用两变量、两条资源约束及非负约束示例。",
+        "The objective is the quantity to maximise or minimise. Decision variables are controllable quantities; constraints restrict their values. An LP has a linear objective and linear constraints. The slides illustrate two variables, two resource constraints and nonnegativity."
+      ],
+      "formulas": [
+        "\\max\\ c_1x_1+c_2x_2\\quad\\text{s.t. }A_{11}x_1+A_{12}x_2\\le b_1,\\ A_{21}x_1+A_{22}x_2\\le b_2,\\ x_1,x_2\\ge0"
+      ],
+      "explanation": [
+        "",
+        ""
+      ],
+      "terms": [
+        [
+          "decision variable",
+          "决策变量"
+        ],
+        [
+          "objective function",
+          "目标函数"
+        ],
+        [
+          "constraint",
+          "约束"
+        ]
+      ],
+      "review": [
+        "",
+        ""
+      ],
+      "id": "etf5248-l1-k05"
+    },
+    {
+      "pages": [
+        17,
+        18
+      ],
+      "title": [
+        "ApplePie：业务条件与 LP 建模",
+        "ApplePie: business conditions and LP formulation"
+      ],
+      "lecture": [
+        "令 x₁、x₂ 分别为订购台式机和笔记本数量。每台利润分别600和900；安装工时分别2和3小时，总工时不超过300。供应上限分别80和75。假定订购的产品均可售出，目标为总利润最大。",
+        "Let x₁ and x₂ be desktops and laptops ordered. Unit profits are 600 and 900; preparation takes 2 and 3 hours, with at most 300 hours available. Supply limits are 80 desktops and 75 laptops. All ordered units are assumed saleable; maximise total profit."
+      ],
+      "formulas": [
+        "\\max z=600x_1+900x_2",
+        "2x_1+3x_2\\le300,\\quad x_1\\le80,\\quad x_2\\le75,\\quad x_1,x_2\\ge0"
+      ],
+      "explanation": [
+        "Codex 推导（不是课件给出的数值答案）：z=300(2x₁+3x₂)≤90000。任何满足2x₁+3x₂=300且37.5≤x₁≤80的可行点都最优，例如(75,50)，z=90000。LP 不自动要求整数；即便添加整数要求，(75,50)仍可行并达到上界。不要覆盖你已有的 ApplePie 个人笔记。",
+        "Codex derivation, not a numerical answer printed on these slides: z=300(2x₁+3x₂)≤90000. Every feasible point on 2x₁+3x₂=300 with 37.5≤x₁≤80 is optimal, e.g. (75,50). LP does not automatically impose integrality; that particular solution also meets integer requirements. This source card is separate from existing ApplePie personal notes."
+      ],
+      "terms": [],
+      "review": [
+        "",
+        ""
+      ],
+      "id": "etf5248-l1-k06"
+    },
+    {
+      "pages": [
+        19,
+        20,
+        21
+      ],
+      "title": [
+        "向量、矩阵和维度",
+        "Vectors, matrices and dimensions"
+      ],
+      "lecture": [
+        "n 维向量包含 n 个实数分量，xᵢ 为第 i 个元素；m×n 矩阵具有 m 行 n 列，Aᵢⱼ 表示第 i 行、第 j 列。矩阵可按行或列理解为向量集合。",
+        "An n-vector has n real components, with xᵢ denoting entry i. An m×n matrix has m rows and n columns; Aᵢⱼ is the entry in row i and column j. A matrix may be viewed as a collection of row or column vectors."
+      ],
+      "formulas": [
+        "x\\in\\mathbb R^n,\\qquad A\\in\\mathbb R^{m\\times n}"
+      ],
+      "explanation": [
+        "",
+        ""
+      ],
+      "terms": [],
+      "review": [
+        "",
+        ""
+      ],
+      "id": "etf5248-l1-k07"
+    },
+    {
+      "pages": [
+        22
+      ],
+      "title": [
+        "内积与矩阵乘法",
+        "Inner products and matrix multiplication"
+      ],
+      "lecture": [
+        "cᵀx 将各变量的系数乘积相加，表示线性目标。Ax 的第 i 个分量是 A 的第 i 行与 x 的内积，因此每一行对应一条线性约束。b 是约束右端向量。",
+        "cᵀx adds coefficient–variable products to express a linear objective. Entry i of Ax is the inner product of row i of A and x, so each matrix row represents a constraint. The vector b contains the right-hand sides."
+      ],
+      "formulas": [
+        "c^Tx=\\sum_{j=1}^{n}c_jx_j,\\qquad (Ax)_i=\\sum_{j=1}^{n}A_{ij}x_j",
+        "Ax\\le b\\ \\Longleftrightarrow\\ \\sum_j A_{ij}x_j\\le b_i\\quad(i=1,\\ldots,m)"
+      ],
+      "explanation": [
+        "",
+        ""
+      ],
+      "terms": [],
+      "review": [
+        "",
+        ""
+      ],
+      "id": "etf5248-l1-k08"
+    },
+    {
+      "pages": [
+        23,
+        24
+      ],
+      "title": [
+        "ApplePie 的矩阵形式与 R 求解",
+        "ApplePie matrix form and R solution"
+      ],
+      "lecture": [
+        "矩阵各行依次为工时、台式机供给、笔记本供给。课件使用 lpSolve：先定义 c、A、b，再调用 lp(\"max\", c, A, \"<=\", b)，用 res 和 res$solution 查看状态和解。原页保留完整代码；本轮没有安装或运行 R。",
+        "The matrix rows represent labour, desktop supply and laptop supply. The slide uses lpSolve: define c, A and b, call lp(\"max\", c, A, \"<=\", b), then inspect res and res$solution. Full code remains on the source page. R was not installed or executed for this content pass."
+      ],
+      "formulas": [
+        "c=\\begin{bmatrix}600\\\\900\\end{bmatrix},\\quad A=\\begin{bmatrix}2&3\\\\1&0\\\\0&1\\end{bmatrix},\\quad b=\\begin{bmatrix}300\\\\80\\\\75\\end{bmatrix}"
+      ],
+      "explanation": [
+        "矩阵构造时 byrow=TRUE 很重要：它使输入序列按约束行填入，而不是按列填入。结果必须带回所有约束检查。",
+        "byrow=TRUE fills the matrix by constraint rows rather than by columns. Substitute returned values into every constraint before interpreting the result."
+      ],
+      "terms": [],
+      "review": [
+        "",
+        ""
+      ],
+      "id": "etf5248-l1-k09"
+    },
+    {
+      "pages": [
+        25,
+        26
+      ],
+      "title": [
+        "Python 求解与规模扩展",
+        "Python solution and scaling"
+      ],
+      "lecture": [
+        "课件展示 NumPy 系数数组、Gurobi 模型、addMVar、setObjective、addConstr 和 optimize 的同一建模逻辑。接着提出将产品扩为3000种时，向量维度和矩阵列数如何改变。",
+        "The Python example uses NumPy coefficient arrays and Gurobi model creation, addMVar, setObjective, addConstr and optimize. The next page asks how vectors and the matrix change when the product range grows to 3000."
+      ],
+      "formulas": [],
+      "explanation": [
+        "有 n 种产品和 m 条约束时，x、c 都有 n 个分量，b 有 m 个分量，A 为 m×n；形式不变。m 是否增加取决于资源和逐产品供应约束，不能只把原矩阵扩成3×3000就断定模型正确。此处不安装或调用 Gurobi。",
+        "With n products and m constraints, x and c have n entries, b has m entries and A is m×n. The notation stays the same, but m may change with per-product supply constraints. Merely extending the old matrix to 3×3000 is not necessarily correct. No Gurobi installation or call is made here."
+      ],
+      "terms": [],
+      "review": [
+        "",
+        ""
+      ],
+      "id": "etf5248-l1-k10"
+    },
+    {
+      "pages": [
+        27,
+        28
+      ],
+      "title": [
+        "最大化与最小化的等价转换",
+        "Equivalent maximisation and minimisation"
+      ],
+      "lecture": [
+        "保持所有约束不变，将目标函数乘以−1，可把最大化改为最小化。最优决策相同，但最优目标值符号相反。",
+        "Keeping all constraints unchanged and negating the objective converts maximisation to minimisation. Optimal decisions are preserved, while the optimal objective value changes sign."
+      ],
+      "formulas": [
+        "\\max_{x\\in F}c^Tx=-\\min_{x\\in F}(-c^Tx)"
+      ],
+      "explanation": [
+        "",
+        ""
+      ],
+      "terms": [],
+      "review": [
+        "",
+        ""
+      ],
+      "id": "etf5248-l1-k11"
+    },
+    {
+      "pages": [
+        29,
+        30
+      ],
+      "title": [
+        "约束等价变换与不等式形式",
+        "Equivalent constraints and inequality form"
+      ],
+      "lecture": [
+        "两边乘−1时不等号反向；等式可拆成两个反向不等式。课件将所有约束统一写成≥，得到 min cᵀx s.t. Ax≥b。变量的符号限制也必须包含在约束中，不能凭空增加 x≥0。",
+        "Multiplying by −1 reverses an inequality; an equality is equivalent to two opposite inequalities. The lecture combines constraints into min cᵀx subject to Ax≥b. Variable sign restrictions must be included explicitly; nonnegativity must not be added without justification."
+      ],
+      "formulas": [
+        "a^Tx\\le b\\iff(-a)^Tx\\ge-b",
+        "a^Tx=b\\iff\\bigl(a^Tx\\ge b\\ \\text{and}\\ (-a)^Tx\\ge-b\\bigr)"
+      ],
+      "explanation": [
+        "",
+        ""
+      ],
+      "terms": [
+        [
+          "equivalent problems",
+          "可相互还原解的等价问题"
+        ]
+      ],
+      "review": [
+        "",
+        ""
+      ],
+      "id": "etf5248-l1-k12"
+    },
+    {
+      "pages": [
+        31
+      ],
+      "title": [
+        "混合约束转换：完整矩阵例题",
+        "Mixed constraints: complete matrix example"
+      ],
+      "lecture": [
+        "原目标为 min 2x₁−x₂+4x₃。将 x₁+x₂+x₄≤2 反向；把3x₂−x₃=5拆成两行；保留x₃+x₄≥3；再加入x₁≥0及−x₃≥0。x₂、x₄没有额外符号限制。",
+        "The objective is min 2x₁−x₂+4x₃. Reverse x₁+x₂+x₄≤2, split 3x₂−x₃=5 into two rows, retain x₃+x₄≥3, and include x₁≥0 and −x₃≥0. No extra sign restrictions are given for x₂ or x₄."
+      ],
+      "formulas": [
+        "A=\\begin{bmatrix}-1&-1&0&-1\\\\0&3&-1&0\\\\0&-3&1&0\\\\0&0&1&1\\\\1&0&0&0\\\\0&0&-1&0\\end{bmatrix},\\quad b=\\begin{bmatrix}-2\\\\5\\\\-5\\\\3\\\\0\\\\0\\end{bmatrix},\\quad c=\\begin{bmatrix}2\\\\-1\\\\4\\\\0\\end{bmatrix}"
+      ],
+      "explanation": [
+        "",
+        ""
+      ],
+      "terms": [],
+      "review": [
+        "",
+        ""
+      ],
+      "id": "etf5248-l1-k13"
+    },
+    {
+      "pages": [
+        32
+      ],
+      "title": [
+        "建模与求解检查清单",
+        "Modelling and solution checklist"
+      ],
+      "lecture": [
+        "课件总结：识别决策变量；根据业务条件写目标与约束；使用 R 求解并报告结果。维度：b为m维，c、x为n维，A为m×n。",
+        "The slide summarises variable identification, formulation of the business objective and constraints, and solution/reporting in R. Dimensions are b∈Rᵐ, c,x∈Rⁿ and A∈Rᵐˣⁿ."
+      ],
+      "formulas": [],
+      "explanation": [
+        "复习关联：业务单位决定系数，线性代数决定维度，等价变换决定求解器输入形式；三者必须一致。",
+        "Revision connection: business units determine coefficients, linear algebra determines dimensions, and equivalent transformations determine solver input. All three must agree."
+      ],
+      "terms": [],
+      "review": [
+        "",
+        ""
+      ],
+      "id": "etf5248-l1-k14"
+    },
+    {
+      "pages": [
+        33,
+        34,
+        35
+      ],
+      "title": [
+        "Steve 网店：课件练习与补充推导",
+        "Steve’s shop: lecture exercise and additional derivation"
+      ],
+      "lecture": [
+        "课件条件：蜡烛售价20、成本15、耗时20分钟；香薰售价40、成本18、耗时35分钟；每周最多8小时，蜡烛不超过50、香薰不超过10。第34页只有建模标题，第35页要求现场编程，没有印出的模型或结果。",
+        "Lecture data: candles sell for 20, cost 15 and require 20 minutes; diffusers sell for 40, cost 18 and require 35 minutes. Weekly time is at most 8 hours, with at most 50 candles and 10 diffusers. Page 34 is a formulation heading only and page 35 requests live coding; neither prints the completed solution."
+      ],
+      "formulas": [],
+      "explanation": [
+        "Codex 补充解：令c,d为产量。max 5c+22d，约束20c+35d≤480，0≤c≤50，0≤d≤10。香薰每分钟利润较高，LP最优d=10、c=6.5，利润252.5。若要求整数，需另建整数规划，不能把连续解直接当作可生产数量。",
+        "Codex solution: maximise 5c+22d subject to 20c+35d≤480, 0≤c≤50 and 0≤d≤10. Diffusers have higher profit per minute; the LP optimum is d=10, c=6.5, profit 252.5. An integer-production requirement needs an integer model rather than treating the continuous solution as a production plan."
+      ],
+      "terms": [],
+      "review": [
+        "第34–35页课堂填写/现场代码不在PDF中，需课堂记录核对。",
+        "The completed classroom formulation/live code on pages 34–35 is absent from the PDF; consult class notes."
+      ],
+      "id": "etf5248-l1-k15"
+    },
+    {
+      "pages": [
+        36
+      ],
+      "title": [
+        "Giapetto：木制士兵和火车",
+        "Giapetto: wooden soldiers and trains"
+      ],
+      "lecture": [
+        "每个士兵售价27、材料10、变动人工及间接费用14，消耗打磨2小时和木工1小时；火车售价21、材料9、其他变动成本10，消耗打磨及木工各1小时。每周打磨100小时、木工80小时；士兵需求上限40，火车无需求上限。课件要求建立LP并用R求解，未印答案。",
+        "Each soldier sells for 27, uses 10 of materials and 14 of variable labour/overhead, and needs 2 finishing hours and 1 carpentry hour. A train sells for 21, uses 9 of materials and 10 of other variable costs, and needs 1 hour of each labour type. Weekly capacities are 100 finishing hours and 80 carpentry hours, with at most 40 soldiers demanded and no train demand limit. The slide asks for an LP/R solution without printing the answer."
+      ],
+      "formulas": [],
+      "explanation": [
+        "Codex 补充：单位利润为3和2。max 3s+2t，2s+t≤100，s+t≤80，s≤40，s,t≥0。两条工时边界交于(s,t)=(20,60)，利润180；与其余可行顶点比较可确认最优。",
+        "Codex addition: unit profits are 3 and 2. Maximise 3s+2t subject to 2s+t≤100, s+t≤80, s≤40, s,t≥0. The two labour boundaries intersect at (20,60), giving profit 180; comparison with the other feasible vertices confirms optimality."
+      ],
+      "terms": [],
+      "review": [
+        "",
+        ""
+      ],
+      "id": "etf5248-l1-k16"
+    }
+  ],
+  "summary": [
+    "先建立业务模型，再检查维度和符号；求解输出必须解释到原业务。ApplePie存在一段最优解，而非必须唯一。",
+    "Build the business model, check dimensions and signs, then interpret the solution. ApplePie has an optimal segment rather than necessarily a unique optimum."
+  ],
+  "exercises": [
+    {
+      "question": [
+        "为什么ApplePie的最优利润不超过90000？",
+        "Why can ApplePie profit not exceed 90000?"
+      ],
+      "answer": [
+        "因为目标等于300倍使用工时，而工时≤300。",
+        "The objective is 300 times labour used, and labour is at most 300."
+      ],
+      "pages": [
+        17,
+        18
+      ]
+    },
+    {
+      "question": [
+        "把2x₁−x₂≤7改写为≥约束。",
+        "Rewrite 2x₁−x₂≤7 as a ≥ constraint."
+      ],
+      "answer": [
+        "−2x₁+x₂≥−7。",
+        "−2x₁+x₂≥−7."
+      ],
+      "pages": [
+        29
+      ]
+    },
+    {
+      "question": [
+        "m=5,n=8时A、b、c分别什么维度？",
+        "What are the dimensions of A, b and c when m=5,n=8?"
+      ],
+      "answer": [
+        "A为5×8，b为5维，c为8维。",
+        "A is 5×8; b has 5 entries and c has 8."
+      ],
+      "pages": [
+        21,
+        22,
+        32
+      ]
+    }
+  ],
+  "reviewPages": [
+    {
+      "pages": [
+        34,
+        35
+      ],
+      "reason": [
+        "课堂补充模型/代码未包含在PDF，不能还原老师的现场解答。",
+        "Completed classroom model/code is absent; the instructor’s live solution cannot be reconstructed."
+      ]
+    }
+  ]
+};

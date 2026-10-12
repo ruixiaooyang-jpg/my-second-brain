@@ -1,0 +1,551 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Optimization Learning Hub</title>
+<style>
+:root{
+  --bg:#f4f7fa;--ink:#172c40;--muted:#566b7b;
+  --brand:#006d77;--line:#dce5eb;--card:#fff;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:16px/1.7 system-ui,-apple-system,"Segoe UI",sans-serif}
+button,input,select{font:inherit}
+button,a,input,select{touch-action:manipulation}
+button{cursor:pointer}
+a{color:var(--brand)}
+button:focus-visible,a:focus-visible,input:focus-visible,
+select:focus-visible,summary:focus-visible{
+  outline:3px solid #df9300;outline-offset:4px}
+header{background:#fff;border-bottom:1px solid var(--line)}
+.wrap{max-width:1140px;margin:auto;padding:24px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.top .brand{min-width:0}
+#language{flex-shrink:0;white-space:nowrap}
+.brand{font-weight:750;letter-spacing:-.5px}
+.brand small{display:block;color:var(--muted);font-weight:400;letter-spacing:0}
+nav{display:flex;gap:22px;flex-wrap:wrap;margin-top:20px}
+nav a{text-decoration:none;font-size:14px;font-weight:650}
+button.primary{background:var(--brand);color:white;border:0}
+button{border:1px solid var(--line);border-radius:9px;
+  background:white;padding:10px 17px;color:var(--ink)}
+.hero{padding:46px 0 28px}
+.eyebrow{color:var(--brand);letter-spacing:2px;font-size:12px;font-weight:800}
+h1{font-size:clamp(30px,5vw,52px);line-height:1.2;letter-spacing:-1.5px;margin:15px 0}
+h2{font-size:25px;letter-spacing:-.5px;margin:0 0 8px}
+h3{font-size:19px;margin:12px 0}
+p{margin:10px 0}
+.muted{color:var(--muted)}
+.notice{border-left:4px solid #d49a32;background:#fff6e5;padding:15px 20px;border-radius:6px}
+section{scroll-margin-top:20px;margin:34px 0}
+.section-head{display:flex;justify-content:space-between;align-items:center;gap:15px}
+.tag{display:inline-block;max-width:100%;color:var(--brand);font-size:12px;border:1px solid #b8d9dc;
+  padding:3px 9px;border-radius:12px;white-space:normal;overflow-wrap:anywhere}
+.card{background:white;border:1px solid var(--line);border-radius:16px;padding:24px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px}
+.tools{display:flex;gap:12px;margin:20px 0}
+input[type=search],select{padding:11px;border:1px solid var(--line);
+  background:white;border-radius:9px;min-width:0}
+input[type=search]{flex:1}
+summary{cursor:pointer;font-weight:700}
+details p{font-size:15px}
+.formula{font-family:Georgia,serif;background:#edf5f6;padding:14px;
+  border-radius:8px;overflow-wrap:anywhere;font-size:19px}
+.lab{display:grid;grid-template-columns:280px minmax(0,1fr);gap:24px;margin-top:18px}
+.lab > div{min-width:0}
+.control{display:block;margin:16px 0}
+.control span{display:flex;justify-content:space-between}
+input[type=range]{width:100%;accent-color:var(--brand)}
+svg{width:100%;height:auto;display:block}
+/* Keep axis labels readable on small screens; only the chart scrolls. */
+.plot-wrap{overflow-x:auto;border-radius:8px}
+.plot-wrap svg{min-width:520px}
+.plot-wrap:focus-visible{outline:3px solid #df9300;outline-offset:3px}
+.result{background:#e7f4ef;padding:15px;border-radius:10px}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:13px}
+.legend span::before{content:"";display:inline-block;width:10px;height:10px;
+  border-radius:50%;background:var(--dot);margin-right:6px}
+table{border-collapse:collapse;width:100%;margin:16px 0}
+td,th{text-align:left;padding:10px;border-bottom:1px solid var(--line)}
+.table-wrap{overflow:auto}
+fieldset{border:1px solid var(--line);border-radius:12px;margin:18px 0;padding:18px}
+legend{font-weight:650;padding:0 8px}
+.option{display:block;padding:8px;border-radius:7px}
+.option:hover{background:#f1f6f8}
+input[type=radio]{accent-color:var(--brand);margin-right:10px}
+.feedback{padding:12px;border-radius:8px;background:#eef6f4}
+.score{font-size:22px;font-weight:700;margin:18px 0}
+footer{border-top:1px solid var(--line);padding:22px 0;color:var(--muted);font-size:13px}
+@media(max-width:760px){
+  .wrap{padding:18px}.grid,.lab{grid-template-columns:1fr}
+  .hero{padding-top:30px}.tools{flex-direction:column}
+  .card{padding:18px}.section-head{align-items:flex-start}
+  .section-head{display:block}
+  .section-head>.tag{margin-top:4px}
+  table{table-layout:fixed;font-size:14px}
+  td,th{padding:8px 5px;overflow-wrap:anywhere}
+  th:first-child{width:43%}
+  nav{gap:16px}.brand{font-size:14px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+<link rel="stylesheet" href="knowledge-manager.css">
+<link rel="stylesheet" href="vendor/katex/katex.min.css">
+<link rel="stylesheet" href="brain-ui.css">
+<link rel="stylesheet" href="knowledge-libraries.css">
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="top">
+      <div class="brand">Optimization Learning Hub
+        <small id="subtitle"></small>
+      </div>
+      <button id="language" type="button"></button>
+    </div>
+    <nav id="nav" aria-label="Navigation"></nav>
+  </div>
+</header>
+<main class="wrap">
+  <div class="hero">
+    <div class="eyebrow">OPTIMIZATION / 01</div>
+    <h1 id="heading"></h1>
+    <p class="muted" id="intro"></p>
+  </div>
+  <aside class="notice" id="notice"></aside>
+
+  <section id="knowledge">
+    <div class="section-head">
+      <div><h2 id="knowledgeTitle"></h2><p class="muted" id="knowledgeIntro"></p></div>
+      <span class="tag" id="sourceTag"></span>
+    </div>
+    <div class="tools">
+      <input id="search" type="search">
+      <select id="category"></select>
+    </div>
+    <p id="count" class="muted" aria-live="polite"></p>
+    <div id="cards" class="grid"></div>
+  </section>
+
+  <section id="graph">
+    <h2 id="graphTitle"></h2>
+    <p class="muted" id="graphIntro"></p>
+    <div class="card lab">
+      <div>
+        <div class="formula">max z = a x + b y</div>
+        <label class="control">
+          <span><span id="labelA"></span><output id="outA"></output></span>
+          <input id="a" type="range" min="1" max="8" step="1" value="3">
+        </label>
+        <label class="control">
+          <span><span id="labelB"></span><output id="outB"></output></span>
+          <input id="b" type="range" min="1" max="8" step="1" value="2">
+        </label>
+        <label class="control">
+          <span><span id="labelR"></span><output id="outR"></output></span>
+          <input id="r" type="range" min="2" max="8" step="1" value="4">
+        </label>
+        <div class="formula" id="constraints"></div>
+        <p id="result" class="result" aria-live="polite"></p>
+        <button type="button" id="resetGraph"></button>
+      </div>
+      <div>
+        <div id="plotWrap" class="plot-wrap" tabindex="0" role="region">
+          <svg id="plot" viewBox="0 0 600 460" role="img" aria-labelledby="plotTitle plotDesc"></svg>
+        </div>
+        <div class="legend" id="legend"></div>
+        <p class="muted" id="graphNote"></p>
+      </div>
+    </div>
+  </section>
+
+  <section id="example">
+    <h2 id="exampleTitle"></h2>
+    <div id="exampleBody" class="card"></div>
+  </section>
+
+  <section id="quiz">
+    <h2 id="quizTitle"></h2>
+    <p class="muted" id="quizIntro"></p>
+    <form id="quizForm" class="card">
+      <div id="questions"></div>
+      <button id="submitQuiz" class="primary" type="submit"></button>
+      <button id="resetQuiz" type="button"></button>
+      <div id="score" class="score" role="status"></div>
+    </form>
+  </section>
+  <footer id="footer"></footer>
+</main>
+
+<script src="knowledge-store.js"></script>
+<script src="knowledge-manager.js"></script>
+<script>
+/*
+  All learning content in this demo is generic supplementary material.
+  Replace it with verified course content and page references when provided.
+  No external libraries, network calls, database, or build step are needed.
+*/
+const $ = id => document.getElementById(id);
+let lang = "zh";
+let submitted = false;
+const answers = {};
+const t = (zh,en) => lang === "zh" ? zh : en;
+
+// Bilingual content: [Chinese, English].
+const topics = [
+  {
+    group:0,
+    title:["决策变量","Decision variables"],
+    body:[
+      "决策变量表示需要确定的数量。先定义含义、单位与取值范围。本示例中 x、y 是两种产品的生产批次数，允许取连续非负值。",
+      "Decision variables represent quantities to determine. Define their meaning, units and domain. Here x and y are production batches and may take continuous nonnegative values."
+    ],
+    formula:"x ≥ 0, y ≥ 0"
+  },
+  {
+    group:0,
+    title:["目标函数","Objective function"],
+    body:[
+      "目标函数描述需要最大化或最小化的线性指标，例如利润或成本。系数必须与变量单位匹配。3x + 2y 表示两种产品分别贡献 3 和 2 单位利润。",
+      "The objective is a linear measure to maximize or minimize, such as profit or cost. Coefficients must match variable units. In 3x + 2y, the two products contribute 3 and 2 profit units per batch."
+    ],
+    formula:"max z = 3x + 2y"
+  },
+  {
+    group:0,
+    title:["约束条件","Constraints"],
+    body:[
+      "约束表达资源上限、需求或其他限制。若每批 A、B 分别需要 1 和 2 小时机器时间，且共可用 8 小时，则 x + 2y ≤ 8。非负条件也是模型约束。",
+      "Constraints represent resource limits, requirements or other restrictions. If batches A and B require 1 and 2 machine hours, with 8 hours available, then x + 2y ≤ 8. Nonnegativity is also a constraint."
+    ],
+    formula:"x + 2y ≤ 8"
+  },
+  {
+    group:1,
+    title:["可行域","Feasible region"],
+    body:[
+      "同时满足全部约束的点组成可行域。二维情况下，可将每个线性不等式画成半平面，再取交集。满足其中一个约束并不代表可行。",
+      "The feasible region contains points satisfying every constraint. In two dimensions, intersect the half-planes defined by the linear inequalities. Satisfying one constraint alone is insufficient."
+    ],
+    formula:"F = {(x,y) : x+y≤4, x+2y≤8, x≥0, y≥0}"
+  },
+  {
+    group:1,
+    title:["顶点法与最优解","Vertices and optimal solutions"],
+    body:[
+      "对于非空、有界的多边形可行域，线性目标至少在一个顶点取得最优值。列出可行顶点并比较目标值即可求解。若一条边的两端均最优，则整条边都最优。",
+      "For a nonempty bounded polygonal feasible region, a linear objective attains an optimum at a vertex. Compare objective values at feasible vertices. If both endpoints of an edge are optimal, the entire edge is optimal."
+    ],
+    formula:"z* = max { cᵀv : v is a feasible vertex }"
+  },
+  {
+    group:2,
+    title:["建模假设与结果解释","Assumptions and interpretation"],
+    body:[
+      "本演示假定单位资源消耗与利润恒定、贡献可相加、数据确定且变量连续。若产品必须按整数件生产，则需要考虑整数限制；不能直接把连续解四舍五入当作最优整数解。",
+      "This demo assumes constant per-unit resource use and profit, additive contributions, known data and continuous variables. If whole items are required, integer restrictions matter; rounding a continuous solution does not generally give an optimal integer solution."
+    ],
+    formula:"LP: continuous variables"
+  }
+];
+const quiz = [
+  {
+    q:["哪一个可以作为线性目标函数？","Which is a linear objective?"],
+    options:[["3x + 2y","3x + 2y"],["xy","xy"],["x² + y","x² + y"]],
+    correct:0,
+    why:["线性表达式中，变量只以一次项出现，系数为常数。",
+         "A linear expression has constant coefficients and variables appearing only to the first power."]
+  },
+  {
+    q:["约束 x + 2y ≤ 8 中，点 (2, 4) 是否满足约束？",
+       "Does (2, 4) satisfy x + 2y ≤ 8?"],
+    options:[["满足","Yes"],["不满足","No"],["无法判断","Cannot determine"]],
+    correct:1,
+    why:["2 + 2×4 = 10 > 8，因此不满足。","2 + 2×4 = 10 > 8, so it violates the constraint."]
+  },
+  {
+    q:["“可行解”的含义是什么？","What is a feasible solution?"],
+    options:[
+      ["使利润最大的解","A solution with maximum profit"],
+      ["满足任意一个约束的解","A solution satisfying any one constraint"],
+      ["同时满足全部约束的解","A solution satisfying all constraints"]
+    ],
+    correct:2,
+    why:["可行性要求全部约束同时成立；可行解不一定最优。",
+         "Feasibility requires every constraint to hold; a feasible solution need not be optimal."]
+  },
+  {
+    q:["max 3x + 2y，约束 x+y≤4、x+2y≤8、x,y≥0，最优解是什么？",
+       "For max 3x + 2y subject to x+y≤4, x+2y≤8 and x,y≥0, which is optimal?"],
+    options:[["(0,4)","(0,4)"],["(4,0)","(4,0)"],["(2,2)","(2,2)"]],
+    correct:1,
+    why:["三个可行顶点 (0,0)、(4,0)、(0,4) 的目标值分别为 0、12、8，故 (4,0) 最优。",
+         "The feasible vertices (0,0), (4,0) and (0,4) give 0, 12 and 8; hence (4,0) is optimal."]
+  },
+  {
+    q:["若目标改为 max 2x+2y，其他约束同上，会发生什么？",
+       "If the objective becomes max 2x+2y with the same constraints, what happens?"],
+    options:[
+      ["(4,0) 是唯一最优解","(4,0) is the unique optimum"],
+      ["问题不可行","The problem is infeasible"],
+      ["从 (4,0) 到 (0,4) 的线段都是最优解","Every point on the segment from (4,0) to (0,4) is optimal"]
+    ],
+    correct:2,
+    why:["该线段上 x+y=4，且均满足机器时间约束，所以目标值恒为 8。",
+         "Along that feasible segment x+y=4, so the objective is always 8."]
+  }
+];
+const pair = value => value[lang === "zh" ? 0 : 1];
+const categories = () => [
+  t("建模基础","Model formulation"),
+  t("图形求解","Graphical solution"),
+  t("模型解释","Interpretation")
+];
+
+function renderKnowledge(){ KnowledgeManager.renderKnowledge(); }
+
+function renderQuiz(){
+  $("questions").innerHTML = quiz.map((item,i) => `
+    <fieldset>
+      <legend>${i+1}. ${pair(item.q)}</legend>
+      ${item.options.map((option,j) => `
+        <label class="option">
+          <input type="radio" name="q${i}" value="${j}"
+            ${answers[i] === j ? "checked" : ""}>
+          ${pair(option)}
+        </label>`).join("")}
+      ${submitted ? `<p class="feedback">
+        ${answers[i] === item.correct ? t("✓ 正确","✓ Correct") :
+          answers[i] === undefined ? t("未作答","Unanswered") : t("✗ 错误","✗ Incorrect")}
+        · ${t("正确答案：","Correct answer: ")}${pair(item.options[item.correct])}
+        <br>${pair(item.why)}</p>` : ""}
+    </fieldset>`).join("");
+  $("score").textContent = submitted
+    ? t(`得分：${quiz.filter((q,i)=>answers[i]===q.correct).length} / 5（未答计 0 分）`,
+        `Score: ${quiz.filter((q,i)=>answers[i]===q.correct).length} / 5 (unanswered = 0)`)
+    : "";
+}
+
+// Solve this bounded 2D LP by intersecting boundary lines.
+// Every candidate must satisfy ALL inequalities.
+function solve(a,b,r){
+  const lines = [[1,1,r],[1,2,8],[1,0,0],[0,1,0]];
+  const vertices = [];
+  for(let i=0;i<lines.length;i++){
+    for(let j=i+1;j<lines.length;j++){
+      const [A,B,C]=lines[i], [D,E,F]=lines[j];
+      const det=A*E-B*D;
+      if(Math.abs(det)<1e-9) continue;
+      let x=(C*E-B*F)/det, y=(A*F-C*D)/det;
+      if(x>=-1e-9 && y>=-1e-9 && x+y<=r+1e-9 && x+2*y<=8+1e-9){
+        x=Math.max(0,x); y=Math.max(0,y);
+        if(!vertices.some(v=>Math.hypot(v.x-x,v.y-y)<1e-8))
+          vertices.push({x,y,z:a*x+b*y});
+      }
+    }
+  }
+  const cx=vertices.reduce((s,v)=>s+v.x,0)/vertices.length;
+  const cy=vertices.reduce((s,v)=>s+v.y,0)/vertices.length;
+  vertices.sort((u,v)=>Math.atan2(u.y-cy,u.x-cx)-Math.atan2(v.y-cy,v.x-cx));
+  const best=Math.max(...vertices.map(v=>v.z));
+  return {vertices,best,winners:vertices.filter(v=>Math.abs(v.z-best)<1e-8)};
+}
+
+function drawGraph(){
+  const a=+$("a").value,b=+$("b").value,r=+$("r").value;
+  $("outA").textContent=a; $("outB").textContent=b; $("outR").textContent=r;
+  $("constraints").innerHTML=`x + y ≤ ${r}<br>x + 2y ≤ 8<br>x, y ≥ 0`;
+  const {vertices,best,winners}=solve(a,b,r);
+  const fmt=n=>Number(n.toFixed(2));
+  $("result").textContent = winners.length===1
+    ? t(`最优解 (${fmt(winners[0].x)}, ${fmt(winners[0].y)})；z* = ${fmt(best)}`,
+        `Optimal solution (${fmt(winners[0].x)}, ${fmt(winners[0].y)}); z* = ${fmt(best)}`)
+    : t(`存在多个最优解：高亮线段上所有点均最优；z* = ${fmt(best)}`,
+        `Multiple optima: every point on the highlighted segment is optimal; z* = ${fmt(best)}`);
+  const X=x=>60+60*x, Y=y=>400-40*y;
+  let s=`<title id="plotTitle">${t("二维线性规划图","Two-dimensional linear program")}</title>
+    <desc id="plotDesc">${$("result").textContent}</desc>
+    <defs><clipPath id="clip"><rect x="60" y="80" width="480" height="320"/></clipPath></defs>`;
+  for(let i=0;i<=8;i++){
+    s+=`<path d="M${X(i)} 80V400 M60 ${Y(i)}H540" stroke="#e5edf1" fill="none"/>
+      <text x="${X(i)}" y="423" text-anchor="middle" font-size="13" fill="#566b7b">${i}</text>
+      <text x="43" y="${Y(i)+4}" text-anchor="end" font-size="13" fill="#566b7b">${i}</text>`;
+  }
+  s+=`<polygon points="${vertices.map(v=>`${X(v.x)},${Y(v.y)}`).join(" ")}"
+      fill="#b7e4d6" stroke="#006d77" stroke-width="2"/>
+    <g clip-path="url(#clip)">
+      <path d="M${X(0)} ${Y(r)}L${X(r)} ${Y(0)}" stroke="#3279ba" stroke-width="3"/>
+      <path d="M${X(0)} ${Y(4)}L${X(8)} ${Y(0)}" stroke="#9b70ba" stroke-width="3"/>
+      <path d="M${X(0)} ${Y(best/b)}L${X(best/a)} ${Y(0)}"
+        stroke="#c4760d" stroke-width="3" stroke-dasharray="8 5"/>
+    </g>`;
+  if(winners.length>1){
+    s+=`<line x1="${X(winners[0].x)}" y1="${Y(winners[0].y)}"
+      x2="${X(winners[1].x)}" y2="${Y(winners[1].y)}" stroke="#c4760d" stroke-width="6"/>`;
+  }
+  vertices.forEach(v=>{
+    s+=`<circle cx="${X(v.x)}" cy="${Y(v.y)}" r="5" fill="#006d77"/>
+      <text x="${X(v.x)+8}" y="${Y(v.y)-10}" font-size="13" fill="#172c40">(${fmt(v.x)}, ${fmt(v.y)})</text>`;
+  });
+  winners.forEach(v=>{
+    s+=`<circle cx="${X(v.x)}" cy="${Y(v.y)}" r="8" fill="#c4760d" stroke="white" stroke-width="2"/>`;
+  });
+  s+=`<path d="M60 70V400H552" stroke="#172c40" fill="none" stroke-width="2"/>
+    <text x="564" y="405" font-size="18">x</text><text x="54" y="57" font-size="18">y</text>`;
+  $("plot").innerHTML=s;
+}
+
+function renderExample(){
+  $("exampleBody").innerHTML=t(`
+    <span class="tag">原创教学例题 · 非课程案例</span>
+    <h3>生产计划：两种可分割产品</h3>
+    <p>某工坊生产产品 A 和 B。以连续批次计量，全部产出均可销售；资源消耗与单位利润保持不变。</p>
+    <div class="table-wrap"><table>
+      <thead><tr><th>每批需求 / 收益</th><th>A</th><th>B</th><th>资源上限</th></tr></thead>
+      <tbody><tr><td>人工（小时）</td><td>1</td><td>1</td><td>4</td></tr>
+      <tr><td>机器（小时）</td><td>1</td><td>2</td><td>8</td></tr>
+      <tr><td>利润（百澳元）</td><td>3</td><td>2</td><td>—</td></tr></tbody>
+    </table></div>
+    <h3>1 · 建模</h3>
+    <p>x 为 A 的生产批次数，y 为 B 的生产批次数。两者均为连续非负变量。</p>
+    <div class="formula">max z = 3x + 2y<br>x + y ≤ 4<br>x + 2y ≤ 8<br>x, y ≥ 0</div>
+    <h3>2 · 求解</h3>
+    <p>在非负象限中取约束交集，可行顶点为 (0,0)、(4,0)、(0,4)。两条资源边界相交于 (0,4)。本例中机器约束是冗余的：x+2y ≤ 2(x+y) ≤ 8。</p>
+    <p>分别代入目标函数，得到 z=0、12、8。因此最优解为 (4,0)。</p>
+    <h3>3 · 解释</h3>
+    <p>生产 4 批 A、0 批 B，利润为 12 百澳元，即 A$1,200。使用 4 小时人工与 4 小时机器时间；人工剩余 0 小时，机器剩余 4 小时。</p>
+    <p class="muted">上方图形默认参数对应本例。调整滑块仅改变实验模型，不改变此处固定例题。</p>
+  `,`
+    <span class="tag">Original teaching example · Not course material</span>
+    <h3>Production planning: two divisible products</h3>
+    <p>A workshop produces A and B in continuous batches. All output can be sold, and per-batch resource use and profit remain constant.</p>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Per-batch requirement / return</th><th>A</th><th>B</th><th>Capacity</th></tr></thead>
+      <tbody><tr><td>Labor (hours)</td><td>1</td><td>1</td><td>4</td></tr>
+      <tr><td>Machine time (hours)</td><td>1</td><td>2</td><td>8</td></tr>
+      <tr><td>Profit (hundreds of AUD)</td><td>3</td><td>2</td><td>—</td></tr></tbody>
+    </table></div>
+    <h3>1 · Formulate</h3>
+    <p>Let x and y be batches of A and B. Both are continuous nonnegative variables.</p>
+    <div class="formula">max z = 3x + 2y<br>x + y ≤ 4<br>x + 2y ≤ 8<br>x, y ≥ 0</div>
+    <h3>2 · Solve</h3>
+    <p>Intersect the constraints in the nonnegative quadrant. The feasible vertices are (0,0), (4,0) and (0,4). The resource boundaries meet at (0,4). Here the machine constraint is redundant because x+2y ≤ 2(x+y) ≤ 8.</p>
+    <p>The objective values at these vertices are 0, 12 and 8. Therefore (4,0) is optimal.</p>
+    <h3>3 · Interpret</h3>
+    <p>Produce 4 batches of A and none of B, earning 12 hundreds of AUD, or A$1,200. This uses 4 labor hours and 4 machine hours, leaving 0 labor hours and 4 machine hours unused.</p>
+    <p class="muted">The graph's default parameters match this example. Slider changes affect only the experimental model, not this fixed example.</p>
+  `);
+}
+
+function render(){
+  document.documentElement.lang=lang==="zh"?"zh-CN":"en";
+  const labels={
+    subtitle:["线性规划学习知识库 · ETF5248 学习项目","Linear programming knowledge base · ETF5248 study project"],
+    heading:["把约束变成清晰的决策。","Turn constraints into clear decisions."],
+    intro:["从建模到图形求解，再用例题和测验巩固理解。","Explore formulation, visualize solutions, and reinforce your understanding with practice."],
+    notice:["ETF5248 Lecture 1–7 已整理并附来源；早期演示和个人笔记分别标注。非 Monash University 官方网站。",
+      "ETF5248 Lectures 1–7 include source references. Early demos and personal notes are labeled separately. Not an official Monash University website."],
+    knowledgeTitle:["01 / 知识地图","01 / Knowledge map"],
+    knowledgeIntro:["先理解概念，再建立模型。支持中英文关键词搜索。","Understand the concepts, then build a model. Search in either language."],
+    sourceTag:["通用补充","General supplement"],
+    graphTitle:["02 / 图形实验室","02 / Graphical laboratory"],
+    graphIntro:["调整利润与人工上限，观察可行域和最优解如何变化。","Adjust profit and labor capacity to explore changes in the feasible region and optimum."],
+    labelA:["A 的利润系数 a","Profit coefficient a"],
+    labelB:["B 的利润系数 b","Profit coefficient b"],
+    labelR:["人工上限 r","Labor capacity r"],
+    resetGraph:["恢复默认模型","Reset model"],
+    graphNote:["虚线为经过最优解的目标函数等值线。此实验参数范围内，可行域始终非空且有界。",
+      "The dashed line is the objective contour through the optimum. Within these parameter ranges, the feasible region is always nonempty and bounded."],
+    exampleTitle:["03 / 应用：生产计划","03 / Application: production planning"],
+    quizTitle:["04 / 检查你的理解","04 / Check your understanding"],
+    quizIntro:["5 道选择题，每题 1 分。提交后查看正确答案和解析；修改答案后可重新提交。",
+      "Five questions, one point each. Submit to see answers and explanations. You may revise your answers and submit again."],
+    submitQuiz:["提交答案","Submit answers"],
+    resetQuiz:["重新作答","Start over"],
+    footer:["个人学习 Demo · 非 Monash University 官方网站 · Lecture 1–7 笔记附原始课件与实际页码；补充解释另行标注。",
+      "Personal learning demo · Not an official Monash University website · Lecture 1–7 notes include source slides and physical pages; added explanations are labeled."]
+  };
+  Object.entries(labels).forEach(([id,value])=>$(id).textContent=pair(value));
+  $("graphNote").textContent += t(" 窄屏下可左右滑动图形查看完整坐标。", " On narrow screens, scroll the chart horizontally to view all coordinates.");
+  $("plotWrap").setAttribute("aria-label",t("线性规划图形，可左右滚动","Linear programming chart; scroll horizontally"));
+  $("nav").setAttribute("aria-label",t("主导航","Main navigation"));
+  $("language").textContent=lang==="zh"?"English":"中文";
+  $("language").setAttribute("aria-label",t("切换到英文","Switch to Chinese"));
+  $("nav").innerHTML=[
+    ["knowledge",t("知识库","Knowledge")],["graph",t("图形实验","Graph lab")],
+    ["example",t("应用例题","Example")],["quiz",t("自测","Quiz")]
+  ].map(([id,label])=>`<a href="#${id}">${label}</a>`).join("");
+  $("search").placeholder=t("搜索知识点，例如：可行域 / objective","Search topics, e.g. feasible / 约束");
+  $("search").setAttribute("aria-label",t("搜索知识点","Search topics"));
+  const selected=$("category").value || "all";
+  KnowledgeManager.refreshCategories(selected);
+  $("category").setAttribute("aria-label",t("知识分类","Topic category"));
+  $("legend").innerHTML=[
+    ["#b7e4d6",t("可行域","Feasible region")],
+    ["#3279ba",t("人工约束","Labor constraint")],
+    ["#9b70ba",t("机器约束","Machine constraint")],
+    ["#c4760d",t("目标等值线 / 最优解","Objective contour / optimum")]
+  ].map(([color,label])=>`<span style="--dot:${color}">${label}</span>`).join("");
+  KnowledgeManager.translate();
+  renderKnowledge(); drawGraph(); renderExample(); renderQuiz();
+}
+
+// Events are registered once. Language changes preserve answers and sliders.
+$("language").onclick=()=>{lang=lang==="zh"?"en":"zh";render()};
+$("search").oninput=renderKnowledge;
+$("category").onchange=renderKnowledge;
+["a","b","r"].forEach(id=>$(id).oninput=drawGraph);
+$("resetGraph").onclick=()=>{
+  $("a").value=3;$("b").value=2;$("r").value=4;drawGraph();
+};
+$("questions").onchange=event=>{
+  if(event.target.type!=="radio")return;
+  answers[Number(event.target.name.slice(1))]=Number(event.target.value);
+  // Hide stale scores if answers change after submission.
+  if(submitted){submitted=false;renderQuiz()}
+};
+$("quizForm").onsubmit=event=>{
+  event.preventDefault();submitted=true;renderQuiz();
+};
+$("resetQuiz").onclick=()=>{
+  Object.keys(answers).forEach(key=>delete answers[key]);
+  submitted=false;renderQuiz();
+};
+KnowledgeManager.init();
+render();
+</script>
+<script src="vendor/katex/katex.min.js"></script>
+<script src="vendor/katex/contrib/auto-render.min.js"></script>
+<script src="brain-ui.js"></script>
+<script src="knowledge-libraries.js"></script>
+<link rel="stylesheet" href="pdf-import.css">
+<script src="pdf-import.js"></script>
+<link rel="stylesheet" href="course-navigation.css">
+<script src="course-navigation.js"></script>
+<script src="ai-contract.js"></script>
+<link rel="stylesheet" href="ai-workspace.css">
+<script src="ai-workspace.js"></script>
+<link rel="stylesheet" href="lecture-library.css">
+<script src="course-data/lecture-1.js"></script>
+<script src="course-data/lecture-2.js"></script>
+<script src="course-data/lecture-3.js"></script>
+<script src="course-data/lecture-4.js"></script>
+<script src="course-data/lecture-5.js"></script>
+<script src="course-data/lecture-6.js"></script>
+<script src="course-data/lecture-7.js"></script>
+<script src="lecture-library.js"></script>
+<script src="course-organization.js"></script>
+<script src="course-data/semantic-catalog.js"></script>
+<link rel="stylesheet" href="course-catalog.css">
+<script src="course-catalog.js"></script>
+<link rel="stylesheet" href="knowledge-graph.css">
+<script src="live-graph-data.js"></script>
+<script src="knowledge-graph.js"></script>
+<script src="workspace-polish.js"></script>
+<link rel="stylesheet" href="final-ui.css">
+<script src="final-ui.js"></script>
+</body>
+</html>
