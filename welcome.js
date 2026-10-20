@@ -42,8 +42,8 @@ window.Welcome=(()=>{
    <ul>${li('AI：代码、课件卡片的改写、例题整理、测试。','AI: code, paraphrased course cards, example write-ups, tests.')}
    ${li('我：要什么和为什么、每一步的验收、卡片是否准确的判断、以及“我的理解”里写下的所有自己的话。','Me: what and why, acceptance of every step, judging whether cards are accurate, and everything I write under “My understanding”.')}</ul></section>
   <section><h3>${t('已知局限','Known limitations')}</h3>
-   <ul>${li('“我的理解”和已学记录只存在这台电脑的浏览器里，换设备不会同步；请用“JSON 备份与恢复”导出。','“My understanding” and learned ticks live only in this browser and do not sync; use “JSON backup and restore”.')}
-   ${li('“云同步”入口尚未配置。','The “cloud sync” entry is not configured yet.')}
+   <ul>${li('没有云端同步：笔记、“我的理解”、复习进度和已学记录只存在这台电脑的浏览器里。我选择“本地优先”，跨设备靠“完整备份”一个文件导出、导入；恢复前会自动保存快照，可以撤销。','There is no cloud sync: notes, “My understanding”, review progress and learned ticks live only in this browser. I chose local-first; moving between devices uses one “full backup” file, and a snapshot is saved before every restore so it can be undone.')}
+   ${li('要做真正的多设备同步，需要后端或第三方账号，这是后续方向。','Real multi-device sync would need a backend or a third-party account; that is a future direction.')}
    ${li('卡片由 AI 改写，关键数字请回课件确认。','Cards are AI paraphrases; confirm key numbers against the slides.')}</ul></section>
   <section><h3>${t('技术','Tech')}</h3><p>${t('纯静态 HTML / CSS / JavaScript，无框架、无后端；数据存在浏览器 localStorage；可离线使用。','Plain static HTML / CSS / JavaScript, no framework, no backend; data in browser localStorage; works offline.')}</p></section>`;
  }

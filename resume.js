@@ -49,18 +49,21 @@ window.Resume=(()=>{
    parts.push(`<div class="rs-col"><h3>${t('待完成','To do')}</h3><p>${d.due?t(`${d.due} 张卡到期复习`,`${d.due} cards due`):''}${d.due&&d.exTodo.length?' · ':''}${d.exTodo.length?t(`${d.exTodo.length} 道例题还没做过`,`${d.exTodo.length} examples not tried yet`):''}</p>${d.exTodo.length?`<button type="button" data-rs="examples">${t('做例题','Try examples')}</button>`:''} ${d.due?`<button type="button" data-rs="review">${t('开始复习','Start review')}</button>`:''}</div>`);
   }
   if(!parts.length)return '';
-  return `<h2 id="rsTitle">${t('继续学习','Continue learning')}</h2><div class="rs-grid">${parts.join('')}</div>`;
+  let lastExp=null;try{lastExp=localStorage.getItem('my-second-brain.lastExport');}catch{/* optional */}
+  const safe=`<p class="rs-safe muted">${t('数据只保存在这台电脑的浏览器里，不会上传；换电脑或清理浏览器前，请先导出完整备份。','Your data lives only in this browser and is never uploaded; export a full backup before switching computers or clearing the browser.')} ${lastExp?t('上次备份：','Last backup: ')+esc(lastExp.slice(0,10))+'。':''}<button type="button" data-rs="backup">${t('导出完整备份','Export full backup')}</button></p>`;
+  return `<h2 id="rsTitle">${t('继续学习','Continue learning')}</h2>${parts.length?`<div class="rs-grid">${parts.join('')}</div>`:''}${safe}`;
  }
  function paint(){
   const home=$('workspaceHome');if(!home)return;
   const slot=$('todaySlot'),h=html();let box=$('resumePanel');
   if(!h){box?.remove();return;}
-  if(!box){box=document.createElement('section');box.id='resumePanel';box.className='resume';box.setAttribute('aria-labelledby','rsTitle');if(slot)slot.before(box);else home.append(box);}
+  if(!box){box=document.createElement('section');box.id='resumePanel';box.className='resume';box.setAttribute('aria-labelledby','rsTitle');if(slot){if(matchMedia('(max-width:760px)').matches)slot.after(box);else slot.before(box);}else home.append(box);}
   if(box.dataset.sig!==h){box.innerHTML=h;box.dataset.sig=h;}
  }
  document.addEventListener('click',e=>{
   const a=e.target.closest('#resumePanel [data-rs]')?.dataset.rs;if(!a)return;
-  if(a==='review')window.ReviewUI?.open('all');
+  if(a==='backup')window.FullBackup?.exportAll?.();
+  else if(a==='review')window.ReviewUI?.open('all');
   else if(a==='mistakes')window.ReviewUI?.open('all','mistakes');
   else if(a==='examples')window.ReviewUI?.open('all','examples');
   else if(a==='continue'&&last){

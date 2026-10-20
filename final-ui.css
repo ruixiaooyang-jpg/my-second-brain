@@ -207,3 +207,9 @@ body.nav-collapsed #weeklyLink{display:none!important}
 .rs-col p{margin:4px 0;font-size:14px;line-height:1.6}
 .rs-col ul{margin:4px 0 10px;padding-left:18px;font-size:14px;line-height:1.7}
 .rs-col button{margin:6px 8px 0 0}
+
+/* Full backup preview */
+.fb-preview{margin-top:12px;padding:12px 14px;border:1px solid #dfe7e1;border-radius:10px;background:#fff}
+.fb-preview table{border-collapse:collapse;margin:8px 0;font-size:13px}
+.fb-preview th,.fb-preview td{padding:4px 14px 4px 0;text-align:left}
+.rs-safe{margin:12px 0 0;font-size:13px}.rs-safe button{margin-left:8px}
