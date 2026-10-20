@@ -197,3 +197,13 @@ body.nav-collapsed #weeklyLink{display:none!important}
 .about-body h3{margin:0 0 8px;color:#274e3b}
 .about-body p,.about-body li{font-size:14.5px;line-height:1.75;color:#3f4b44}
 .about-body ul,.about-body ol{margin:6px 0;padding-left:22px}
+
+/* Continue learning panel */
+.resume{margin:22px 0 0}
+.resume h2{font-size:17px;margin:0 0 10px;color:#274e3b}
+.rs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.rs-col{border:1px solid #dfe7e1;border-radius:12px;padding:14px 16px;background:#fff}
+.rs-col h3{margin:0 0 8px;font-size:13px;color:#245e49}
+.rs-col p{margin:4px 0;font-size:14px;line-height:1.6}
+.rs-col ul{margin:4px 0 10px;padding-left:18px;font-size:14px;line-height:1.7}
+.rs-col button{margin:6px 8px 0 0}

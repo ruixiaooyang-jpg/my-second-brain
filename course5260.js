@@ -68,5 +68,6 @@ window.Course5260=(()=>{
  for(const name of ['go','showKnowledge']){const original=CourseNav[name];CourseNav[name]=(...a)=>{ensureRegistered();const r=original(...a);if(CourseNav.current().view==='learn5260')refresh();return r;};}
  const previousRender=render;render=()=>{previousRender();ensureRegistered();if(!root.hidden)refresh();};
  ensureRegistered();refresh();CourseNav.refresh();
- return {refresh,open:()=>{ensureRegistered();if(registered)CourseNav.go(registered,'learn5260');}};
+ function focus(id){const i=topics.findIndex(x=>x.cards.some(c=>c.id===id));if(i<0)return false;cur=i;query='';refresh();const d=root.querySelector(`details.c55-card[data-id="${id}"]`);if(d){d.open=true;d.scrollIntoView?.({block:'center'});}return true;}
+ return {refresh,focus,open:()=>{ensureRegistered();if(registered)CourseNav.go(registered,'learn5260');}};
 })();
