@@ -133,7 +133,7 @@ window.KnowledgeManager = (() => {
     }catch(e){failure();}
   });
   el('exportNotes').onclick=()=>{
-    try{const current=read();download(JSON.stringify({...state,items:current}),'knowledge-backup-'+new Date().toISOString().slice(0,10)+'.json');status(`已发起导出 ${current.length} 条个人笔记；请确认下载文件已保存。`,`Export started for ${current.length} personal notes; check that the download was saved.`);}
+    try{const current=read();download(JSON.stringify({...state,items:current,exportedAt:new Date().toISOString(),app:'my-second-brain',appVersion:'1.1'}),'knowledge-backup-'+new Date().toISOString().slice(0,10)+'.json');status(`已发起导出 ${current.length} 条个人笔记；请确认下载文件已保存。`,`Export started for ${current.length} personal notes; check that the download was saved.`);}
     catch(e){status('导出失败，无法读取本机存储。','Export failed: cannot read local storage.',true);}
   };
   el('recovery').onclick=()=>{try{download(KnowledgeStore.rawCurrent()||KnowledgeStore.rawBackup()||'null','knowledge-raw-recovery.json');}catch(e){status('浏览器禁止读取存储，无法导出原始数据。','Browser storage access is blocked; raw data cannot be exported.',true);}};

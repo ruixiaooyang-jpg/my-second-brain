@@ -4,7 +4,9 @@ window.LiveGraphData=(()=>{
  function nodes(libraryId){const state=KnowledgeManager.state(),map=new Map();
   if(libraryId==='kb_etf5248'&&state.libraries.some(l=>l.id===libraryId))for(const e of base())map.set(e.id,{...e,related:[...e.related]});
   for(const n of state.items.filter(n=>n.libraryId===libraryId))if(!map.has(n.id))map.set(n.id,{id:n.id,kind:n.contentType||'note',title:[n.title,n.titleEn||n.title],body:[n.body,n.bodyEn||n.body],related:[...(n.relatedIds||[])],lectures:[...new Set([n.category,...n.tags].map(v=>/^Lecture\s+(\d+)$/i.exec(v)?.[1]).filter(Boolean).map(Number))],personal:n});
-  // Relations are undirected in the view; never infer from text or mutate records.
+  // Only links the user wrote explicitly as [[title]] become edges; nothing is inferred and no record is changed.
+  try{window.MyBrain?.extraEdges?.(map);}catch{/* optional */}
+  // Relations are undirected in the view.
   for(const e of map.values())e.related=e.related.filter(id=>map.has(id)&&id!==e.id);
   for(const e of map.values())for(const id of e.related)if(!map.get(id).related.includes(e.id))map.get(id).related.push(e.id);
   return [...map.values()];

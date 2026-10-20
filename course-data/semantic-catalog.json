@@ -37,7 +37,8 @@
       "blocks": [],
       "related": [
         "case-applepie",
-        "case-diet"
+        "case-diet",
+        "concept-constraints"
       ],
       "origin": "course-synthesis",
       "lectures": [
@@ -86,7 +87,10 @@
         "case-finco",
         "case-blend",
         "case-rylon",
-        "case-steve"
+        "case-steve",
+        "concept-linearity",
+        "concept-sign-transform",
+        "concept-requirements"
       ],
       "origin": "course-synthesis",
       "lectures": [
@@ -135,7 +139,11 @@
         "case-blend",
         "case-rylon",
         "case-steve",
-        "practice-source-nonnegative"
+        "practice-source-nonnegative",
+        "concept-linearity",
+        "concept-sign-transform",
+        "concept-slack",
+        "concept-variables"
       ],
       "origin": "course-synthesis",
       "lectures": [
@@ -177,7 +185,9 @@
       ],
       "blocks": [],
       "related": [
-        "practice-source-graph"
+        "practice-source-graph",
+        "concept-objective",
+        "concept-constraints"
       ],
       "origin": "course-synthesis",
       "lectures": [
@@ -265,7 +275,12 @@
         }
       ],
       "blocks": [],
-      "related": [],
+      "related": [
+        "concept-objective",
+        "concept-constraints",
+        "concept-slack",
+        "concept-dual-signs"
+      ],
       "origin": "course-synthesis",
       "lectures": [
         1
@@ -306,7 +321,10 @@
       ],
       "blocks": [],
       "related": [
-        "case-ad-feasibility"
+        "case-ad-feasibility",
+        "concept-basis",
+        "concept-optimal",
+        "concept-geometry"
       ],
       "origin": "course-synthesis",
       "lectures": [
@@ -347,7 +365,9 @@
       ],
       "blocks": [],
       "related": [
-        "case-giapetto"
+        "case-giapetto",
+        "concept-feasible",
+        "concept-outcomes"
       ],
       "origin": "course-synthesis",
       "lectures": [
@@ -390,7 +410,8 @@
       ],
       "blocks": [],
       "related": [
-        "case-applepie"
+        "case-applepie",
+        "concept-optimal"
       ],
       "origin": "course-synthesis",
       "lectures": [
@@ -436,7 +457,8 @@
       "related": [
         "case-giapetto",
         "case-advertising",
-        "practice-source-graph"
+        "practice-source-graph",
+        "concept-feasible"
       ],
       "origin": "course-synthesis",
       "lectures": [
@@ -523,7 +545,8 @@
       "related": [
         "case-advertising",
         "case-diet",
-        "practice-source-stigler"
+        "practice-source-stigler",
+        "concept-objective"
       ],
       "origin": "course-synthesis",
       "lectures": [
@@ -782,7 +805,10 @@
       ],
       "blocks": [],
       "related": [
-        "case-dakota"
+        "case-dakota",
+        "concept-sign-transform",
+        "concept-basis",
+        "concept-constraints"
       ],
       "origin": "course-synthesis",
       "lectures": [
@@ -826,7 +852,11 @@
       ],
       "blocks": [],
       "related": [
-        "case-dakota"
+        "case-dakota",
+        "concept-slack",
+        "concept-simplex-optimality",
+        "concept-ratio-pivot",
+        "concept-feasible"
       ],
       "origin": "course-synthesis",
       "lectures": [
@@ -869,7 +899,9 @@
       ],
       "blocks": [],
       "related": [
-        "case-dakota"
+        "case-dakota",
+        "concept-basis",
+        "concept-ratio-pivot"
       ],
       "origin": "course-synthesis",
       "lectures": [
@@ -912,7 +944,9 @@
       ],
       "blocks": [],
       "related": [
-        "case-dakota"
+        "case-dakota",
+        "concept-simplex-optimality",
+        "concept-basis"
       ],
       "origin": "course-synthesis",
       "lectures": [
@@ -957,7 +991,11 @@
       "blocks": [],
       "related": [
         "case-dakota",
-        "case-dual-bounds"
+        "case-dual-bounds",
+        "concept-complementarity",
+        "concept-dual-signs",
+        "concept-strong-duality",
+        "concept-sensitivity"
       ],
       "origin": "course-synthesis",
       "lectures": [
@@ -1000,7 +1038,8 @@
       "blocks": [],
       "related": [
         "case-ad-feasibility",
-        "case-dual-bounds"
+        "case-dual-bounds",
+        "concept-strong-duality"
       ],
       "origin": "course-synthesis",
       "lectures": [
@@ -1042,7 +1081,10 @@
       ],
       "blocks": [],
       "related": [
-        "case-dual-bounds"
+        "case-dual-bounds",
+        "concept-complementarity",
+        "concept-weak-duality",
+        "concept-dual"
       ],
       "origin": "course-synthesis",
       "lectures": [
@@ -1085,7 +1127,11 @@
         }
       ],
       "blocks": [],
-      "related": [],
+      "related": [
+        "concept-strong-duality",
+        "concept-sensitivity",
+        "concept-dual"
+      ],
       "origin": "course-synthesis",
       "lectures": [
         5
@@ -1127,7 +1173,10 @@
         }
       ],
       "blocks": [],
-      "related": [],
+      "related": [
+        "concept-dual",
+        "concept-sign-transform"
+      ],
       "origin": "course-synthesis",
       "lectures": [
         5
@@ -1172,7 +1221,10 @@
       "blocks": [],
       "related": [
         "case-dakota",
-        "case-meat"
+        "case-meat",
+        "concept-complementarity",
+        "concept-objective-range",
+        "concept-dual"
       ],
       "origin": "course-synthesis",
       "lectures": [
@@ -1221,7 +1273,8 @@
       "blocks": [],
       "related": [
         "case-dakota",
-        "case-meat"
+        "case-meat",
+        "concept-sensitivity"
       ],
       "origin": "course-synthesis",
       "lectures": [
@@ -1265,7 +1318,8 @@
       "blocks": [],
       "related": [
         "case-bridges",
-        "case-shortest-network"
+        "case-shortest-network",
+        "concept-flow-balance"
       ],
       "origin": "course-synthesis",
       "lectures": [
@@ -1310,7 +1364,11 @@
       "related": [
         "case-powerco",
         "case-replacement",
-        "case-pipeline"
+        "case-pipeline",
+        "concept-transport",
+        "concept-shortest-path",
+        "concept-maxflow",
+        "concept-incidence"
       ],
       "origin": "course-synthesis",
       "lectures": [
@@ -1351,7 +1409,8 @@
       ],
       "blocks": [],
       "related": [
-        "case-machineco"
+        "case-machineco",
+        "concept-integrality"
       ],
       "origin": "course-synthesis",
       "lectures": [
@@ -1397,7 +1456,8 @@
       "blocks": [],
       "related": [
         "case-machineco",
-        "case-shortest-network"
+        "case-shortest-network",
+        "concept-tu"
       ],
       "origin": "course-synthesis",
       "lectures": [
@@ -1442,7 +1502,9 @@
       ],
       "blocks": [],
       "related": [
-        "case-powerco"
+        "case-powerco",
+        "concept-assignment",
+        "concept-flow-balance"
       ],
       "origin": "course-synthesis",
       "lectures": [
@@ -1526,7 +1588,8 @@
       ],
       "blocks": [],
       "related": [
-        "case-machineco"
+        "case-machineco",
+        "concept-transport"
       ],
       "origin": "course-synthesis",
       "lectures": [
@@ -1570,7 +1633,8 @@
       "blocks": [],
       "related": [
         "case-shortest-network",
-        "case-replacement"
+        "case-replacement",
+        "concept-flow-balance"
       ],
       "origin": "course-synthesis",
       "lectures": [
@@ -1612,7 +1676,8 @@
       ],
       "blocks": [],
       "related": [
-        "case-pipeline"
+        "case-pipeline",
+        "concept-flow-balance"
       ],
       "origin": "course-synthesis",
       "lectures": [
@@ -1660,7 +1725,12 @@
         "case-dorian",
         "case-kilroy",
         "case-tsp",
-        "case-steve"
+        "case-steve",
+        "concept-cardinality",
+        "concept-ifthen",
+        "concept-relaxation",
+        "concept-set-cover",
+        "concept-knapsack"
       ],
       "origin": "course-synthesis",
       "lectures": [
@@ -1707,7 +1777,12 @@
       "related": [
         "case-schedule",
         "case-branch",
-        "practice-source-gomory"
+        "practice-source-gomory",
+        "concept-branch-bound",
+        "concept-cuts",
+        "concept-integer",
+        "concept-strength",
+        "concept-bigm"
       ],
       "origin": "course-synthesis",
       "lectures": [
@@ -1749,7 +1824,8 @@
       ],
       "blocks": [],
       "related": [
-        "case-stockco"
+        "case-stockco",
+        "concept-integer"
       ],
       "origin": "course-synthesis",
       "lectures": [
@@ -1791,7 +1867,9 @@
       ],
       "blocks": [],
       "related": [
-        "case-facility"
+        "case-facility",
+        "concept-cardinality",
+        "concept-ifthen"
       ],
       "origin": "course-synthesis",
       "lectures": [
@@ -1832,7 +1910,10 @@
         }
       ],
       "blocks": [],
-      "related": [],
+      "related": [
+        "concept-integer",
+        "concept-implication-binary"
+      ],
       "origin": "course-synthesis",
       "lectures": [
         7
@@ -1875,7 +1956,9 @@
       ],
       "blocks": [],
       "related": [
-        "case-dorian"
+        "case-dorian",
+        "concept-ifthen",
+        "concept-relaxation"
       ],
       "origin": "course-synthesis",
       "lectures": [
@@ -1915,7 +1998,11 @@
         }
       ],
       "blocks": [],
-      "related": [],
+      "related": [
+        "concept-bigm",
+        "concept-implication-binary",
+        "concept-integer"
+      ],
       "origin": "course-synthesis",
       "lectures": [
         7
@@ -1957,7 +2044,8 @@
       ],
       "blocks": [],
       "related": [
-        "case-kilroy"
+        "case-kilroy",
+        "concept-integer"
       ],
       "origin": "course-synthesis",
       "lectures": [
@@ -2044,7 +2132,9 @@
       ],
       "blocks": [],
       "related": [
-        "case-branch"
+        "case-branch",
+        "concept-relaxation",
+        "concept-cuts"
       ],
       "origin": "course-synthesis",
       "lectures": [
@@ -2090,7 +2180,9 @@
       "blocks": [],
       "related": [
         "case-branch",
-        "practice-source-gomory"
+        "practice-source-gomory",
+        "concept-relaxation",
+        "concept-branch-bound"
       ],
       "origin": "course-synthesis",
       "lectures": [
@@ -2138,7 +2230,9 @@
       "blocks": [],
       "related": [
         "case-facility",
-        "case-tsp"
+        "case-tsp",
+        "concept-relaxation",
+        "concept-subtour"
       ],
       "origin": "course-synthesis",
       "lectures": [
@@ -2181,7 +2275,8 @@
       ],
       "blocks": [],
       "related": [
-        "case-tsp"
+        "case-tsp",
+        "concept-strength"
       ],
       "origin": "course-synthesis",
       "lectures": [

@@ -54,7 +54,7 @@ window.KnowledgeStore=(()=>{
     if(JSON.stringify(base)===JSON.stringify(empty()))return {next:clone(incoming),added:incoming.items.length,librariesAdded:Math.max(0,incoming.libraries.length-1),duplicate:0,conflict:0,libraryConflict:0};
     const next=clone(base),mapping=new Map();let duplicate=0,conflict=0,libraryConflict=0;
     for(const lib of incoming.libraries){
-      const same=next.libraries.find(v=>v.id===lib.id),byName=next.libraries.find(v=>norm(v.name)===norm(lib.name));
+      const same=next.libraries.find(v=>v.id===lib.id),alias=x=>{x=norm(x);return x==='etf5500'?'etx5500':x},byName=next.libraries.find(v=>alias(v.name)===alias(lib.name));
       if(same){mapping.set(lib.id,same.id);if(same.name!==lib.name||same.nameEn!==lib.nameEn||same.kind!==lib.kind)libraryConflict++;}
       else if(byName){mapping.set(lib.id,byName.id);if(byName.kind!==lib.kind||byName.nameEn!==lib.nameEn)libraryConflict++;}
       else{next.libraries.push(lib);mapping.set(lib.id,lib.id);}
